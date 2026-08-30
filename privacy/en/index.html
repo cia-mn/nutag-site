@@ -32,8 +32,8 @@
   <h2>2. In short</h2>
   <ul>
     <li>Accounts are <strong>phone-number only</strong> — no password, no email address.</li>
-    <li>Location is requested only when you tap "find me" on the map or look at drops. There is no
-      background location tracking of any kind.</li>
+    <li>Location permission is requested when the map opens, so we can show the Ortoos near you.
+      Refuse and the map and list still work. There is no background location tracking of any kind.</li>
     <li>The camera is used only to scan a QR code. Frames never leave your device.</li>
     <li>The app contains <strong>no advertising, analytics or crash-reporting SDK</strong>.</li>
     <li>We do not <strong>sell</strong> your data and we do not <strong>track</strong> you across other
@@ -59,7 +59,8 @@
     </tr>
     <tr>
       <td><strong>Location (GPS)</strong></td>
-      <td>Only when you tap "find me" on the map or view drops. Never at launch.</td>
+      <td>Permission is asked for when the map opens, and read only if you allow it. Refuse and we do
+        not ask again — the "find me" button turns it back on whenever you want.</td>
       <td>To sort nearby Ortoos and to place the day's drops around you.</td>
     </tr>
     <tr>
@@ -128,6 +129,7 @@
     <tr><td><strong>Apple / Google</strong></td><td>Purchase data</td><td>App Store / Google Play billing, under their own privacy policies.</td></tr>
     <tr><td><strong>Payment gateways</strong> — Bonum/QPay, Stripe</td><td>Order amount, reference, status</td><td>To take payment for venue orders. Each gateway account belongs to <strong>the vendor</strong>, not to Nutag.</td></tr>
     <tr><td><strong>Vendors (Naimaa)</strong></td><td>The order placed at their venue — items, amount, time</td><td>To fulfil your order. Your phone number is not passed on.</td></tr>
+    <tr><td><strong>Esri</strong> (<code>server.arcgisonline.com</code>)</td><td>Your device IP and which map area you are viewing</td><td>Only while satellite imagery is selected; the street map never contacts it.</td></tr>
     <tr><td><strong>OpenStreetMap</strong> (<code>tile.openstreetmap.org</code>)</td><td>Your device IP and which map area you are viewing</td><td>Map tiles are fetched directly by the app, subject to OSM's own policy.</td></tr>
     <tr><td><strong>Hosting</strong></td><td>The data above, at rest on our servers</td><td>Runs the Nutag API, database and image storage.</td></tr>
   </table>
