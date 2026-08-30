@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy · Nutag</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">nutag</a>
+  <span class="spacer"></span>
+  <a href="/terms/en/">Terms</a>
+  <a href="/privacy/">Монгол</a>
+</header>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Effective 2026-08-30 · Version 1.0</p>
+  <p class="lede">This policy covers the <strong>Nutag</strong> mobile app and the services under the
+    <code>nutag.mn</code> domain. It states what we collect, why, who receives it, how long we keep it,
+    and what you can ask us to do.</p>
+
+  <div class="todo">
+    <p><strong>To fill in:</strong> [Legal entity name] LLC, company registration number [XXXXXXX],
+    address [Ulaanbaatar, …]. Delete this box once filled.</p>
+  </div>
+
+  <h2>1. Who is responsible</h2>
+  <p>Your personal data is controlled and processed by [Legal entity name] ("we", "Nutag").
+    Contact: <a href="mailto:privacy@nutag.mn">privacy@nutag.mn</a>.</p>
+
+  <h2>2. In short</h2>
+  <ul>
+    <li>Accounts are <strong>phone-number only</strong> — no password, no email address.</li>
+    <li>Location is requested only when you tap "find me" on the map or look at drops. There is no
+      background location tracking of any kind.</li>
+    <li>The camera is used only to scan a QR code. Frames never leave your device.</li>
+    <li>The app contains <strong>no advertising, analytics or crash-reporting SDK</strong>.</li>
+    <li>We do not <strong>sell</strong> your data and we do not <strong>track</strong> you across other
+      apps or websites.</li>
+    <li>You can request deletion of your account from inside the app (§8).</li>
+  </ul>
+
+  <h2>3. What we collect</h2>
+  <table>
+    <tr><th>Data</th><th>When</th><th>Why</th></tr>
+    <tr>
+      <td><strong>Phone number</strong></td>
+      <td>At sign-in. A one-time code (OTP) is sent by SMS.</td>
+      <td>To sign you in and keep one account per person. The number is received and verified by our
+        identity provider CIA (<code>api.cia.mn</code>).</td>
+    </tr>
+    <tr>
+      <td><strong>Account identifier (sub)</strong></td>
+      <td>At account creation.</td>
+      <td>The stable id your game data hangs off. It is also sent to RevenueCat as
+        <code>app_user_id</code> so purchases follow the account rather than the handset. Your default
+        avatar is drawn from this id.</td>
+    </tr>
+    <tr>
+      <td><strong>Location (GPS)</strong></td>
+      <td>Only when you tap "find me" on the map or view drops. Never at launch.</td>
+      <td>To sort nearby Ortoos and to place the day's drops around you.</td>
+    </tr>
+    <tr>
+      <td><strong>Camera</strong></td>
+      <td>When you scan an Ortoo's QR code.</td>
+      <td>To open that venue's page. Frames are processed on the device only — never uploaded, never
+        stored.</td>
+    </tr>
+    <tr>
+      <td><strong>Player handle</strong></td>
+      <td>When you set it in your profile. Optional.</td>
+      <td>The name you are known by. The game is fully playable without one.</td>
+    </tr>
+    <tr>
+      <td><strong>Game data</strong></td>
+      <td>When you order at an Ortoo or build a Ger.</td>
+      <td>Parts collected, Gers built, which venue you visited on which day. This is what the daily
+        caps and the 7-day activity clock are computed from.</td>
+    </tr>
+    <tr>
+      <td><strong>Purchases</strong></td>
+      <td>When you pay for an order at a venue, or buy in-app.</td>
+      <td>Amount, status, which vendor, which products, time. Nutag <strong>never receives card
+        numbers</strong> — payment is handled by Bonum/QPay or Stripe.</td>
+    </tr>
+    <tr>
+      <td><strong>Vendor promo interactions</strong></td>
+      <td>When a vendor's promo is shown or tapped on an Ortoo page.</td>
+      <td>To report to that vendor how their own banner performed. This is a first-party counter, not a
+        third-party ad network.</td>
+    </tr>
+    <tr>
+      <td><strong>Technical logs</strong></td>
+      <td>On each request to our server.</td>
+      <td>IP address, timestamp and request type, kept briefly in server logs for security, abuse
+        prevention and debugging.</td>
+    </tr>
+  </table>
+
+  <h3>More detail on location</h3>
+  <p>There are two uses, both only with your permission:</p>
+  <ul>
+    <li><strong>Nearby Ortoos.</strong> Your coordinates are used to sort the list and are
+      <em>not stored</em>.</li>
+    <li><strong>Drops.</strong> The server computes points offset from your position by a
+      <strong>random bearing and 150–500 metres</strong>, and stores those <em>offset</em> points as the
+      day's drop locations against your account. The point recorded is deliberately not where you were.</li>
+  </ul>
+  <p>The app has no background-location mode at all. You can revoke the permission in your device
+    settings at any time; the map still works, but nearby sorting and drops stop.</p>
+
+  <h2>4. What we do not do</h2>
+  <ul>
+    <li>No third-party advertising SDK (no AdMob, Facebook, AppsFlyer).</li>
+    <li>No analytics or crash-reporting SDK (no Firebase, Crashlytics, Sentry, Mixpanel, Amplitude).</li>
+    <li>No tracking of your activity in other companies' apps or websites.</li>
+    <li>We never sell, rent, or share personal data for advertising.</li>
+    <li>We never give your phone number to vendors.</li>
+  </ul>
+
+  <h2>5. Who receives data</h2>
+  <table>
+    <tr><th>Recipient</th><th>What they get</th><th>Why</th></tr>
+    <tr><td><strong>CIA</strong> (<code>api.cia.mn</code>)</td><td>Phone number, sign-in events</td><td>Sends the OTP, verifies you, issues tokens. CIA is Nutag's identity provider.</td></tr>
+    <tr><td><strong>RevenueCat</strong></td><td>Account id (sub), subscription state</td><td>Manages in-app purchases and the Nutag Pro entitlement.</td></tr>
+    <tr><td><strong>Apple / Google</strong></td><td>Purchase data</td><td>App Store / Google Play billing, under their own privacy policies.</td></tr>
+    <tr><td><strong>Payment gateways</strong> — Bonum/QPay, Stripe</td><td>Order amount, reference, status</td><td>To take payment for venue orders. Each gateway account belongs to <strong>the vendor</strong>, not to Nutag.</td></tr>
+    <tr><td><strong>Vendors (Naimaa)</strong></td><td>The order placed at their venue — items, amount, time</td><td>To fulfil your order. Your phone number is not passed on.</td></tr>
+    <tr><td><strong>OpenStreetMap</strong> (<code>tile.openstreetmap.org</code>)</td><td>Your device IP and which map area you are viewing</td><td>Map tiles are fetched directly by the app, subject to OSM's own policy.</td></tr>
+    <tr><td><strong>Hosting</strong></td><td>The data above, at rest on our servers</td><td>Runs the Nutag API, database and image storage.</td></tr>
+  </table>
+  <p>We may also disclose data where required by law, to the extent of a lawful request from a court or
+    competent authority.</p>
+
+  <h2>6. How long we keep it</h2>
+  <ul>
+    <li><strong>Account, handle, game data</strong> — until the account is deleted.</li>
+    <li><strong>Deletion requests</strong> — completed <strong>within 30 days</strong> of the request (§8).</li>
+    <li><strong>Order and payment records</strong> — kept for the period required by Mongolian accounting
+      and tax law ([N] years), detached from the account after deletion.</li>
+    <li><strong>Drop points</strong> — only needed for that day's play; removed with the account.</li>
+    <li><strong>Server technical logs</strong> — [30] days.</li>
+  </ul>
+  <div class="todo"><p><strong>To decide:</strong> confirm the [N] years and [30] days above (accounting law
+    typically requires 5–10 years).</p></div>
+
+  <h2>7. Where data is stored</h2>
+  <p>Nutag's server and database are located in [location — e.g. Mongolia]. Images and files are stored in
+    Cloudflare R2. Partners such as RevenueCat, Stripe, Apple and Google may process parts of your data on
+    their own infrastructure outside Mongolia.</p>
+
+  <h2>8. Your rights</h2>
+  <ul>
+    <li><strong>Access and correction.</strong> Change your handle in the profile at any time. Ask for a
+      copy of the rest at <a href="mailto:privacy@nutag.mn">privacy@nutag.mn</a>.</li>
+    <li><strong>Deletion.</strong> App → <em>Profile</em> → <em>Delete account</em>. The request goes to
+      CIA, which notifies every service tied to the account (Nutag included) and coordinates the deletion.
+      It completes <strong>within 30 days</strong> and is irreversible: parts, Gers and history do not come
+      back.</li>
+    <li><strong>Withdraw permissions.</strong> Revoke location or camera access in your device settings at
+      any time.</li>
+    <li><strong>Complaints.</strong> Write to us first. If unresolved, you may complain to the Mongolian
+      authority responsible for personal data protection.</li>
+  </ul>
+
+  <h2>9. Children</h2>
+  <p>Nutag is not directed at anyone under [13] and we do not knowingly collect their data; if we learn we
+    have, we delete it. If you are under 18, make purchases only with a parent's or guardian's consent.</p>
+  <div class="todo"><p><strong>To decide:</strong> the minimum age, and the App Store / Google Play age
+    rating that matches it.</p></div>
+
+  <h2>10. Security</h2>
+  <ul>
+    <li>All connections use HTTPS/TLS.</li>
+    <li>Sign-in tokens are held in the device's secure store (iOS Keychain, Android Keystore).</li>
+    <li>Vendor payment secrets are encrypted at rest with AES-GCM.</li>
+    <li>We store no passwords — sign-in is one-time-code based.</li>
+  </ul>
+
+  <h2>11. Changes</h2>
+  <p>If this policy changes we publish the new version here with an updated date, and notify significant
+    changes in the app.</p>
+
+  <h2>12. Contact</h2>
+  <p>[Legal entity name] · [address] · <a href="mailto:privacy@nutag.mn">privacy@nutag.mn</a></p>
+</main>
+<footer>
+  <p><a href="/">nutag.mn</a> · <a href="/terms/en/">Terms of Service</a> · <a href="/privacy/">Монгол</a></p>
+</footer>
+</body>
+</html>
