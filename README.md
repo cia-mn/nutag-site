@@ -1,7 +1,8 @@
-# nutag.mn — public pages
+# nutag.fun — public pages
 
-Privacy policy and terms, MN + EN. Plain HTML, no build step.
+How-to-play guide, privacy policy and terms, MN + EN. Plain HTML, no build step.
 
+- `/guide/` `/guide/en/` — how to play (parts, collecting, Gers)
 - `/privacy/` `/privacy/en/` — privacy policy (App Store / Play Console link)
 - `/terms/` `/terms/en/`
 

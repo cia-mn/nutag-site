@@ -60,3 +60,9 @@ th { background: var(--card); font-weight: 600; }
 }
 .todo { border-left: 3px solid var(--accent); background: var(--card); padding: 2px 14px; margin: 16px 0; }
 footer { max-width: var(--max); margin: 0 auto; padding: 24px 20px 64px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+.steps li { margin: 8px 0; }
+.parts { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+.part { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.part img { width: 64px; height: 64px; display: block; margin-bottom: 8px; }
+.part h3 { margin: 0 0 4px; }
+.part p { margin: 0; font-size: 15px; }
