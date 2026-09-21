@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Өртөө болох · Nutag</title>
+<meta name="description" content="Танай кафе, дэлгүүр, фитнесс Nutag тоглоомын Өртөө болох хүсэлт. Хоёр алхмаар бүртгүүлбэл бид залгана." />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../">nutag</a>
+  <span class="spacer"></span>
+  <a href="../guide/">Заавар</a>
+  <a href="en/">English</a>
+</header>
+<main>
+<form id="apply" class="stepper" novalidate>
+  <fieldset>
+    <h1>Өртөө болох</h1>
+    <p class="lede">Танай кафе, дэлгүүр, фитнесс Nutag тоглоомын Өртөө болж, тоглогчид танайд захиалга хийхээр
+      ирнэ.</p>
+    <ul>
+      <li><strong>Захиалга бүр эд анги болно.</strong> Тоглогч танайд захиалга хийх бүрд Гэрийн нэг эд анги авна.
+        Найм бүрдвэл танай газарт Гэрээ барина.</li>
+      <li><strong>Тэд эргэж ирнэ.</strong> Долоо хоногт нэгээс доошгүй удаа эргэж очихгүй бол Гэр нурдаг тул
+        танайд Гэр барьсан тоглогч байнга ирнэ.</li>
+      <li><strong>Газрын зураг дээр гарна.</strong> Танай Өртөө аппын газрын зураг болон «Ойр орчим» жагсаалтад
+        харагдана.</li>
+    </ul>
+    <div class="card">
+      <p><strong>Хэрхэн бүртгүүлэх вэ:</strong> доорх хоёр алхмыг бөглөнө, нэг минут л болно. Бид танд залгаж,
+        дараагийн алхмыг тайлбарлана.</p>
+    </div>
+    <div class="actions"><button type="submit" class="btn primary">Бүртгүүлэх</button></div>
+  </fieldset>
+
+  <fieldset hidden>
+    <p class="meta">Алхам 1/2</p>
+    <h2>Танай газар</h2>
+    <label>Нэр
+      <input name="name" required maxlength="120" autocomplete="organization" placeholder="Жишээ: Ногоон цай" />
+    </label>
+    <label>Төрөл
+      <select name="category">
+        <option value="cafe">Кафе</option>
+        <option value="shop">Дэлгүүр</option>
+        <option value="gym">Фитнесс</option>
+        <option value="cargo">Карго</option>
+        <option value="other">Бусад</option>
+      </select>
+    </label>
+    <label>Хаяг
+      <input name="address" maxlength="300" autocomplete="street-address" placeholder="Хот, дүүрэг, гудамж" />
+    </label>
+    <div class="actions">
+      <button type="button" class="btn back">Буцах</button>
+      <button type="submit" class="btn primary">Үргэлжлүүлэх</button>
+    </div>
+  </fieldset>
+
+  <fieldset hidden>
+    <p class="meta">Алхам 2/2</p>
+    <h2>Холбоо барих</h2>
+    <label>Таны нэр
+      <input name="contact" required maxlength="120" autocomplete="name" />
+    </label>
+    <label>Утасны дугаар
+      <input name="phone" type="tel" required pattern="[+]?[0-9][0-9 \-]{6,18}" autocomplete="tel" placeholder="8811 2233" />
+    </label>
+    <label>Нэмэлт мэдээлэл
+      <textarea name="note" rows="3" maxlength="1000" placeholder="Хэдэн салбартай, хэзээ залгах вэ…"></textarea>
+    </label>
+    <p class="error" hidden>Илгээж чадсангүй. Дахин оролдоно уу, эсвэл <a href="mailto:info@cia.mn">info@cia.mn</a>
+      руу бичнэ үү.</p>
+    <div class="actions">
+      <button type="button" class="btn back">Буцах</button>
+      <button type="submit" class="btn primary">Илгээх</button>
+    </div>
+  </fieldset>
+
+  <fieldset hidden>
+    <h2>Хүлээн авлаа</h2>
+    <p>Баярлалаа! Бид <strong data-phone></strong> дугаарт ажлын цагаар залгана.</p>
+    <p><a href="../guide/">Тоглоомын заавар</a> · <a href="../">Нүүр хуудас</a></p>
+  </fieldset>
+</form>
+</main>
+<script src="form.js"></script>
+</body>
+</html>
