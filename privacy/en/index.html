@@ -1,19 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Privacy Policy · Nutag</title>
+<!-- head -->
+<script>try{var t=localStorage.getItem('nutag-theme')}catch(e){}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'</script>
+<meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<link rel="alternate" hreflang="mn" href="../" />
 <link rel="stylesheet" href="../../style.css" />
+<script src="../../site.js" defer></script>
+<!-- /head -->
 </head>
-<body>
-<header class="top">
-  <a class="brand" href="../../">nutag</a>
-  <span class="spacer"></span>
-  <a href="../../terms/en/">Terms</a>
-  <a href="../">Монгол</a>
+<body id="top">
+<!-- header -->
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="header-inner shell">
+    <a class="brand" href="../../en/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><strong>nutag</strong><small>Ortoo · Parts · Ger</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="../../guide/en/">How to play</a>
+      <a href="../../vendor/en/">For business</a>
+      <a href="https://console.nutag.fun">Console</a>
+    </nav>
+    <div class="header-actions">
+      <a class="lang-link" href="../" lang="mn" hreflang="mn" aria-label="Монгол" title="Монгол">МН</a>
+      <button class="theme-toggle" type="button" data-theme-toggle data-to-dark="Switch to dark theme" data-to-light="Switch to light theme" aria-label="Switch to dark theme" aria-pressed="false">
+        <span class="theme-icon theme-icon-sun"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg></span>
+        <span class="theme-icon theme-icon-moon"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.4 15.4A8.5 8.5 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z"/></svg></span>
+      </button>
+      <a class="header-cta" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Get the app <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+    <button class="nav-toggle" type="button" aria-label="Open navigation" data-open-label="Open navigation" data-close-label="Close navigation" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+      <span class="nav-open"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+      <span class="nav-close"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-mobile-nav inert>
+    <div class="shell">
+      <a href="../../guide/en/"><span>01</span>How to play</a>
+      <a href="../../vendor/en/"><span>02</span>For business</a>
+      <a href="https://console.nutag.fun"><span>03</span>Console</a>
+      <a class="mobile-contact" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Get it on Google Play <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+  </nav>
 </header>
-<main>
+<!-- /header -->
+<main id="main-content" class="shell prose" tabindex="-1">
   <h1>Privacy Policy</h1>
   <p class="meta">Effective 2026-08-30 · Version 1.0</p>
   <p class="lede">This policy covers the <strong>Nutag</strong> mobile app and the services under the
@@ -41,56 +80,56 @@
     <tr><th>Data</th><th>When</th><th>Why</th></tr>
     <tr>
       <td><strong>Phone number</strong></td>
-      <td>At sign-in. A one-time code (OTP) is sent by SMS.</td>
-      <td>To sign you in and keep one account per person. The number is received and verified by our
+      <td data-label="When">At sign-in. A one-time code (OTP) is sent by SMS.</td>
+      <td data-label="Why">To sign you in and keep one account per person. The number is received and verified by our
         identity provider CIA (<code>api.cia.mn</code>).</td>
     </tr>
     <tr>
       <td><strong>Account identifier (sub)</strong></td>
-      <td>At account creation.</td>
-      <td>The stable id your game data hangs off. It is also sent to RevenueCat as
+      <td data-label="When">At account creation.</td>
+      <td data-label="Why">The stable id your game data hangs off. It is also sent to RevenueCat as
         <code>app_user_id</code> so purchases follow the account rather than the handset. Your default
         avatar is drawn from this id.</td>
     </tr>
     <tr>
       <td><strong>Location (GPS)</strong></td>
-      <td>Permission is asked for when the map opens, and read only if you allow it. Refuse and we do
+      <td data-label="When">Permission is asked for when the map opens, and read only if you allow it. Refuse and we do
         not ask again — the "find me" button turns it back on whenever you want.</td>
-      <td>To sort nearby Ortoos and to place the day's drops around you.</td>
+      <td data-label="Why">To sort nearby Ortoos and to place the day's drops around you.</td>
     </tr>
     <tr>
       <td><strong>Camera</strong></td>
-      <td>When you scan an Ortoo's QR code.</td>
-      <td>To open that venue's page. Frames are processed on the device only — never uploaded, never
+      <td data-label="When">When you scan an Ortoo's QR code.</td>
+      <td data-label="Why">To open that venue's page. Frames are processed on the device only — never uploaded, never
         stored.</td>
     </tr>
     <tr>
       <td><strong>Player handle</strong></td>
-      <td>When you set it in your profile. Optional.</td>
-      <td>The name you are known by. The game is fully playable without one.</td>
+      <td data-label="When">When you set it in your profile. Optional.</td>
+      <td data-label="Why">The name you are known by. The game is fully playable without one.</td>
     </tr>
     <tr>
       <td><strong>Game data</strong></td>
-      <td>When you order at an Ortoo or build a Ger.</td>
-      <td>Parts collected, Gers built, which venue you visited on which day. This is what the daily
+      <td data-label="When">When you order at an Ortoo or build a Ger.</td>
+      <td data-label="Why">Parts collected, Gers built, which venue you visited on which day. This is what the daily
         caps and the 7-day activity clock are computed from.</td>
     </tr>
     <tr>
       <td><strong>Purchases</strong></td>
-      <td>When you pay for an order at a venue, or buy in-app.</td>
-      <td>Amount, status, which vendor, which products, time. Nutag <strong>never receives card
+      <td data-label="When">When you pay for an order at a venue, or buy in-app.</td>
+      <td data-label="Why">Amount, status, which vendor, which products, time. Nutag <strong>never receives card
         numbers</strong> — payment is handled by Bonum/QPay or Stripe.</td>
     </tr>
     <tr>
       <td><strong>Vendor promo interactions</strong></td>
-      <td>When a vendor's promo is shown or tapped on an Ortoo page.</td>
-      <td>To report to that vendor how their own banner performed. This is a first-party counter, not a
+      <td data-label="When">When a vendor's promo is shown or tapped on an Ortoo page.</td>
+      <td data-label="Why">To report to that vendor how their own banner performed. This is a first-party counter, not a
         third-party ad network.</td>
     </tr>
     <tr>
       <td><strong>Technical logs</strong></td>
-      <td>On each request to our server.</td>
-      <td>IP address, timestamp and request type, kept briefly in server logs for security, abuse
+      <td data-label="When">On each request to our server.</td>
+      <td data-label="Why">IP address, timestamp and request type, kept briefly in server logs for security, abuse
         prevention and debugging.</td>
     </tr>
   </table>
@@ -119,14 +158,14 @@
   <h2>5. Who receives data</h2>
   <table>
     <tr><th>Recipient</th><th>What they get</th><th>Why</th></tr>
-    <tr><td><strong>CIA</strong> (<code>api.cia.mn</code>)</td><td>Phone number, sign-in events</td><td>Sends the OTP, verifies you, issues tokens. CIA is Nutag's identity provider.</td></tr>
-    <tr><td><strong>RevenueCat</strong></td><td>Account id (sub), subscription state</td><td>Manages in-app purchases and the Nutag Pro entitlement.</td></tr>
-    <tr><td><strong>Apple / Google</strong></td><td>Purchase data</td><td>App Store / Google Play billing, under their own privacy policies.</td></tr>
-    <tr><td><strong>Payment gateways</strong> — Bonum/QPay, Stripe</td><td>Order amount, reference, status</td><td>To take payment for venue orders. Each gateway account belongs to <strong>the vendor</strong>, not to Nutag.</td></tr>
-    <tr><td><strong>Vendors (Naimaa)</strong></td><td>The order placed at their venue — items, amount, time</td><td>To fulfil your order. Your phone number is not passed on.</td></tr>
-    <tr><td><strong>Esri</strong> (<code>server.arcgisonline.com</code>)</td><td>Your device IP and which map area you are viewing</td><td>Only while satellite imagery is selected; the street map never contacts it.</td></tr>
-    <tr><td><strong>OpenStreetMap</strong> (<code>tile.openstreetmap.org</code>)</td><td>Your device IP and which map area you are viewing</td><td>Map tiles are fetched directly by the app, subject to OSM's own policy.</td></tr>
-    <tr><td><strong>Hosting</strong></td><td>The data above, at rest on our servers</td><td>Runs the Nutag API, database and image storage.</td></tr>
+    <tr><td><strong>CIA</strong> (<code>api.cia.mn</code>)</td><td data-label="What they get">Phone number, sign-in events</td><td data-label="Why">Sends the OTP, verifies you, issues tokens. CIA is Nutag's identity provider.</td></tr>
+    <tr><td><strong>RevenueCat</strong></td><td data-label="What they get">Account id (sub), subscription state</td><td data-label="Why">Manages in-app purchases and the Nutag Pro entitlement.</td></tr>
+    <tr><td><strong>Apple / Google</strong></td><td data-label="What they get">Purchase data</td><td data-label="Why">App Store / Google Play billing, under their own privacy policies.</td></tr>
+    <tr><td><strong>Payment gateways</strong> — Bonum/QPay, Stripe</td><td data-label="What they get">Order amount, reference, status</td><td data-label="Why">To take payment for venue orders. Each gateway account belongs to <strong>the vendor</strong>, not to Nutag.</td></tr>
+    <tr><td><strong>Vendors (Naimaa)</strong></td><td data-label="What they get">The order placed at their venue — items, amount, time</td><td data-label="Why">To fulfil your order. Your phone number is not passed on.</td></tr>
+    <tr><td><strong>Esri</strong> (<code>server.arcgisonline.com</code>)</td><td data-label="What they get">Your device IP and which map area you are viewing</td><td data-label="Why">Only while satellite imagery is selected; the street map never contacts it.</td></tr>
+    <tr><td><strong>OpenStreetMap</strong> (<code>tile.openstreetmap.org</code>)</td><td data-label="What they get">Your device IP and which map area you are viewing</td><td data-label="Why">Map tiles are fetched directly by the app, subject to OSM's own policy.</td></tr>
+    <tr><td><strong>Hosting</strong></td><td data-label="What they get">The data above, at rest on our servers</td><td data-label="Why">Runs the Nutag API, database and image storage.</td></tr>
   </table>
   <p>We may also disclose data where required by law, to the extent of a lawful request from a court or
     competent authority.</p>
@@ -183,8 +222,28 @@
   <h2>12. Contact</h2>
   <p>CIA SOLUTION LLC · Twin Tower-2, 4th floor, Room 402, 2nd khoroo, Sukhbaatar District, Ulaanbaatar, Mongolia · <a href="mailto:info@cia.mn">info@cia.mn</a></p>
 </main>
-<footer>
-  <p><a href="../../">nutag.fun</a> · <a href="../../terms/en/">Terms of Service</a> · <a href="../">Монгол</a></p>
+<!-- footer -->
+<footer class="site-footer">
+  <div class="shell footer-main">
+    <div>
+      <a class="footer-brand" href="../../en/">nutag<span>.</span>fun</a>
+      <p>Visit an Ortoo. Collect the parts.<br />Raise your Ger.</p>
+    </div>
+    <div class="footer-links">
+      <span class="footer-label">Links</span>
+      <a href="../../guide/en/">How to play <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a href="../../vendor/en/">For business <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a href="../../privacy/en/">Privacy Policy <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a href="../../terms/en/">Terms of Service <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a href="mailto:info@cia.mn">info@cia.mn <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <span>© 2026 CIA SOLUTION LLC</span>
+    <a href="https://github.com/Dharani-Eswaramurthi/latentfolio" target="_blank" rel="noreferrer">Design: LatentFolio by Dharani Eswaramurthi</a>
+    <a href="#top">Back to top ↑</a>
+  </div>
 </footer>
+<!-- /footer -->
 </body>
 </html>

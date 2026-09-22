@@ -1,26 +1,66 @@
 <!doctype html>
-<html lang="mn">
+<html lang="mn" data-theme="light">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Өртөө болох · Nutag</title>
 <meta name="description" content="Танай кафе, дэлгүүр, фитнесс Nutag тоглоомын Өртөө болох хүсэлт. Хоёр алхмаар бүртгүүлбэл бид залгана." />
+<!-- head -->
+<script>try{var t=localStorage.getItem('nutag-theme')}catch(e){}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'</script>
+<meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="alternate" hreflang="en" href="en/" />
 <link rel="stylesheet" href="../style.css" />
+<script src="../site.js" defer></script>
+<!-- /head -->
 </head>
-<body>
-<header class="top">
-  <a class="brand" href="../">nutag</a>
-  <span class="spacer"></span>
-  <a href="../guide/">Заавар</a>
-  <a href="en/">English</a>
+<body id="top">
+<!-- header -->
+<a class="skip-link" href="#main-content">Агуулга руу очих</a>
+<header class="site-header" data-header>
+  <div class="header-inner shell">
+    <a class="brand" href="../">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><strong>nutag</strong><small>Өртөө · Эд анги · Гэр</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Үндсэн цэс">
+      <a href="../guide/">Заавар</a>
+      <a href="../vendor/" aria-current="page">Бизнест</a>
+      <a href="https://console.nutag.fun">Консол</a>
+    </nav>
+    <div class="header-actions">
+      <a class="lang-link" href="en/" lang="en" hreflang="en" aria-label="English" title="English">EN</a>
+      <button class="theme-toggle" type="button" data-theme-toggle data-to-dark="Харанхуй горим" data-to-light="Гэрэлтэй горим" aria-label="Харанхуй горим" aria-pressed="false">
+        <span class="theme-icon theme-icon-sun"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg></span>
+        <span class="theme-icon theme-icon-moon"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.4 15.4A8.5 8.5 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z"/></svg></span>
+      </button>
+      <a class="header-cta" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Апп татах <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+    <button class="nav-toggle" type="button" aria-label="Цэс нээх" data-open-label="Цэс нээх" data-close-label="Цэс хаах" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+      <span class="nav-open"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+      <span class="nav-close"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Гар утасны цэс" data-mobile-nav inert>
+    <div class="shell">
+      <a href="../guide/"><span>01</span>Заавар</a>
+      <a href="../vendor/"><span>02</span>Бизнест</a>
+      <a href="https://console.nutag.fun"><span>03</span>Консол</a>
+      <a class="mobile-contact" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Google Play-ээс татах <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+  </nav>
 </header>
-<main>
+<!-- /header -->
+<main id="main-content" class="shell narrow" tabindex="-1">
 <form id="apply" class="stepper" novalidate>
   <fieldset>
+    <span class="section-kicker">Бизнест</span>
     <h1>Өртөө болох</h1>
     <p class="lede">Танай кафе, дэлгүүр, фитнесс Nutag тоглоомын Өртөө болж, тоглогчид танайд захиалга хийхээр
       ирнэ.</p>
-    <ul>
+    <ul class="benefits">
       <li><strong>Захиалга бүр эд анги болно.</strong> Тоглогч танайд захиалга хийх бүрд Гэрийн нэг эд анги авна.
         Найм бүрдвэл танай газарт Гэрээ барина.</li>
       <li><strong>Тэд эргэж ирнэ.</strong> Долоо хоногт нэгээс доошгүй удаа эргэж очихгүй бол Гэр нурдаг тул
@@ -32,11 +72,12 @@
       <p><strong>Хэрхэн бүртгүүлэх вэ:</strong> доорх хоёр алхмыг бөглөнө, нэг минут л болно. Бид танд залгаж,
         дараагийн алхмыг тайлбарлана.</p>
     </div>
-    <div class="actions"><button type="submit" class="btn primary">Бүртгүүлэх</button></div>
+    <div class="actions"><button type="submit" class="button button-primary">Бүртгүүлэх</button></div>
   </fieldset>
 
   <fieldset hidden>
     <p class="meta">Алхам 1/2</p>
+    <span class="progress" aria-hidden="true"><i style="width:50%"></i></span>
     <h2>Танай газар</h2>
     <label>Нэр
       <input name="name" required maxlength="120" autocomplete="organization" placeholder="Жишээ: Ногоон цай" />
@@ -54,13 +95,14 @@
       <input name="address" maxlength="300" autocomplete="street-address" placeholder="Хот, дүүрэг, гудамж" />
     </label>
     <div class="actions">
-      <button type="button" class="btn back">Буцах</button>
-      <button type="submit" class="btn primary">Үргэлжлүүлэх</button>
+      <button type="button" class="button button-ghost back">Буцах</button>
+      <button type="submit" class="button button-primary">Үргэлжлүүлэх</button>
     </div>
   </fieldset>
 
   <fieldset hidden>
     <p class="meta">Алхам 2/2</p>
+    <span class="progress" aria-hidden="true"><i style="width:100%"></i></span>
     <h2>Холбоо барих</h2>
     <label>Таны нэр
       <input name="contact" required maxlength="120" autocomplete="name" />
@@ -74,18 +116,42 @@
     <p class="error" hidden>Илгээж чадсангүй. Дахин оролдоно уу, эсвэл <a href="mailto:info@cia.mn">info@cia.mn</a>
       руу бичнэ үү.</p>
     <div class="actions">
-      <button type="button" class="btn back">Буцах</button>
-      <button type="submit" class="btn primary">Илгээх</button>
+      <button type="button" class="button button-ghost back">Буцах</button>
+      <button type="submit" class="button button-primary">Илгээх</button>
     </div>
   </fieldset>
 
   <fieldset hidden>
+    <div class="done-mark" aria-hidden="true"><svg class="icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg></div>
     <h2>Хүлээн авлаа</h2>
     <p>Баярлалаа! Бид <strong data-phone></strong> дугаарт ажлын цагаар залгана.</p>
-    <p><a href="../guide/">Тоглоомын заавар</a> · <a href="../">Нүүр хуудас</a></p>
+    <p class="done-links"><a href="../guide/">Тоглоомын заавар</a> · <a href="../">Нүүр хуудас</a></p>
   </fieldset>
 </form>
 </main>
+<!-- footer -->
+<footer class="site-footer">
+  <div class="shell footer-main">
+    <div>
+      <a class="footer-brand" href="../">nutag<span>.</span>fun</a>
+      <p>Өртөөд оч. Хэсэг цуглуул.<br />Гэрээ бос.</p>
+    </div>
+    <div class="footer-links">
+      <span class="footer-label">Холбоос</span>
+      <a href="../guide/">Заавар <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a href="../vendor/">Бизнест <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a href="../privacy/">Нууцлалын бодлого <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a href="../terms/">Үйлчилгээний нөхцөл <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a href="mailto:info@cia.mn">info@cia.mn <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <span>© 2026 Си Ай Эй Солюшн ХХК</span>
+    <a href="https://github.com/Dharani-Eswaramurthi/latentfolio" target="_blank" rel="noreferrer">Загвар: LatentFolio · Dharani Eswaramurthi</a>
+    <a href="#top">Дээш буцах ↑</a>
+  </div>
+</footer>
+<!-- /footer -->
 <script src="form.js"></script>
 </body>
 </html>

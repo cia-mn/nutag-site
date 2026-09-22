@@ -16,7 +16,7 @@ function show(n) {
 }
 
 form.addEventListener('click', e => {
-  if (e.target.classList.contains('back')) show(at - 1);
+  if (e.target.closest('.back')) show(at - 1);
 });
 
 form.addEventListener('submit', async e => {
