@@ -6,6 +6,9 @@ Landing page, how-to-play guide, vendor sign-up, privacy policy and terms, MN + 
 - `/guide/` `/guide/en/` — how to play (parts, collecting, Gers)
 - `/vendor/` `/vendor/en/` — become an Ortoo: two-step form, POSTs to `api.nutag.fun/vendor-applications` (the backend must allow the `https://nutag.fun` origin in `CORS_ALLOWED_ORIGINS`); leads are read in psql, we call them back
 - `/privacy/` `/privacy/en/` — privacy policy (App Store / Play Console link)
+- `/map/` `/map/en/` — the city, every district and every building: a Leaflet viewer over tiles cut by
+  `general/carto_poster.py --tiles` and hosted on the backend's R2 bucket (`https://cdn.cia.mn/ub/`);
+  `map/districts.json` is the script's output too. Not in the nav yet.
 - `/terms/` `/terms/en/`
 
 Preview: `python3 -m http.server -d . 8000`

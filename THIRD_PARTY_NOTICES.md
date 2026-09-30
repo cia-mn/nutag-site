@@ -26,6 +26,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+## Leaflet (`map/leaflet/`, the city map viewer)
+
+https://leafletjs.com — BSD 2-Clause License, Copyright (c) 2010-2023 Volodymyr Agafonkin, Copyright (c) 2010-2011 CloudMade.
+The map tiles are © OpenStreetMap contributors © CARTO, credited on the map itself.
+
 ## Fonts
 
 - Inter, by The Inter Project Authors: SIL Open Font License 1.1, `fonts/OFL-Inter.txt`.

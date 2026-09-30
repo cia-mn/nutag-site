@@ -8,4 +8,5 @@ COPY privacy /usr/share/nginx/html/privacy
 COPY terms /usr/share/nginx/html/terms
 COPY guide /usr/share/nginx/html/guide
 COPY vendor /usr/share/nginx/html/vendor
+COPY map /usr/share/nginx/html/map
 EXPOSE 80
