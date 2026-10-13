@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.nutag.fun",
+      "sha256_cert_fingerprints": [
+        "D9:7E:99:36:EE:6D:FF:E1:01:B4:32:EC:0B:6A:DF:23:78:01:AD:AB:08:4D:2B:D5:0A:15:24:DA:8C:89:2D:C9",
+        "95:75:88:DD:E7:83:9E:BA:81:59:FE:B4:26:96:8D:89:F3:34:73:10:FA:9D:3B:73:FE:9C:7D:8E:56:F2:70:E5"
+      ]
+    }
+  }
+]

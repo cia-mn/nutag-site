@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["BH4ZU749CM.com.nutag.fun"],
+        "components": [{ "/": "/o/*", "comment": "An Ortoo's link, as printed on its tables" }]
+      }
+    ]
+  }
+}

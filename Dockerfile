@@ -9,4 +9,7 @@ COPY terms /usr/share/nginx/html/terms
 COPY guide /usr/share/nginx/html/guide
 COPY vendor /usr/share/nginx/html/vendor
 COPY map /usr/share/nginx/html/map
+COPY o /usr/share/nginx/html/o
+COPY .well-known /usr/share/nginx/html/.well-known
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80

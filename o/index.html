@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="mn" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Захиалга · Nutag</title>
+<!-- One page for every Ortoo and every table: nothing here is worth a search result. -->
+<meta name="robots" content="noindex" />
+<script>try{var t=localStorage.getItem('nutag-theme')}catch(e){}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'</script>
+<meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
+<meta name="color-scheme" content="light dark" />
+<!-- Absolute paths: this file is served at /o/{id}, whatever the id is (nginx.conf). -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="/o/order.css" />
+<script type="module" src="/o/order.js"></script>
+</head>
+<body>
+<header class="order-top shell narrow">
+  <a class="brand" href="/">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-copy"><strong>nutag</strong></span>
+  </a>
+  <a class="button button-primary" id="app" href="https://play.google.com/store/apps/details?id=com.nutag.fun"></a>
+</header>
+<main id="main-content" class="shell narrow order"></main>
+<dialog id="sheet" class="order-sheet"></dialog>
+<noscript><p class="shell narrow">Захиалга хийхэд JavaScript хэрэгтэй. · Ordering here needs JavaScript.</p></noscript>
+</body>
+</html>
