@@ -3,7 +3,7 @@
 @layer pages {
   .order-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 14px; }
   .order-top .button { min-height: 42px; padding: 9px 18px; font-size: .86rem; }
-  .order { padding-bottom: 150px; }
+  .order { padding-bottom: 150px; container-type: inline-size; }
   .order h2 { margin: 34px 0 6px; font-size: 1.25rem; }
 
   .order-venue { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
@@ -13,27 +13,47 @@
   .order-chip { display: inline-block; padding: 4px 12px; color: var(--inverse-ink); border-radius: 999px; background: var(--blue); font-size: .82rem; font-weight: 700; }
   .order-chip.is-closed { color: #8f2d12; background: rgba(251, 146, 60, .22); }
 
-  .order-item { display: flex; gap: 14px; padding-block: 16px; border-bottom: 1px solid var(--line); }
-  .order-item > img { flex: none; width: 72px; height: 72px; border-radius: var(--radius-sm); object-fit: cover; }
-  .order-item > div { flex: 1; min-width: 0; }
-  .order-item p { margin-top: 3px; color: var(--muted); font-size: .88rem; line-height: 1.45; }
-  .order-item .order-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 6px; }
-  .order-tag { padding: 2px 9px; color: #1e1b18; border-radius: 999px; background: var(--gold); font-size: .72rem; font-weight: 800; letter-spacing: .02em; }
-  .order-tag.is-sale { color: var(--inverse-ink); background: var(--wood); }
-  .order-line s { margin-right: 6px; color: var(--muted); font-size: .85em; }
-  .order-sale { color: var(--wood); font-weight: 800; }
+  .order-item { display: flex; gap: 14px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+  .order-item > div:last-child { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+  .order-item p { margin-top: 4px; color: var(--muted); font-size: .86rem; line-height: 1.45; }
+  .order-name { font-size: 1rem; font-weight: 680; letter-spacing: -.01em; line-height: 1.25; }
 
-  /* The specials: a strip of landscape cards above the menu, swiped sideways on a phone. */
-  .order-specials ul { display: flex; gap: 12px; padding-bottom: 8px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; }
-  .order-specials .order-item { flex: 0 0 min(82%, 320px); flex-direction: column; gap: 10px; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper-light); scroll-snap-align: start; }
-  .order-specials .order-item > img { width: 100%; height: auto; aspect-ratio: 16 / 10; }
+  .order-pic { position: relative; flex: none; width: 76px; height: 76px; overflow: hidden; border-radius: var(--radius-sm); background: var(--paper-deep); }
+  .order-pic img { width: 100%; height: 100%; object-fit: cover; }
+  .order-pic > span { display: grid; height: 100%; place-items: center; color: var(--muted); font-family: var(--font-serif); font-size: 1.9rem; }
 
-  .order-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: .95rem; }
+  /* The shop's word and the sale: the same two pills, in the same two colours, as in the app. */
+  .order-item .order-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 0 0 7px; }
+  .order-tag { padding: 3px 9px; color: #1e1b18; border-radius: 999px; background: var(--gold); font-size: .7rem; font-weight: 750; line-height: 1.3; }
+  .order-tag.is-sale { color: #fff; background: #2b6bb4; }
 
+  .order-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 12px; }
+  .order-line + .order-line { padding-top: 8px; }
+  .order-price { display: grid; gap: 1px; font-size: .95rem; font-variant-numeric: tabular-nums; }
+  .order-price > span:first-child:not(:last-child) { color: var(--ink-soft); font-size: .84rem; font-weight: 600; }
+  .order-price > span:last-child { white-space: nowrap; }
+  .order-price s { margin-right: 6px; color: var(--muted); font-size: .84em; }
+  .order-price b { font-weight: 720; }
+  .order-price b.is-sale { color: var(--blue); }
+
+  /* The specials: landscape cards above the menu, swiped sideways, running off the screen's edge. */
+  /* The page's gutter in container units (.order is the container): a percentage would mean a
+     different box in margin, padding and scroll-padding, and --shell is one on a phone. */
+  .order-specials ul { --gutter: calc((100vw - 100cqw) / 2); display: flex; gap: 12px; margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter) 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); overscroll-behavior-x: contain; scrollbar-width: none; }
+  .order-specials ul::-webkit-scrollbar { display: none; }
+  .order-specials .order-item { flex: 0 0 min(80%, 340px); flex-direction: column; gap: 12px; padding: 8px 8px 14px; border: 1px solid var(--line); border-radius: 23px; background: var(--paper-light); scroll-snap-align: start; }
+  .order-specials .order-item > div:last-child { padding-inline: 8px; }
+  .order-specials .order-pic { width: 100%; height: auto; aspect-ratio: 16 / 10; }
+  .order-specials .order-pic .order-tags { position: absolute; inset: 10px 10px auto; display: flex; flex-wrap: wrap; gap: 5px; }
+  .order-specials .order-name { font-size: 1.12rem; }
+
+  /* Empty: one round "+" in the primary colour. With a count: the whole stepper. */
   .order-stepper { display: inline-flex; flex: none; align-items: center; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper-light); }
-  .order-stepper button { width: 44px; height: 44px; border: 0; border-radius: 50%; background: none; font-size: 1.25rem; cursor: pointer; }
-  .order-stepper button:disabled { opacity: .3; cursor: default; }
-  .order-stepper output { min-width: 1.6em; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
+  .order-stepper button { width: 40px; height: 40px; color: var(--ink); border: 0; border-radius: 50%; background: none; font-size: 1.2rem; cursor: pointer; }
+  .order-stepper output { min-width: 1.4em; font-weight: 720; text-align: center; font-variant-numeric: tabular-nums; }
+  .order-stepper.is-empty { border-color: transparent; background: var(--inverse-surface); }
+  .order-stepper.is-empty :is(button:first-child, output) { display: none; }
+  .order-stepper.is-empty button { color: var(--inverse-ink); }
 
   .order-bar { position: fixed; inset: auto 0 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; padding: 12px max(16px, calc((100vw - 760px) / 2)) calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--paper-light); box-shadow: 0 -10px 30px rgba(38, 26, 23, .1); }
   .order-bar span { margin-right: auto; font-weight: 700; }

@@ -185,8 +185,8 @@ const priceOf = (product, item) => item?.price ?? product.sale_price ?? product.
 /** The price as the menu prints it: a sale shows what it was, struck through. */
 function price(product, item) {
   const sale = item?.price == null && product.sale_price != null;
-  return h('span', {}, item && item.title + ' · ', sale && h('s', {}, money(product.price)),
-    h('span', { className: sale ? 'order-sale' : '' }, money(priceOf(product, item))));
+  return h('span', { className: 'order-price' }, item && h('span', {}, item.title),
+    h('span', {}, sale && h('s', {}, money(product.price)), h('b', { className: sale ? 'is-sale' : '' }, money(priceOf(product, item)))));
 }
 
 function stepper(product, item) {
@@ -197,12 +197,15 @@ function stepper(product, item) {
     const qty = Math.min(99, Math.max(0, (basket.get(key)?.qty ?? 0) + by));
     qty ? basket.set(key, { product_id: product.id, ...(item && { item_id: item.id }), price, qty }) : basket.delete(key);
     count.textContent = qty;
-    minus.disabled = !qty;
+    box.classList.toggle('is-empty', !qty);
     drawBar();
   };
   const name = product.title + (item ? ' · ' + item.title : '');
-  const minus = h('button', { type: 'button', disabled: true, ariaLabel: '− ' + name, onclick: () => step(-1) }, '−');
-  return h('span', { className: 'order-stepper' }, minus, count, h('button', { type: 'button', ariaLabel: '+ ' + name, onclick: () => step(1) }, '+'));
+  // Nothing in the basket yet: one round "+" to add. The count and "−" open out once there is.
+  const box = h('span', { className: 'order-stepper is-empty' },
+    h('button', { type: 'button', ariaLabel: '− ' + name, onclick: () => step(-1) }, '−'), count,
+    h('button', { type: 'button', ariaLabel: '+ ' + name, onclick: () => step(1) }, '+'));
+  return box;
 }
 
 /** A menu line. `wide` is a card in the specials strip, which wants the landscape picture. */
@@ -211,13 +214,17 @@ function row(product, wide) {
   const picture = wide ? horizontal || square || vertical : square || horizontal || vertical;
   const variants = product.items ?? [];
   const off = product.sale_price != null && Math.round(100 - (product.sale_price / product.price) * 100);
+  const tags = (product.badge || off) && h('p', { className: 'order-tags' },
+    product.badge && h('span', { className: 'order-tag' }, product.badge),
+    off && h('span', { className: 'order-tag is-sale' }, `−${off}%`));
   return h('li', { className: 'order-item' },
-    picture && h('img', { src: picture, alt: '', loading: 'lazy' }),
+    // Every line has a picture, a blank with the name's first letter if need be, so the names line up.
+    h('div', { className: 'order-pic' },
+      picture ? h('img', { src: picture, alt: '', loading: 'lazy' }) : h('span', { ariaHidden: 'true' }, [...product.title][0]),
+      wide && tags),
     h('div', {},
-      (product.badge || off) && h('p', { className: 'order-tags' },
-        product.badge && h('span', { className: 'order-tag' }, product.badge),
-        off && h('span', { className: 'order-tag is-sale' }, `−${off}%`)),
-      h('b', {}, product.title),
+      !wide && tags,
+      h('b', { className: 'order-name' }, product.title),
       product.short_description && h('p', {}, product.short_description),
       // A product with variants is ordered as one of them, each on its own line with its own price.
       variants.length
