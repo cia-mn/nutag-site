@@ -1,6 +1,8 @@
 // The page a table's QR or NFC card opens on a phone without the app: this Ortoo's menu, a basket,
 // and an order that reaches the same till the app's orders do. The address is the whole input —
-// /o/{ortoo id}?t={table} — and a phone with the app never sees this page (.well-known/).
+// /o/{ortoo id}?t={table}&k={key} — and a phone with the app never sees this page (.well-known/).
+// The key is traded for an hour's table session at once, and the address keeps only that (?s=), so
+// a link saved or shared from here stops being at the table an hour after its last order.
 //
 // Everything a shop typed reaches the page through textContent, never innerHTML: a menu is text
 // strangers wrote, shown to strangers.
@@ -13,13 +15,15 @@ const CIA = local ? 'http://localhost:9999/api/v1' : 'https://api.cia.mn/api/v1'
 const PLAY = 'https://play.google.com/store/apps/details?id=com.nutag.fun';
 
 const id = location.pathname.split('/').filter(Boolean)[1] ?? '';
-// The same shape the API accepts. A link someone mangled orders without a table rather than not at all.
-const asked = new URLSearchParams(location.search).get('t')?.trim() ?? '';
-const table = /^[\p{L}\p{N} ._-]{1,12}$/u.test(asked) ? asked : '';
+const params = new URLSearchParams(location.search);
+let session = params.get('s') ?? ''; // a live table session: its table, and the QR-only items
+let table = '';
+let ended = false; // a saved link whose hour is up
 
 const en = (navigator.language ?? '').toLowerCase().startsWith('en');
 document.documentElement.lang = en ? 'en' : 'mn';
 const T = en ? {
+  ended: 'This link is no longer at a table. Scan the code on your table to order from it.',
   openApp: 'Open in the app', getApp: 'Get the app', specials: 'Specials', table: 'Table', today: 'Here today: ', closed: 'Closed now',
   empty: 'Nothing on the menu yet', other: 'Other', item: 'item', items: 'items', order: 'Order', pay: 'Pay', counter: 'Pay at the counter',
   phoneTitle: 'Confirm your phone number', phoneBody: 'We text a code. The same number signs you in to the Nutag app.',
@@ -32,6 +36,7 @@ const T = en ? {
   missing: 'This Ortoo was not found', failed: 'Something went wrong. Please try again.', retry: 'Try again',
   parts: { toono: 'Toono', bagana: 'Bagana', khaalga: 'Khaalga', orkh: 'Orkh', esgii: 'Esgii', busluur: 'Busluur', khana: 'Khana', uni: 'Uni' },
 } : {
+  ended: 'Энэ холбоос ширээнд холбогдохоо больсон. Ширээнээс захиалахын тулд ширээн дээрх кодыг уншуулна уу.',
   openApp: 'Апп-аар нээх', getApp: 'Апп татах', specials: 'Онцлох', table: 'Ширээ', today: 'Өнөөдөр энд: ', closed: 'Хаалттай',
   empty: 'Цэс хоосон байна', other: 'Бусад', item: 'зүйл', items: 'зүйл', order: 'Захиалах', pay: 'Төлөх', counter: 'Касс дээр төлөх',
   phoneTitle: 'Утасны дугаараа баталгаажуулна уу', phoneBody: 'Бид код илгээнэ. Nutag апп-д мөн энэ дугаараар нэвтэрнэ.',
@@ -64,9 +69,11 @@ function h(tag, props, ...kids) {
 const app = document.getElementById('app');
 const android = /Android/i.test(navigator.userAgent);
 app.textContent = android ? T.openApp : T.getApp;
-if (android) {
-  app.href = `intent://${location.host}${location.pathname}${location.search}#Intent;scheme=https;package=com.nutag.fun;S.browser_fallback_url=${encodeURIComponent(PLAY)};end`;
-}
+// Again whenever the address changes, so the app is handed the session rather than a spent key.
+const linkApp = () => {
+  if (android) app.href = `intent://${location.host}${location.pathname}${location.search}#Intent;scheme=https;package=com.nutag.fun;S.browser_fallback_url=${encodeURIComponent(PLAY)};end`;
+};
+linkApp();
 
 // ---- the session: the same CIA tokens the app holds, for the same account ----
 
@@ -247,22 +254,67 @@ function drawBar() {
       : [button(T.order, false, 'button-primary')]));
 }
 
+// ---- the table: a card's key traded for a session (backend, tables.go) ----
+
+/** The address keeps the session and nothing else: the key is not something to bookmark. */
+function keep(s) {
+  ({ session, table } = s);
+  history.replaceState(null, '', `${location.pathname}?s=${encodeURIComponent(session)}`);
+  linkApp();
+}
+
+/** The table a session is at while it is live, read off the token. The server checks the rest. */
+function sessionTable(s) {
+  const [exp, t] = s.split('.');
+  if (!t || !(Date.now() / 1000 < Number(exp))) return '';
+  try {
+    return new TextDecoder().decode(Uint8Array.from(atob(t.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0)));
+  } catch {
+    return '';
+  }
+}
+
+async function seat() {
+  const t = params.get('t')?.trim() ?? '';
+  const key = params.get('k');
+  if (key) {
+    try {
+      return keep(await api('POST', `/ortoos/${id}/session`, { table: t, key }));
+    } catch {
+      // A retired card, or a table the shop took off its list: the menu still opens, at its table.
+    }
+  }
+  if (session) {
+    table = sessionTable(session);
+    if (!table) [session, ended] = ['', true];
+    return;
+  }
+  // A card printed before keys. A link someone mangled orders without a table rather than not at all.
+  table = /^[\p{L}\p{N} ._-]{1,12}$/u.test(t) ? t : '';
+}
+
 async function order(pay, button, retried = false) {
   note.hidden = true;
   if (!tokens.get() && !(await signIn())) return;
-  const body = { vendor_id: id, ...(table && { table }), items: [...basket.values()].map(({ price, ...line }) => line) };
+  const body = { vendor_id: id, ...(session ? { session } : table && { table }), items: [...basket.values()].map(({ price, ...line }) => line) };
   button.disabled = true; // the one thing between a double tap and two tickets in the kitchen
   try {
+    // An order keeps the guest at the table for another hour.
+    const renew = () => session && api('POST', `/ortoos/${id}/session`, { session }).then(keep, () => {});
     if (!pay) {
       await api('POST', '/orders/claim', body, true);
+      renew();
       return done(T.sent, T.sentBody, T.partSoon, ortoo.cycle?.[0]);
     }
-    const granted = await payFor(await api('POST', '/orders', body, true));
+    const payment = await api('POST', '/orders', body, true);
+    renew();
+    const granted = await payFor(payment);
     if (granted) done(T.paid, '', T.part, Object.keys(granted)[0]);
   } catch (e) {
-    // The session died between visits: ask again, once, and send the same basket.
+    // The sign-in died between visits: ask again, once, and send the same basket.
     if (e.status === 401 && !retried) return order(pay, button, true);
-    note.textContent = e.status === 429 ? T.tooMany : T.failed;
+    // 403: the table session ended, or a QR-only item without one.
+    note.textContent = e.status === 429 ? T.tooMany : e.status === 403 ? T.ended : T.failed;
     note.hidden = false;
   } finally {
     button.disabled = false;
@@ -318,7 +370,9 @@ function done(title, body, partLine, part) {
 
 async function load() {
   try {
-    const [o, menu] = await Promise.all([api('GET', '/ortoos/' + id), api('GET', `/vendors/${id}/products?limit=200`)]);
+    await seat();
+    const [o, menu] = await Promise.all([api('GET', '/ortoos/' + id),
+      api('GET', `/vendors/${id}/products?limit=200` + (session ? '&session=' + encodeURIComponent(session) : ''))]);
     ortoo = o;
     document.title = `${o.name} · Nutag`;
     // A special is lifted out of its section to the strip at the top, so it has one stepper on the page.
@@ -336,6 +390,7 @@ async function load() {
             table && h('span', { className: 'order-chip' }, `${T.table} ${table}`),
             o.open === false && h('span', { className: 'order-chip is-closed' }, T.closed),
             part && h('span', {}, T.today, h('b', {}, part))))),
+      ended && h('p', { className: 'order-note' }, T.ended),
       menu.length ? null : h('p', { className: 'order-wait' }, T.empty),
       specials.length > 0 && h('section', { className: 'order-specials' },
         h('h2', {}, T.specials),

@@ -65,6 +65,7 @@
   .order-error { margin-top: 16px; padding: 12px 16px; color: #8f2d12; border: 1px solid rgba(194, 65, 12, .35); border-radius: 12px; background: rgba(251, 146, 60, .14); font-size: .9rem; }
   :root[data-theme='dark'] :is(.order-error, .order-chip.is-closed) { color: #ffc9a8; }
   .order-wait { margin-top: 18px; color: var(--muted); }
+  .order-note { margin-top: 20px; padding: 14px 18px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper-light); font-size: .9rem; line-height: 1.5; }
   .order-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
   .order-actions .button { flex: 1; text-align: center; }
 
