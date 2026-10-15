@@ -17,6 +17,17 @@
   .order-item > img { flex: none; width: 72px; height: 72px; border-radius: var(--radius-sm); object-fit: cover; }
   .order-item > div { flex: 1; min-width: 0; }
   .order-item p { margin-top: 3px; color: var(--muted); font-size: .88rem; line-height: 1.45; }
+  .order-item .order-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 6px; }
+  .order-tag { padding: 2px 9px; color: #1e1b18; border-radius: 999px; background: var(--gold); font-size: .72rem; font-weight: 800; letter-spacing: .02em; }
+  .order-tag.is-sale { color: var(--inverse-ink); background: var(--wood); }
+  .order-line s { margin-right: 6px; color: var(--muted); font-size: .85em; }
+  .order-sale { color: var(--wood); font-weight: 800; }
+
+  /* The specials: a strip of landscape cards above the menu, swiped sideways on a phone. */
+  .order-specials ul { display: flex; gap: 12px; padding-bottom: 8px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; }
+  .order-specials .order-item { flex: 0 0 min(82%, 320px); flex-direction: column; gap: 10px; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper-light); scroll-snap-align: start; }
+  .order-specials .order-item > img { width: 100%; height: auto; aspect-ratio: 16 / 10; }
+
   .order-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: .95rem; }
 
   .order-stepper { display: inline-flex; flex: none; align-items: center; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper-light); }

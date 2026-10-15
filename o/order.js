@@ -20,7 +20,7 @@ const table = /^[\p{L}\p{N} ._-]{1,12}$/u.test(asked) ? asked : '';
 const en = (navigator.language ?? '').toLowerCase().startsWith('en');
 document.documentElement.lang = en ? 'en' : 'mn';
 const T = en ? {
-  openApp: 'Open in the app', getApp: 'Get the app', table: 'Table', today: 'Here today: ', closed: 'Closed now',
+  openApp: 'Open in the app', getApp: 'Get the app', specials: 'Specials', table: 'Table', today: 'Here today: ', closed: 'Closed now',
   empty: 'Nothing on the menu yet', other: 'Other', item: 'item', items: 'items', order: 'Order', pay: 'Pay', counter: 'Pay at the counter',
   phoneTitle: 'Confirm your phone number', phoneBody: 'We text a code. The same number signs you in to the Nutag app.',
   phone: 'Phone number', getCode: 'Get the code', code: 'The 6-digit code', verify: 'Confirm', cancel: 'Cancel',
@@ -32,7 +32,7 @@ const T = en ? {
   missing: 'This Ortoo was not found', failed: 'Something went wrong. Please try again.', retry: 'Try again',
   parts: { toono: 'Toono', bagana: 'Bagana', khaalga: 'Khaalga', orkh: 'Orkh', esgii: 'Esgii', busluur: 'Busluur', khana: 'Khana', uni: 'Uni' },
 } : {
-  openApp: 'Апп-аар нээх', getApp: 'Апп татах', table: 'Ширээ', today: 'Өнөөдөр энд: ', closed: 'Хаалттай',
+  openApp: 'Апп-аар нээх', getApp: 'Апп татах', specials: 'Онцлох', table: 'Ширээ', today: 'Өнөөдөр энд: ', closed: 'Хаалттай',
   empty: 'Цэс хоосон байна', other: 'Бусад', item: 'зүйл', items: 'зүйл', order: 'Захиалах', pay: 'Төлөх', counter: 'Касс дээр төлөх',
   phoneTitle: 'Утасны дугаараа баталгаажуулна уу', phoneBody: 'Бид код илгээнэ. Nutag апп-д мөн энэ дугаараар нэвтэрнэ.',
   phone: 'Утасны дугаар', getCode: 'Код авах', code: '6 оронтой код', verify: 'Баталгаажуулах', cancel: 'Болих',
@@ -179,9 +179,19 @@ const money = (n) => (ortoo.currency === 'MNT'
 const bar = h('div', { className: 'order-bar', hidden: true });
 const note = h('p', { className: 'order-error', hidden: true, role: 'alert' });
 
+/** What one of these costs now: the variant's own price, else the product's — its sale price while it has one. */
+const priceOf = (product, item) => item?.price ?? product.sale_price ?? product.price;
+
+/** The price as the menu prints it: a sale shows what it was, struck through. */
+function price(product, item) {
+  const sale = item?.price == null && product.sale_price != null;
+  return h('span', {}, item && item.title + ' · ', sale && h('s', {}, money(product.price)),
+    h('span', { className: sale ? 'order-sale' : '' }, money(priceOf(product, item))));
+}
+
 function stepper(product, item) {
   const key = product.id + '|' + (item?.id ?? '');
-  const price = item?.price ?? product.price;
+  const price = priceOf(product, item);
   const count = h('output', {}, '0');
   const step = (by) => {
     const qty = Math.min(99, Math.max(0, (basket.get(key)?.qty ?? 0) + by));
@@ -195,18 +205,24 @@ function stepper(product, item) {
   return h('span', { className: 'order-stepper' }, minus, count, h('button', { type: 'button', ariaLabel: '+ ' + name, onclick: () => step(1) }, '+'));
 }
 
-function row(product) {
-  const picture = product.image?.square || product.image?.horizontal || product.image?.vertical;
+/** A menu line. `wide` is a card in the specials strip, which wants the landscape picture. */
+function row(product, wide) {
+  const { square, horizontal, vertical } = product.image ?? {};
+  const picture = wide ? horizontal || square || vertical : square || horizontal || vertical;
   const variants = product.items ?? [];
+  const off = product.sale_price != null && Math.round(100 - (product.sale_price / product.price) * 100);
   return h('li', { className: 'order-item' },
     picture && h('img', { src: picture, alt: '', loading: 'lazy' }),
     h('div', {},
+      (product.badge || off) && h('p', { className: 'order-tags' },
+        product.badge && h('span', { className: 'order-tag' }, product.badge),
+        off && h('span', { className: 'order-tag is-sale' }, `−${off}%`)),
       h('b', {}, product.title),
       product.short_description && h('p', {}, product.short_description),
       // A product with variants is ordered as one of them, each on its own line with its own price.
       variants.length
-        ? variants.map((v) => h('div', { className: 'order-line' }, h('span', {}, v.title + ' · ' + money(v.price ?? product.price)), stepper(product, v)))
-        : h('div', { className: 'order-line' }, h('span', {}, money(product.price)), stepper(product))));
+        ? variants.map((v) => h('div', { className: 'order-line' }, price(product, v), stepper(product, v)))
+        : h('div', { className: 'order-line' }, price(product), stepper(product))));
 }
 
 function drawBar() {
@@ -298,8 +314,11 @@ async function load() {
     const [o, menu] = await Promise.all([api('GET', '/ortoos/' + id), api('GET', `/vendors/${id}/products?limit=200`)]);
     ortoo = o;
     document.title = `${o.name} · Nutag`;
+    // A special is lifted out of its section to the strip at the top, so it has one stepper on the page.
+    const specials = menu.filter((p) => p.special);
     const sections = new Map();
-    for (const p of menu) sections.set(p.category, [...(sections.get(p.category) ?? []), p]);
+    for (const p of menu) if (!p.special) sections.set(p.category, [...(sections.get(p.category) ?? []), p]);
+    const headed = specials.length > 0 || sections.size > 1;
     const part = T.parts[o.cycle?.[0]];
     main.replaceChildren(...kept([
       h('section', { className: 'order-venue' },
@@ -311,8 +330,11 @@ async function load() {
             o.open === false && h('span', { className: 'order-chip is-closed' }, T.closed),
             part && h('span', {}, T.today, h('b', {}, part))))),
       menu.length ? null : h('p', { className: 'order-wait' }, T.empty),
+      specials.length > 0 && h('section', { className: 'order-specials' },
+        h('h2', {}, T.specials),
+        h('ul', {}, specials.map((p) => row(p, true)))),
       [...sections].map(([category, products]) => h('section', {},
-        (category || sections.size > 1) && h('h2', {}, category || T.other),
+        (category || headed) && h('h2', {}, category || T.other),
         h('ul', {}, products.map(row)))),
       note]));
     document.body.append(bar);
