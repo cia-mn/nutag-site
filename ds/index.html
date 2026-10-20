@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nutag design system</title>
+<meta name="description" content="ds.css: the tokens and components of the nutag.fun landing page." />
+<meta name="robots" content="noindex" />
+<script>try{var t=localStorage.getItem('nutag-theme')}catch(e){}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'</script>
+<meta name="theme-color" content="#f7f4f0" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="stylesheet" href="../ds.css" />
+<script src="../site.js" defer></script>
+<style>
+  /* Reference-page layout only; everything it shows comes from ds.css. */
+  main { padding-top: 64px; }
+  .ds-block { margin-block: 64px; }
+  .ds-block > .kicker { margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .ds-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .ds-swatches li { display: grid; gap: 4px; font-size: 13px; }
+  .ds-swatches span { height: 56px; margin-bottom: 4px; border: 1px solid var(--line); border-radius: var(--r-md); }
+  .ds-swatches small, .ds-row code { color: var(--faint); }
+  .ds-row { display: grid; gap: 8px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+  .ds-row code { font: 12px/1 var(--mono); }
+  .ds-on-blue { padding: 24px; border-radius: var(--r-lg); background: var(--band); }
+  .ds-block > .actions, .ds-on-blue .actions { margin-top: 0; }
+  .ds-grass { padding-top: 32px; border-radius: var(--r-lg); overflow: hidden; background: var(--sunk); }
+  .ds-grass + .ds-grass { margin-top: 12px; }
+  .ds-block .band { margin-top: 0; }
+  .ds-h1 { font-size: var(--h1); line-height: 1.08; letter-spacing: -.025em; text-wrap: balance; }  /* h1 look, not a second h1 */
+  .ds-hero { min-height: 0; padding-top: 48px; }  /* the landing's hero without its viewport height */
+</style>
+</head>
+<body id="top">
+<!-- header -->
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="header-inner shell">
+    <a class="brand" href="../en/">nutag</a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="../guide/en/">How to play</a>
+      <a href="../vendor/en/">For business</a>
+      <a href="https://console.nutag.fun">Console</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle data-to-dark="Switch to dark theme" data-to-light="Switch to light theme" aria-label="Switch to dark theme" aria-pressed="false">
+        <span class="theme-icon theme-icon-sun"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg></span>
+        <span class="theme-icon theme-icon-moon"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.4 15.4A8.5 8.5 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z"/></svg></span>
+      </button>
+      <a class="header-cta" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg>Get the app</a>
+    </div>
+    <button class="nav-toggle" type="button" aria-label="Open navigation" data-open-label="Open navigation" data-close-label="Close navigation" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+      <span class="nav-open"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+      <span class="nav-close"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-mobile-nav inert>
+    <div class="shell">
+      <a href="../guide/en/"><span>01</span>How to play</a>
+      <a href="../vendor/en/"><span>02</span>For business</a>
+      <a href="https://console.nutag.fun"><span>03</span>Console</a>
+      <a class="mobile-contact" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Get it on Google Play <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg></a>
+    </div>
+  </nav>
+</header>
+<!-- /header -->
+<main id="main-content" tabindex="-1">
+  <div class="shell ds-block">
+    <p class="kicker">ds.css v1</p>
+    <h1>nutag design system</h1>
+    <p class="lead" style="max-width:56ch;color:var(--muted)">The tokens and components the landing page is built from. The theme toggle in the header shows the dark set. Other pages still use style.css.</p>
+  </div>
+
+  <section class="shell ds-block" aria-label="Colour">
+    <p class="kicker">Colour</p>
+    <ul class="ds-swatches">
+      <li><span style="background:var(--paper)"></span><code>--paper</code><small>page</small></li>
+      <li><span style="background:var(--sunk)"></span><code>--sunk</code><small>canvas, part cells</small></li>
+      <li><span style="background:var(--card)"></span><code>--card</code><small>cards, tiles, FAQ</small></li>
+      <li><span style="background:var(--ink)"></span><code>--ink</code><small>text</small></li>
+      <li><span style="background:var(--muted)"></span><code>--muted</code><small>secondary text, .tone</small></li>
+      <li><span style="background:var(--faint)"></span><code>--faint</code><small>kickers, meta</small></li>
+      <li><span style="background:var(--line)"></span><code>--line</code><small>hairlines</small></li>
+      <li><span style="background:var(--line-strong)"></span><code>--line-strong</code><small>ghost buttons</small></li>
+      <li><span style="background:var(--dot)"></span><code>--dot</code><small>canvas grid</small></li>
+      <li><span style="background:var(--blue)"></span><code>--blue</code><small>links, focus</small></li>
+      <li><span style="background:var(--band)"></span><code>--band</code><small>the blue band</small></li>
+      <li><span style="background:var(--gold)"></span><code>--gold</code><small>+1 tag, today ring</small></li>
+      <li><span style="background:var(--grass)"></span><code>--grass</code><small>footer grass</small></li>
+    </ul>
+  </section>
+
+  <section class="shell ds-block" aria-label="Type">
+    <p class="kicker">Type</p>
+      <div class="ds-row"><code>h1 · 48 / 34 · 400</code><p class="ds-h1">Coffee, the gym, the shop round the corner.<br /><span class="tone">Your ordinary day becomes a game.</span></p></div>
+      <div class="ds-row"><code>h2, statement, footer line · 40 / 28 · 400</code><h2>Three small steps, <span class="tone">on your usual way around town.</span></h2></div>
+      <div class="ds-row"><code>h3 · 20 / 18 · 500</code><h3>Raise a Ger</h3></div>
+      <div class="ds-row"><code>lead · 18 / 16</code><p class="lead">Eight parts from partner cafés and shops make one Ger, the Mongolian felt home. Your first eight are a gift from us, so you can raise your first Ger right away.</p></div>
+      <div class="ds-row"><code>body · 16 / 1.55</code><p>With all eight parts, tap “Raise a Ger” and it goes up at the Ortoo you choose. Each Ger stands at one Ortoo, and you can hold as many as you like.</p></div>
+      <div class="ds-row"><code>small · 14</code><p style="font-size:14px;color:var(--muted)">The round window at the crown. Smoke goes out, sunlight comes in.</p></div>
+      <div class="ds-row"><code>kicker · mono 12 caps</code><p class="kicker">3.0 — Ger</p></div>
+      <div class="ds-row"><code>wordmark · Lora 22</code><p class="brand">nutag</p></div>
+  </section>
+
+  <section class="shell ds-block" aria-label="Buttons">
+    <p class="kicker">Buttons</p>
+    <div class="actions">
+      <a class="btn btn-ink" href="#top">.btn-ink <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="#top">.btn-ghost <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+    <div class="ds-on-blue" style="margin-top:16px">
+      <div class="actions">
+        <a class="btn btn-light" href="#top"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg>.btn-light</a>
+        <a class="btn btn-glass" href="#top">.btn-glass <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-block" aria-label="Hero">
+    <p class="kicker shell">Hero: pixel art under the copy (art/hero.py), .btn-light and .btn-glass</p>
+    <div class="hero ds-hero">
+      <img class="hero-art" src="../img/hero.png" alt="" width="480" height="240" loading="lazy" />
+      <div class="shell hero-copy">
+        <p class="kicker">Ulaanbaatar · Android</p>
+        <p class="ds-h1">Coffee, the gym, the shop round the corner.<br /><span class="tone">Your ordinary day becomes a game.</span></p>
+        <div class="actions">
+          <a class="btn btn-light" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg>Get it on Google Play</a>
+          <a class="btn btn-glass" href="../guide/en/">How to play <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="grass" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="shell ds-block" aria-label="Heading block">
+    <p class="kicker">Kicker and two-tone heading</p>
+    <div class="head">
+      <p class="kicker">Parts of a Ger</p>
+      <h2>Eight parts, <span class="tone">one warm Ger.</span></h2>
+      <p>Each Ortoo gives the eight parts in turn, one a day. Eight days in a row at one place make a full set, and a few different Ortoos get you there sooner.</p>
+    </div>
+  </section>
+
+  <section class="shell ds-block" aria-label="Statement">
+    <p class="kicker">Statement: h2 scale, two-tone</p>
+    <p class="statement">Nutag is a collecting game played at real places in Ulaanbaatar. <span class="tone">Each partner café and shop welcomes you with one part of a Ger on the days you order there.</span></p>
+  </section>
+
+  <section class="shell ds-block" aria-label="Steps">
+    <p class="kicker">Steps: hairline list</p>
+    <ol class="steps">
+      <li>
+        <p class="kicker">1.0 — Ortoo</p>
+        <h3>An Ortoo around here</h3>
+        <p>Every partner café, shop and gym on the map and in the “Around here” list is an Ortoo. The name comes from the relay stations of the Mongol Empire, where messengers rested and changed horses.</p>
+      </li>
+      <li>
+        <p class="kicker">2.0 — Order</p>
+        <h3>Today's part</h3>
+        <p>Each Ortoo gives one part a day and shows you which one before you order. Once you pay in the app, or staff approve your order at the counter, that part is yours.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="shell ds-block" aria-label="Canvas and today card">
+    <p class="kicker">Card on a canvas: the Today card</p>
+    <div class="canvas" aria-hidden="true">
+      <div class="card today-card">
+        <div class="today-place"><b>Nogoon Tsai</b><span class="kicker">Ortoo</span></div>
+        <div class="today-head">
+          <span class="badge"><img src="../guide/img/toono.svg" alt="" width="32" height="32" loading="lazy" /></span>
+          <p><b>Today here: Toono</b><br />Tomorrow: Bagana</p>
+          <span class="tag">+1 part</span>
+        </div>
+        <div class="today-row"><span>My parts</span><span>6 / 8</span></div>
+        <div class="part-row"><span class="missing is-today"><img src="../guide/img/toono.svg" alt="" width="40" height="40" loading="lazy" /></span><span class="has"><img src="../guide/img/bagana.svg" alt="" width="40" height="40" loading="lazy" /></span><span class="has"><img src="../guide/img/khaalga.svg" alt="" width="40" height="40" loading="lazy" /></span><span class="has"><img src="../guide/img/orkh.svg" alt="" width="40" height="40" loading="lazy" /></span><span class="has"><img src="../guide/img/esgii.svg" alt="" width="40" height="40" loading="lazy" /></span><span class="has"><img src="../guide/img/busluur.svg" alt="" width="40" height="40" loading="lazy" /></span><span class="has"><img src="../guide/img/khana.svg" alt="" width="40" height="40" loading="lazy" /></span><span class="missing"><img src="../guide/img/uni.svg" alt="" width="40" height="40" loading="lazy" /></span></div>
+        <p class="today-note">You see it before you order.</p>
+      </div>
+      <img class="today-char" src="../img/char-happy.webp" alt="" width="104" height="172" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="shell ds-block" aria-label="Part tile">
+    <p class="kicker">Part tile</p>
+    <ol class="parts">
+      <li class="part">
+        <img src="../guide/img/toono.svg" alt="" width="40" height="40" loading="lazy" />
+        <h3>Toono</h3>
+        <p>The round window at the crown. Smoke goes out, sunlight comes in.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="shell ds-block" aria-label="FAQ item">
+    <p class="kicker">FAQ item (native details)</p>
+      <details class="faq" open>
+        <summary>Do I start from zero?</summary>
+        <p>No. Every new player starts with all eight parts, so your first Ger can go up at whichever Ortoo you like, right away.</p>
+      </details>
+      <details class="faq">
+        <summary>What counts as a visit?</summary>
+        <p>Your first approved order of the day at an Ortoo. An order is approved when you pay in the app, or when staff confirm it at the counter.</p>
+      </details>
+  </section>
+
+  <section class="ds-block" aria-label="Band">
+    <p class="kicker shell" style="margin-bottom:24px">Blue band</p>
+  <section class="band" aria-labelledby="ds-band-title">
+    <div class="shell">
+      <p class="kicker">For business</p>
+      <h2 id="ds-band-title">Let's make your place an Ortoo, <span class="tone">and give your regulars one more reason to come back.</span></h2>
+      <p class="lead">A Ger raised at your Ortoo stands for as long as its owner keeps coming back. Nutag never takes a cut of your sales, and you decide how long a Ger stands without a visit. Fill in a short form and we'll give you a call.</p>
+      <div class="actions">
+        <a class="btn btn-light" href="../vendor/en/">Sign up <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-glass" href="https://console.nutag.fun">Open the console <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <section class="shell ds-block" aria-label="Grass divider">
+    <p class="kicker">Grass divider: .grass and .grass-green</p>
+    <div class="ds-grass"><div class="grass"></div></div>
+    <div class="ds-grass"><div class="grass grass-green"></div></div>
+  </section>
+</main>
+<!-- footer -->
+<footer class="site-footer">
+  <div class="shell">
+    <p class="footer-line">A Ger of your own <span class="tone">in the middle of the city.</span></p>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="kicker">Players</p>
+        <a href="../guide/en/">How to play</a>
+        <a href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Get the app</a>
+      </div>
+      <div class="footer-col">
+        <p class="kicker">For business</p>
+        <a href="../vendor/en/">Sign up</a>
+        <a href="https://console.nutag.fun">Console</a>
+      </div>
+      <div class="footer-col">
+        <p class="kicker">Company</p>
+        <a href="../privacy/en/">Privacy Policy</a>
+        <a href="../terms/en/">Terms of Service</a>
+        <a href="mailto:info@cia.mn">info@cia.mn</a>
+      </div>
+      <div class="pixel-card">
+        <a class="btn btn-light" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg>Get the app</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CIA SOLUTION LLC</span>
+      <a href="../" lang="mn" hreflang="mn">Монгол</a>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+  <div class="grass grass-green" aria-hidden="true"></div>
+</footer>
+<!-- /footer -->
+</body>
+</html>

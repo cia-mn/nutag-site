@@ -2,7 +2,10 @@
 
 Landing page, how-to-play guide, vendor sign-up, privacy policy and terms, MN + EN. Plain HTML, no build step.
 
-- `/` `/en/` — landing: the loop, the eight parts, the pitch to businesses, Google Play link
+- `/` `/en/` — landing: what Nutag is, how it works (the Today card), the eight parts, FAQ, the pitch to
+  businesses, Google Play link. Built on `ds.css`
+- `/ds/` — the design-system reference: the tokens and components of `ds.css` on one page (the header's glass
+  state over the hero shows only on the landing). Not in the nav, not indexed
 - `/guide/` `/guide/en/` — how to play (parts, collecting, Gers)
 - `/vendor/` `/vendor/en/` — become an Ortoo: two-step form, POSTs to `api.nutag.fun/vendor-applications` (the backend must allow the `https://nutag.fun` origin in `CORS_ALLOWED_ORIGINS`); leads are read in psql, we call them back
 - `/privacy/` `/privacy/en/` — privacy policy (App Store / Play Console link)
@@ -25,19 +28,32 @@ Deploy: image `ghcr.io/cia-mn/nutag-site:main`, service `nutag_site` in `backend
 
 ## Look
 
-`style.css` is the design language of [LatentFolio Free](https://github.com/Dharani-Eswaramurthi/latentfolio)
-(MIT) carried over by hand: its layers, header, hero, marquee, cards, call-to-action block and footer,
-recoloured to the app's blue and gold (`nutagBlue` / `nutagGold` in `nutag/lib/api.dart`). Two deliberate
-departures:
+The landing is built on `ds.css`, a small self-contained design system: tokens (light + dark, documented at
+the top of the file), header, buttons, hero, kicker, two-tone headings, statement, steps, card and canvas, the
+Today card, part tiles, FAQ, the blue band, the grass divider, footer and its pixel card. Quiet on purpose:
+Inter at 400–500, 1px lines, one blue accent, gold only as a fill. `/ds/` shows each piece with the landing's own
+markup; when a component changes, change it there too.
+
+The hero is pixel art painted by `art/hero.py` (PIL, deterministic): `python3 art/hero.py` rewrites
+`img/hero.png` (480×240, upscaled in CSS with `image-rendering: pixelated`) and `img/grass.svg` (the ragged
+strip's mask). `art/` is not copied into the image.
+
+Every other page still uses `style.css` until it migrates (the order and what each page's copy gets wrong:
+`NEXT.md`): the design language of
+[LatentFolio Free](https://github.com/Dharani-Eswaramurthi/latentfolio) (MIT) carried over by hand: its layers,
+header, hero, marquee, cards, call-to-action block and footer, recoloured to the app's blue and gold
+(`nutagBlue` / `nutagGold` in `nutag/lib/api.dart`). Two deliberate departures:
 
 - **Fonts are Inter + Lora, self-hosted in `fonts/`.** The theme's Instrument Sans and Newsreader have no
   Cyrillic, and Mongolian Ө and Ү sit in the `cyrillic-ext` range, so each family ships `latin`, `cyrillic`
   and `cyrillic-ext` subsets. Nothing is loaded from a third party.
 - **No Astro.** The header and footer are repeated in each page by hand, which is the price of having no
-  build step. When you change one, change all ten: `grep -l site-header -r .`
+  build step. When you change one, change all ten: `grep -l 'style.css" />' $(grep -l site-header -r --include=index.html .)`
+  (the landing's and `/ds/`'s header and footer differ until the other pages move to `ds.css`)
 
 `site.js` is the theme toggle (remembered in `localStorage` as `nutag-theme`, system preference otherwise),
-the mobile menu and the scroll reveals. Licences: `THIRD_PARTY_NOTICES.md`.
+the mobile menu, the scroll reveals and the landing's header, glass while over the hero.
+Licences: `THIRD_PARTY_NOTICES.md`.
 
 Before submitting to the stores, replace every `[bracketed]` placeholder — legal entity, address,
 retention periods, minimum age — and delete the `.todo` boxes that flag them:

@@ -9,13 +9,15 @@
 
   const toggle = document.querySelector('[data-theme-toggle]');
   if (toggle) {
+    // Each page's own light colour (the landing's paper differs from style.css's), read before sync() rewrites it.
+    const light = document.querySelector('meta[name="theme-color"][media*="light"]')?.content || '#f5f0e8';
     const sync = () => {
       const dark = root.dataset.theme === 'dark';
       const label = dark ? toggle.dataset.toLight : toggle.dataset.toDark;
       toggle.setAttribute('aria-label', label);
       toggle.title = label;
       toggle.setAttribute('aria-pressed', String(dark));
-      document.querySelectorAll('meta[name="theme-color"]').forEach(m => m.setAttribute('content', dark ? '#14120f' : '#f5f0e8'));
+      document.querySelectorAll('meta[name="theme-color"]').forEach(m => m.setAttribute('content', dark ? '#14120f' : light));
     };
     toggle.addEventListener('click', () => {
       root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -46,6 +48,11 @@
     });
     matchMedia('(min-width: 821px)').addEventListener('change', e => { if (e.matches) setOpen(false); });
   }
+  // The landing's header is glass while it sits over the hero (ds.css .is-over-hero), solid below it.
+  // Pages without a [data-hero] are untouched.
+  const hero = document.querySelector('[data-hero]');
+  if (header && hero && 'IntersectionObserver' in window) new IntersectionObserver(([e]) =>
+    header.classList.toggle('is-over-hero', e.isIntersecting), { rootMargin: '-64px 0px 0px 0px' }).observe(hero);
 
   const reveals = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
