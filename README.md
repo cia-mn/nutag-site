@@ -62,7 +62,3 @@ toggle (remembered in `localStorage` as `nutag-theme`, system preference otherwi
 reveals and the landing's header, glass while over the hero.
 Licences: `THIRD_PARTY_NOTICES.md`.
 
-Before submitting to the stores, replace every `[bracketed]` placeholder — legal entity, address,
-retention periods, minimum age — and delete the "Still to decide" notes that flag them:
-
-    grep -rn '\[' privacy terms | grep -v href

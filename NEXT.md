@@ -19,20 +19,14 @@ every `site.js` hook), rebuild the body from ds.css components, and rewrite its 
 - [ ] **Then remove `style.css`**, its LatentFolio entry in `THIRD_PARTY_NOTICES.md` and the credit links, and the
       `style.css` half of the header/footer note in `README.md`. Drop `style.css` from the Dockerfile.
 
-## 2. Privacy and terms: decisions only the owner can make
-
-- [ ] The `[bracketed]` placeholders, flagged on the page by a "Still to decide" / «Шийдэх зүйл» note: how many
-      years order and payment records are kept (`[N]`), server log days (`[30]`), where the server and database
-      are (`[location]`), and the minimum age (`[13]`) with the store age rating to match. Then delete the notes.
-
-## 3. Same wording fixes, outside the site
+## 2. Same wording fixes, outside the site
 
 - [ ] App, `nutag/lib/l10n/app_{mn,en}.arb`: `onboardBuildBody` «7 хоног тутам» / "every 7 days" and
       `gerBuiltBody` «Долоо хоног тутам» still give a fixed week. `buildGer` "Raise a ger" should be "Raise a Ger".
       Nothing in the app says a fall keeps 7 of 8 parts. Full list: DOMAIN §13 "App".
 - [ ] Console: DOMAIN §13 "Console" (the loop is never explained to a venue; «Онцлох» means two things).
 
-## 4. Decisions that change the landing copy
+## 3. Decisions that change the landing copy
 
 - [ ] **DOMAIN §12.1, build without a visit.** The hero («Эхний найман эд анги тань биднээс бэлэг тул анхны Гэрээ шууд
       барьж болно») and FAQ 1 promise a first Ger right away, and so do the guide (#start, #raise, FAQ 1 and 8, the
