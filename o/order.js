@@ -13,6 +13,7 @@ const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
 const API = local ? 'http://localhost:8080' : 'https://api.nutag.fun';
 const CIA = local ? 'http://localhost:9999/api/v1' : 'https://api.cia.mn/api/v1';
 const PLAY = 'https://play.google.com/store/apps/details?id=com.nutag.fun';
+const APP_STORE = 'https://apps.apple.com/app/id6805935855';
 
 const id = location.pathname.split('/').filter(Boolean)[1] ?? '';
 const params = new URLSearchParams(location.search);
@@ -69,6 +70,8 @@ function h(tag, props, ...kids) {
 const app = document.getElementById('app');
 const android = /Android/i.test(navigator.userAgent);
 app.textContent = android ? T.openApp : T.getApp;
+// On iOS this page only loads without the app (apple-app-site-association hands /o/* to it), so it's the App Store.
+if (/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent)) app.href = APP_STORE;
 // Again whenever the address changes, so the app is handed the session rather than a spent key.
 const linkApp = () => {
   if (android) app.href = `intent://${location.host}${location.pathname}${location.search}#Intent;scheme=https;package=com.nutag.fun;S.browser_fallback_url=${encodeURIComponent(PLAY)};end`;

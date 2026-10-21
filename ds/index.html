@@ -31,6 +31,8 @@
   .ds-block .band { margin-top: 0; }
   .ds-h1 { font-size: var(--h1); line-height: 1.08; letter-spacing: -.025em; text-wrap: balance; }  /* h1 look, not a second h1 */
   .ds-hero { min-height: 0; padding-top: 48px; }  /* the landing's hero without its viewport height */
+  .ds-form { max-width: 560px; }
+  .ds-block .prose { margin-inline: 0; }  /* left-aligned here, centred on the guide */
 </style>
 </head>
 <body id="top">
@@ -61,7 +63,7 @@
       <a href="../guide/en/"><span>01</span>How to play</a>
       <a href="../vendor/en/"><span>02</span>For business</a>
       <a href="https://console.nutag.fun"><span>03</span>Console</a>
-      <a class="mobile-contact" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Get it on Google Play <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg></a>
+      <a class="mobile-contact" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Get the app <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg></a>
     </div>
   </nav>
 </header>
@@ -70,7 +72,7 @@
   <div class="shell ds-block">
     <p class="kicker">ds.css v1</p>
     <h1>nutag design system</h1>
-    <p class="lead" style="max-width:56ch;color:var(--muted)">The tokens and components the landing page is built from. The theme toggle in the header shows the dark set. Other pages still use style.css.</p>
+    <p class="lead" style="max-width:56ch;color:var(--muted)">The tokens and components the landing, the guide and the vendor page are built from. The theme toggle in the header shows the dark set. Privacy, terms, the map and the table-order page still use style.css.</p>
   </div>
 
   <section class="shell ds-block" aria-label="Colour">
@@ -123,12 +125,13 @@
     <div class="hero ds-hero">
       <img class="hero-art" src="../img/hero.png" alt="" width="480" height="240" loading="lazy" />
       <div class="shell hero-copy">
-        <p class="kicker">Ulaanbaatar · Android</p>
+        <p class="kicker">Ulaanbaatar · iPhone · Android</p>
         <p class="ds-h1">Coffee, the gym, the shop round the corner.<br /><span class="tone">Your ordinary day becomes a game.</span></p>
         <div class="actions">
-          <a class="btn btn-light" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg>Get it on Google Play</a>
+          <a class="btn btn-light" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg>Get the app</a>
           <a class="btn btn-glass" href="../guide/en/">How to play <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
+        <p class="stores"><a data-store href="https://apps.apple.com/app/id6805935855" target="_blank" rel="noopener">App Store</a> · <a data-store href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Google Play</a></p>
       </div>
       <div class="grass" aria-hidden="true"></div>
     </div>
@@ -220,6 +223,80 @@
   </section>
   </section>
 
+  <section class="shell ds-block" aria-label="Form fields">
+    <p class="kicker">Form fields and the stepper (vendor page): step meta, .progress, .field, .hint, .error, .done-mark</p>
+    <div class="ds-form">
+      <p class="kicker">Step 1 of 2</p>
+      <span class="progress" aria-hidden="true"><i style="width:50%"></i></span>
+      <h2>First, <span class="tone">your place.</span></h2>
+      <div class="field">
+        <label for="ds-name">Name of your place</label>
+        <input id="ds-name" placeholder="The name over your door" />
+      </div>
+      <div class="field">
+        <label for="ds-type">Type</label>
+        <select id="ds-type"><option>Café</option><option>Shop</option><option>Gym</option></select>
+      </div>
+      <div class="field">
+        <label for="ds-phone">Phone number</label>
+        <input id="ds-phone" type="tel" pattern="[0-9 ]+" placeholder="+976 8811 2233" aria-describedby="ds-phone-hint" />
+        <p class="hint" id="ds-phone-hint">Type a letter and leave the field: :user-invalid turns the border --danger.</p>
+      </div>
+      <div class="field">
+        <label for="ds-note">Anything else (optional)</label>
+        <textarea id="ds-note" rows="3" placeholder="How many locations, a good time to call…"></textarea>
+      </div>
+      <p class="error">That didn't go through. Please try again, or write to <a href="mailto:info@cia.mn">info@cia.mn</a>.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost">Back</button>
+        <button type="button" class="btn btn-ink">Continue <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="done-mark" aria-hidden="true" style="margin-top:48px"><svg class="icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg></div>
+      <p class="ds-h1" style="font-size:var(--h2)">Got it. <span class="tone">Thank you!</span></p>
+    </div>
+  </section>
+
+  <section class="shell ds-block" aria-label="Prose">
+    <p class="kicker">Prose (the guide): .prose column, .toc, .numbered, .bullets, .note, .toast, .rules</p>
+    <div class="prose">
+      <nav class="toc" aria-label="Sample contents" style="margin-top:0">
+        <p class="kicker">On this page</p>
+        <ol>
+          <li><a href="#top">What is Nutag</a></li>
+          <li><a href="#top">Getting started</a></li>
+          <li><a href="#top">Collecting</a></li>
+          <li><a href="#top">Raising a Ger</a></li>
+        </ol>
+      </nav>
+      <section>
+        <p class="kicker">05 — Collecting</p>
+        <h2>One part a day <span class="tone">at every Ortoo.</span></h2>
+        <p>Each Ortoo has its own part of the day, and its page shows it before you order: “Today here: Toono · Tomorrow: Bagana”.</p>
+        <h3>Good to remember</h3>
+        <ul class="bullets">
+          <li><b>One part a day from each Ortoo.</b> One coffee or ten, it's the same.</li>
+          <li>The day turns over at midnight, Ulaanbaatar time.</li>
+        </ul>
+        <ol class="numbered">
+          <li><b>Get the app.</b> It's on the <a href="#top">App Store</a> for iPhone and <a href="#top">Google Play</a> for Android.</li>
+          <li><b>Sign in with your phone number.</b> No password, no email.</li>
+        </ol>
+        <div class="card note">
+          <p class="kicker">A gift</p>
+          <p>Your first eight parts are already here.</p>
+        </div>
+        <p class="toast"><span class="done-mark" aria-hidden="true"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg></span>“Your Ger is up!”</p>
+        <table class="rules">
+          <thead><tr><th scope="col">What</th><th scope="col">How</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">From each Ortoo, per day</th><td>1 part, however much you order</td></tr>
+            <tr><th scope="row">How long a Ger stands</th><td>Set by the Ortoo: at least 7 days, or never falls</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </section>
+
   <section class="shell ds-block" aria-label="Grass divider">
     <p class="kicker">Grass divider: .grass and .grass-green</p>
     <div class="ds-grass"><div class="grass"></div></div>
@@ -234,7 +311,8 @@
       <div class="footer-col">
         <p class="kicker">Players</p>
         <a href="../guide/en/">How to play</a>
-        <a href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Get the app</a>
+        <a data-store href="https://apps.apple.com/app/id6805935855" target="_blank" rel="noopener">App Store</a>
+        <a data-store href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Google Play</a>
       </div>
       <div class="footer-col">
         <p class="kicker">For business</p>

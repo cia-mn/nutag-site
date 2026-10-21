@@ -1,8 +1,8 @@
 # Next — after the landing redesign (2026-10-20)
 
-The landing (`index.html`, `en/index.html`) now runs on `ds.css`, a small cofounder.co-style design system
-(reference page `/ds/`, hero art painted by `art/hero.py`). The rest of the site is still on the old
-LatentFolio `style.css`. This is what is left, in order. Delete a line when it is done.
+The landing (`index.html`, `en/index.html`), the guide, the vendor page, privacy, terms and the map now run on `ds.css`, a small
+cofounder.co-style design system (reference page `/ds/`, hero art painted by `art/hero.py`). Only `o/` is
+still on the old LatentFolio `style.css`. This is what is left, in order. Delete a line when it is done.
 
 ## 1. The other pages follow the landing
 
@@ -11,43 +11,36 @@ every `site.js` hook), rebuild the body from ds.css components, and rewrite its 
 `general/DOMAIN.md` v5. Use the landing's voice: invite, never command or threaten; MN Өртөө, эд анги
 (never хэсэг), Гэр, «Гэр барих»; EN Ortoo, part, Ger, "Raise a Ger", "Today here", "Around here".
 
-- [ ] **`vendor/`, MN + EN.** The copy is wrong (DOMAIN §13). «Захиалга бүр эд анги болно»: it is one part per
-      Өртөө per day. It gives a fixed weekly fall, but the venue sets its own window (at least 7 days, longer, or
-      never), and this is the page that should say so. It should also say Nutag takes no cut of sales. The footer
-      still says «Хэсэг цуглуул. Гэрээ бос.». Keep `form.js` and its POST to `/vendor-applications` working.
-- [ ] **`guide/`, MN + EN.** In six places per language it says building needs an order at that Өртөө that day.
-      False since 2026-09-12: building needs only the parts. "Rebuild = one uni and one order" is wrong too. Also
-      fix the fixed "7 days" and «гэр барих дарааллаар» (the cycle is not the assembly order, GER §7). The guide
-      never says a new player starts with all eight parts.
-- [ ] **`privacy/`, `terms/`, MN + EN.** Restyle them, and bring the content up to DOMAIN §13: location uses,
-      recipients (Google, ubtraffic.mn, SkyData), drops paid to Nutag's own Bonum account, Nutag Pro and App
-      Store lines, per-product yield in terms §4, and the `[bracketed]` placeholders and `.todo` boxes.
-- [ ] **`map/`, `o/`.** Restyle only. `o/` also has `order.css`, and Cloudflare caches `/o/` for 4 h.
+- [ ] **`o/`.** Restyle only, but it is the live ordering and payment page: `order.js` builds style.css's
+      `.button .button-primary/.button-ghost`, `.card` and `.done-mark`; `order.css` reads style.css tokens
+      (`--paper-light`, `--ink-soft`, `--line-strong`, `--inverse-*`, `--radius*`, `--font-serif`) and sits in
+      `@layer`s, which would lose to ds.css's unlayered rules. Test the whole order against a local backend
+      and the console's fake CIA (`order.js` switches to them on localhost). Cloudflare caches `/o/` for 4 h.
 - [ ] **Then remove `style.css`**, its LatentFolio entry in `THIRD_PARTY_NOTICES.md` and the credit links, and the
-      "change all ten" note in `README.md`. Drop `style.css` from the Dockerfile.
+      `style.css` half of the header/footer note in `README.md`. Drop `style.css` from the Dockerfile.
 
-## 2. Same wording fixes, outside the site
+## 2. Privacy and terms: decisions only the owner can make
+
+- [ ] The `[bracketed]` placeholders, flagged on the page by a "Still to decide" / «Шийдэх зүйл» note: how many
+      years order and payment records are kept (`[N]`), server log days (`[30]`), where the server and database
+      are (`[location]`), and the minimum age (`[13]`) with the store age rating to match. Then delete the notes.
+
+## 3. Same wording fixes, outside the site
 
 - [ ] App, `nutag/lib/l10n/app_{mn,en}.arb`: `onboardBuildBody` «7 хоног тутам» / "every 7 days" and
       `gerBuiltBody` «Долоо хоног тутам» still give a fixed week. `buildGer` "Raise a ger" should be "Raise a Ger".
       Nothing in the app says a fall keeps 7 of 8 parts. Full list: DOMAIN §13 "App".
 - [ ] Console: DOMAIN §13 "Console" (the loop is never explained to a venue; «Онцлох» means two things).
 
-## 3. Decisions that change the landing copy
+## 4. Decisions that change the landing copy
 
 - [ ] **DOMAIN §12.1, build without a visit.** The hero («Эхний найман эд анги тань биднээс бэлэг тул анхны Гэрээ шууд
-      барьж болно») and FAQ 1 promise a first Ger right away. If building comes to need an approved order at that
-      Өртөө, rewrite both.
+      барьж болно») and FAQ 1 promise a first Ger right away, and so do the guide (#start, #raise, FAQ 1 and 8, the
+      rules table) and the vendor FAQ. If building comes to need an approved order at that Өртөө, rewrite them all.
 - [ ] **GER §7, cycle order.** If the cycle is reordered to the real assembly order, the parts copy may then claim
       it. Today it rightly doesn't.
 - [ ] **«Ногоон цай» / "Nogoon Tsai"**, the example café on the Today card, is made up. Check that no real UB place
       uses the name.
-
-## 4. Polish left on the landing
-
-- [ ] 821–860 px wide: the hero switches back to the 50% crop and the big cloud is cut at the right edge
-      (`ds.css`, the `.hero-art` rules near line 166).
-- [ ] After a short scroll, the hero shows faintly through the 90% header tint (`.is-over-hero`, `ds.css` ~131).
 
 ## Checking
 

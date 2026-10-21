@@ -7,6 +7,11 @@
   // <head>: if this file ever fails to load, the page simply shows everything.
   root.classList.add('has-js');
 
+  // Every download link is written as the Play page; an Apple device gets the App Store instead (an iPad says
+  // "Macintosh"). Links marked data-store name their store, so they keep it.
+  if (/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent))
+    document.querySelectorAll('a[href^="https://play.google.com/"]:not([data-store])').forEach(a => { a.href = 'https://apps.apple.com/app/id6805935855'; });
+
   const toggle = document.querySelector('[data-theme-toggle]');
   if (toggle) {
     // Each page's own light colour (the landing's paper differs from style.css's), read before sync() rewrites it.

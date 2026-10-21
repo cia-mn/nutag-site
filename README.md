@@ -3,11 +3,12 @@
 Landing page, how-to-play guide, vendor sign-up, privacy policy and terms, MN + EN. Plain HTML, no build step.
 
 - `/` `/en/` — landing: what Nutag is, how it works (the Today card), the eight parts, FAQ, the pitch to
-  businesses, Google Play link. Built on `ds.css`
+  businesses, App Store + Google Play links. Built on `ds.css`
 - `/ds/` — the design-system reference: the tokens and components of `ds.css` on one page (the header's glass
   state over the hero shows only on the landing). Not in the nav, not indexed
-- `/guide/` `/guide/en/` — how to play (parts, collecting, Gers)
-- `/vendor/` `/vendor/en/` — become an Ortoo: two-step form, POSTs to `api.nutag.fun/vendor-applications` (the backend must allow the `https://nutag.fun` origin in `CORS_ALLOWED_ORIGINS`); leads are read in psql, we call them back
+- `/guide/` `/guide/en/` — how to play: a long-form reading column with a contents list (parts, collecting, drops,
+  raising and keeping a Ger, stories, the rules table, FAQ). Built on `ds.css`
+- `/vendor/` `/vendor/en/` — become an Ortoo: the pitch, then a two-step form (`vendor/form.js`). Built on `ds.css`. POSTs to `api.nutag.fun/vendor-applications` (the backend must allow the `https://nutag.fun` origin in `CORS_ALLOWED_ORIGINS`); leads are read in psql, we call them back
 - `/privacy/` `/privacy/en/` — privacy policy (App Store / Play Console link)
 - `/map/` `/map/en/` — the city, every district and every building: a Leaflet viewer over tiles cut by
   `general/carto_poster.py --tiles` and hosted on the backend's R2 bucket (`https://cdn.cia.mn/ub/`);
@@ -28,9 +29,11 @@ Deploy: image `ghcr.io/cia-mn/nutag-site:main`, service `nutag_site` in `backend
 
 ## Look
 
-The landing is built on `ds.css`, a small self-contained design system: tokens (light + dark, documented at
-the top of the file), header, buttons, hero, kicker, two-tone headings, statement, steps, card and canvas, the
-Today card, part tiles, FAQ, the blue band, the grass divider, footer and its pixel card. Quiet on purpose:
+The landing, the guide, the vendor page, privacy, terms and the map are built on `ds.css`, a small self-contained design system: tokens
+(light + dark, documented at the top of the file), header, buttons, hero, kicker, two-tone headings, statement,
+steps, card and canvas, the Today card, part tiles, FAQ, the blue band, the grass divider, footer and its pixel
+card; for the inner pages also a page head, the till card, the reading column (`.prose`) with its contents list,
+lists, note, toast and rules table, and the form fields and stepper. Quiet on purpose:
 Inter at 400–500, 1px lines, one blue accent, gold only as a fill. `/ds/` shows each piece with the landing's own
 markup; when a component changes, change it there too.
 
@@ -38,7 +41,7 @@ The hero is pixel art painted by `art/hero.py` (PIL, deterministic): `python3 ar
 `img/hero.png` (480×240, upscaled in CSS with `image-rendering: pixelated`) and `img/grass.svg` (the ragged
 strip's mask). `art/` is not copied into the image.
 
-Every other page still uses `style.css` until it migrates (the order and what each page's copy gets wrong:
+Only `o/` still uses `style.css` until it migrates (the order and what each page's copy gets wrong:
 `NEXT.md`): the design language of
 [LatentFolio Free](https://github.com/Dharani-Eswaramurthi/latentfolio) (MIT) carried over by hand: its layers,
 header, hero, marquee, cards, call-to-action block and footer, recoloured to the app's blue and gold
@@ -48,14 +51,18 @@ header, hero, marquee, cards, call-to-action block and footer, recoloured to the
   Cyrillic, and Mongolian Ө and Ү sit in the `cyrillic-ext` range, so each family ships `latin`, `cyrillic`
   and `cyrillic-ext` subsets. Nothing is loaded from a third party.
 - **No Astro.** The header and footer are repeated in each page by hand, which is the price of having no
-  build step. When you change one, change all ten: `grep -l 'style.css" />' $(grep -l site-header -r --include=index.html .)`
-  (the landing's and `/ds/`'s header and footer differ until the other pages move to `ds.css`)
+  build step. When you change one, change every page on the same stylesheet:
+  `grep -l 'ds.css" />' $(grep -l site-header -r --include=index.html .)` (the landing, `/ds/`, guide, vendor,
+  privacy, terms, map; the paths differ by depth; the map has no footer). `o/` is still on `style.css` and has a
+  header of its own
 
-`site.js` is the theme toggle (remembered in `localStorage` as `nutag-theme`, system preference otherwise),
-the mobile menu, the scroll reveals and the landing's header, glass while over the hero.
+`site.js` sends every download link written as the Play page to the App Store on an Apple device (links marked
+`data-store` name their store and keep it; `o/order.js` does the same for its button). It is also the theme
+toggle (remembered in `localStorage` as `nutag-theme`, system preference otherwise), the mobile menu, the scroll
+reveals and the landing's header, glass while over the hero.
 Licences: `THIRD_PARTY_NOTICES.md`.
 
 Before submitting to the stores, replace every `[bracketed]` placeholder — legal entity, address,
-retention periods, minimum age — and delete the `.todo` boxes that flag them:
+retention periods, minimum age — and delete the "Still to decide" notes that flag them:
 
     grep -rn '\[' privacy terms | grep -v href

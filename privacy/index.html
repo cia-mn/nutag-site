@@ -4,14 +4,20 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Нууцлалын бодлого · Nutag</title>
+<meta name="description" content="Nutag апп болон nutag.fun юу цуглуулдаг, яагаад, хэнд дамжуулдаг, хэр удаан хадгалдаг, та юу хүсч болох." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Nutag" />
+<meta property="og:title" content="Нууцлалын бодлого · Nutag" />
+<meta property="og:description" content="Nutag апп болон nutag.fun юу цуглуулдаг, яагаад, хэнд дамжуулдаг, хэр удаан хадгалдаг, та юу хүсч болох." />
+<meta property="og:url" content="https://nutag.fun/privacy/" />
 <!-- head -->
 <script>try{var t=localStorage.getItem('nutag-theme')}catch(e){}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'</script>
-<meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#f7f4f0" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
 <meta name="color-scheme" content="light dark" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <link rel="alternate" hreflang="en" href="en/" />
-<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="../ds.css" />
 <script src="../site.js" defer></script>
 <!-- /head -->
 </head>
@@ -20,22 +26,19 @@
 <a class="skip-link" href="#main-content">Агуулга руу очих</a>
 <header class="site-header" data-header>
   <div class="header-inner shell">
-    <a class="brand" href="../">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-copy"><strong>nutag</strong><small>Өртөө · Эд анги · Гэр</small></span>
-    </a>
+    <a class="brand" href="../">nutag</a>
     <nav class="desktop-nav" aria-label="Үндсэн цэс">
       <a href="../guide/">Заавар</a>
       <a href="../vendor/">Бизнест</a>
       <a href="https://console.nutag.fun">Консол</a>
     </nav>
     <div class="header-actions">
-      <a class="lang-link" href="en/" lang="en" hreflang="en" aria-label="English" title="English">EN</a>
+      <a class="lang-link" href="en/" lang="en" hreflang="en" aria-label="EN, English" title="English">EN</a>
       <button class="theme-toggle" type="button" data-theme-toggle data-to-dark="Харанхуй горим" data-to-light="Гэрэлтэй горим" aria-label="Харанхуй горим" aria-pressed="false">
         <span class="theme-icon theme-icon-sun"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg></span>
         <span class="theme-icon theme-icon-moon"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.4 15.4A8.5 8.5 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z"/></svg></span>
       </button>
-      <a class="header-cta" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Апп татах <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a class="header-cta" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg>Апп татах</a>
     </div>
     <button class="nav-toggle" type="button" aria-label="Цэс нээх" data-open-label="Цэс нээх" data-close-label="Цэс хаах" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
       <span class="nav-open"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
@@ -47,217 +50,249 @@
       <a href="../guide/"><span>01</span>Заавар</a>
       <a href="../vendor/"><span>02</span>Бизнест</a>
       <a href="https://console.nutag.fun"><span>03</span>Консол</a>
-      <a class="mobile-contact" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Google Play-ээс татах <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+      <a class="mobile-contact" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Апп татах <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg></a>
     </div>
   </nav>
 </header>
 <!-- /header -->
-<main id="main-content" class="shell prose" tabindex="-1">
-  <h1>Нууцлалын бодлого</h1>
-  <p class="meta">Хүчинтэй огноо: 2026-10-12 · Хувилбар 1.1</p>
-  <p class="lede">Энэ бодлого нь <strong>Nutag</strong> гар утасны аппликейшн болон <code>nutag.fun</code>
-    домэйн доорх үйлчилгээнд хамаарна. Nutag таны ямар мэдээллийг, яагаад цуглуулдаг, хэнд дамжуулдаг,
-    хэдий хугацаанд хадгалдаг, та юу шаардаж болохыг энд бүтэн бичив.</p>
+<main id="main-content" tabindex="-1">
+  <div class="prose">
+    <div class="page-head">
+      <p class="kicker">Нууцлалын бодлого</p>
+      <h1>Бид таны юуг хадгалдаг, <span class="tone">яагаад.</span></h1>
+      <p class="lead">Энэ бодлого iPhone, Android-ийн Nutag апп болон <code>nutag.fun</code> домэйн доорх үйлчилгээнд хамаарна. Бид юу цуглуулдаг, яагаад, хэнд дамжуулдаг, хэр удаан хадгалдаг, та юу хүсч болохыг энд бичив.</p>
+      <p class="fine">Хүчинтэй огноо: <time datetime="2026-10-21">2026-10-21</time> · Хувилбар 1.2</p>
+    </div>
 
-  <h2>1. Мэдээлэл хариуцагч</h2>
-  <p>Таны хувийн мэдээллийг Си Ай Эй Солюшн ХХК (цаашид «бид», «Nutag») хариуцан боловсруулна.
-    Холбоо барих: <a href="mailto:info@cia.mn">info@cia.mn</a>.</p>
+    <nav class="toc" aria-label="Энэ хуудсанд">
+      <p class="kicker">Энэ хуудсанд</p>
+      <ol>
+        <li><a href="#who">Мэдээлэл хариуцагч</a></li>
+        <li><a href="#short">Товчхондоо</a></li>
+        <li><a href="#collect">Бид юу цуглуулдаг вэ</a></li>
+        <li><a href="#location">Байршил</a></li>
+        <li><a href="#stories">Түүх</a></li>
+        <li><a href="#not">Бидний хийдэггүй зүйл</a></li>
+        <li><a href="#recipients">Хэнд дамждаг вэ</a></li>
+        <li><a href="#keep">Хадгалах хугацаа</a></li>
+        <li><a href="#where">Хаана хадгалагддаг вэ</a></li>
+        <li><a href="#rights">Таны эрх</a></li>
+        <li><a href="#children">Хүүхэд</a></li>
+        <li><a href="#security">Аюулгүй байдал</a></li>
+        <li><a href="#changes">Өөрчлөлт</a></li>
+        <li><a href="#contact">Холбоо барих</a></li>
+      </ol>
+    </nav>
 
-  <h2>2. Товч тайлбар</h2>
-  <ul>
-    <li>Бүртгэл нь зөвхөн <strong>утасны дугаар</strong> дээр тулгуурладаг — нууц үг байхгүй, и-мэйл асуудаггүй.</li>
-    <li>Газрын зураг нээгдэхэд байршлын зөвшөөрөл асууна — ойролцоох Өртөөг харуулахын тулд. Татгалзсан
-      ч зураг, жагсаалт хэвийн ажиллана. Ард нь (background) хэзээ ч хянадаггүй.</li>
-    <li>Камерыг зөвхөн QR унших үед ашиглана. Зураг төхөөрөмжөөс гардаггүй.</li>
-    <li>Апп дотор <strong>ямар ч зар сурталчилгааны, аналитикийн, эвдрэл мэдээлэх (crash) SDK байхгүй</strong>.</li>
-    <li>Бид таны мэдээллийг <strong>зардаггүй</strong>, өөр апп/сайт хооронд <strong>мөрддөггүй</strong>.</li>
-    <li>Акаунтаа аппаас өөрөө устгуулах хүсэлт өгч болно (§8).</li>
-  </ul>
+    <section id="who" aria-labelledby="who-title">
+      <p class="kicker">01</p>
+      <h2 id="who-title">Мэдээлэл хариуцагч</h2>
+      <p>Таны хувийн мэдээллийг Си Ай Эй Солюшн ХХК (цаашид «бид», «Nutag») хариуцан боловсруулна. Холбоо барих: <a href="mailto:info@cia.mn">info@cia.mn</a>.</p>
+    </section>
 
-  <h2>3. Бид ямар мэдээлэл цуглуулдаг вэ</h2>
-  <table>
-    <tr><th>Мэдээлэл</th><th>Хэзээ</th><th>Яагаад</th></tr>
-    <tr>
-      <td><strong>Утасны дугаар</strong></td>
-      <td data-label="Хэзээ">Нэвтрэх үед. Мессежээр нэг удаагийн код (OTP) илгээгддэг.</td>
-      <td data-label="Яагаад">Таныг нэвтрүүлэх, нэг хүн нэг акаунттай байхыг хангах. Дугаарыг манай түнш CIA
-        (<code>api.cia.mn</code>) хүлээн авч баталгаажуулна.</td>
-    </tr>
-    <tr>
-      <td><strong>Акаунтын дугаар (sub)</strong></td>
-      <td data-label="Хэзээ">Бүртгэл үүсэх үед.</td>
-      <td data-label="Яагаад">Таны тоглоомын өгөгдлийг холбох тогтвортой танигч. Мөн RevenueCat-д
-        <code>app_user_id</code> болж очдог, ингэснээр худалдан авалт төхөөрөмж биш акаунтыг дагадаг.
-        Аватар зураг ч энэ дугаараас тооцоологддог.</td>
-    </tr>
-    <tr>
-      <td><strong>Байршил (GPS)</strong></td>
-      <td data-label="Хэзээ">Газрын зураг нээгдэх үед зөвшөөрөл асууж, зөвшөөрсөн тохиолдолд байршлыг уншина. Татгалзвал
-        дахин асуухгүй — «Би хаана байна» товч дарж хэзээ ч эргүүлэн асааж болно.</td>
-      <td data-label="Яагаад">Ойролцоох Өртөөг эрэмбэлэх, өдрийн дропыг таны эргэн тойронд байрлуулах.</td>
-    </tr>
-    <tr>
-      <td><strong>Камер</strong></td>
-      <td data-label="Хэзээ">QR код уншуулах үед.</td>
-      <td data-label="Яагаад">Өртөөгийн хуудсыг нээх. Дүрсийг зөвхөн төхөөрөмж дээр боловсруулна — сервер лүү илгээхгүй,
-        хадгалахгүй.</td>
-    </tr>
-    <tr>
-      <td><strong>Тоглогчийн нэр (handle)</strong></td>
-      <td data-label="Хэзээ">Та профайлдаа өөрөө оруулах үед. Заавал биш.</td>
-      <td data-label="Яагаад">Таныг таних нэр. Оруулаагүй ч тоглох боломжтой.</td>
-    </tr>
-    <tr>
-      <td><strong>Тоглоомын өгөгдөл</strong></td>
-      <td data-label="Хэзээ">Та Өртөөд захиалга хийх, Гэр барих үед.</td>
-      <td data-label="Яагаад">Цуглуулсан хэсэг, барьсан Гэр, аль Өртөөд хэзээ очсон бүртгэл. Энэ нь өдрийн хязгаар,
-        7 хоногийн идэвхийн тоолуур зэрэг тоглоомын дүрмийн үндэс.</td>
-    </tr>
-    <tr>
-      <td><strong>Худалдан авалт</strong></td>
-      <td data-label="Хэзээ">Өртөөд захиалга төлөх, эсвэл апп доторх худалдан авалт хийх үед.</td>
-      <td data-label="Яагаад">Захиалгын дүн, төлөв, ямар Наймаа, ямар бүтээгдэхүүн, цаг. Nutag <strong>картын дугаар
-        хэзээ ч хүлээж авдаггүй</strong> — төлбөрийг Bonum/QPay эсвэл Stripe гүйцэтгэнэ.</td>
-    </tr>
-    <tr>
-      <td><strong>Наймааны урамшууллын харилцан үйлдэл</strong></td>
-      <td data-label="Хэзээ">Өртөөгийн хуудсан дээрх сурталчилгаа харагдах, дарагдах үед.</td>
-      <td data-label="Яагаад">Тухайн Наймаад өөрийнх нь баннер хэр ажилласныг тайлагнах. Энэ нь Nutag-ийн дотоод
-        тоолуур бөгөөд гуравдагч талын зар сурталчилгааны сүлжээ <em>биш</em>.</td>
-    </tr>
-    <tr>
-      <td><strong>Мэдэгдлийн токен</strong></td>
-      <td data-label="Хэзээ">Утсан дээрээ нэвтэрсэн байх үед.</td>
-      <td data-label="Яагаад">Google-ийн Firebase Cloud Messaging таны төхөөрөмж дээрх аппад олгодог танигч. Захиалга
-        батлагдсан, төлбөр орсон, Гэр нурах гэж буй зэрэг <em>таны өөрийн</em> захиалга, Гэрийн тухай мэдэгдэл
-        илгээхийн тулд акаунттай тань холбож хадгалах бөгөөд апп-аас гарахад устгана. Мэдэгдэл харагдах эсэх нь
-        таны утасны зөвшөөрлөөс хамаарна — апп үүнийг хүлээх зүйл гарсан үед л асууна.</td>
-    </tr>
-    <tr>
-      <td><strong>Техникийн бүртгэл</strong></td>
-      <td data-label="Хэзээ">Апп сервер лүү хандах бүрд.</td>
-      <td data-label="Яагаад">IP хаяг, хүсэлтийн цаг, төрөл — аюулгүй байдал, хэт ачаалал, алдаа шалгах зорилгоор
-        серверийн лог-д богино хугацаанд үлддэг.</td>
-    </tr>
-  </table>
+    <section id="short" aria-labelledby="short-title">
+      <p class="kicker">02</p>
+      <h2 id="short-title">Товчхондоо</h2>
+      <ul class="bullets">
+        <li>Зөвхөн <b>утасны дугаараар</b> нэвтэрнэ. Нууц үг, и-мэйл хэрэггүй.</li>
+        <li>Газрын зураг нээгдэхэд байршлын зөвшөөрөл асууна. Татгалзсан ч зураг, жагсаалт хэвийн ажиллана. Ард нь хэзээ ч хянадаггүй.</li>
+        <li>Камер QR кодыг утсан дээрээ уншина. Зураг, бичлэг зөвхөн та түүхэд нийтлэхэд л утаснаас гарна.</li>
+        <li>Таны нийтэлсэн түүх <b>нийтэд харагдана</b>: хэн ч таны нэртэй нь уншиж болно.</li>
+        <li>Апп дотор <b>зар сурталчилгааны, аналитикийн, алдаа мэдээлэх SDK байхгүй</b>.</li>
+        <li>Бид таны мэдээллийг <b>зардаггүй</b>, өөр апп, сайт дээр тань <b>мөрддөггүй</b>.</li>
+        <li>Акаунтаа устгуулах хүсэлтийг аппаас өөрөө өгч болно (<a href="#rights">§10</a>).</li>
+      </ul>
+    </section>
 
-  <h3>Байршлын тухай дэлгэрэнгүй</h3>
-  <p>Хоёр өөр хэрэглээ байгаа бөгөөд хоёулаа таны зөвшөөрлөөр л ажиллана:</p>
-  <ul>
-    <li><strong>Ойролцоох Өртөө.</strong> Таны координатыг эрэмбэлэхэд ашиглаад <em>хадгалдаггүй</em>.</li>
-    <li><strong>Дроп.</strong> Таны координатаас <strong>санамсаргүй чиглэлд 150–500 метр зайд</strong>
-      шилжүүлсэн цэгүүдийг сервер тооцож, тэрхүү <em>шилжүүлсэн</em> цэгийг тухайн өдрийн дропын
-      байрлал болгон акаунттай холбож хадгална. Өөрөөр хэлбэл таны яг байсан цэг биш, түүнээс
-      зориуд зөрүүлсэн цэг л мэдээллийн санд үлдэнэ.</li>
-  </ul>
-  <p>Байршлыг ард нь хянах горим (background location) апп дээр огт байхгүй. Зөвшөөрлийг та
-    төхөөрөмжийн тохиргооноос хэзээ ч болиулж болно — тэгвэл газрын зураг ажиллах ч ойролцоох
-    эрэмбэлэлт, дроп идэвхгүй болно.</p>
+    <section id="collect" aria-labelledby="collect-title">
+      <p class="kicker">03</p>
+      <h2 id="collect-title">Бид юу цуглуулдаг вэ</h2>
+      <table class="rules">
+        <thead><tr><th scope="col">Мэдээлэл</th><th scope="col">Хэзээ, яагаад</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Утасны дугаар</th><td>Апп эсвэл ширээний захиалгын хуудсаар нэвтрэх үед. Мессежээр нэг удаагийн код ирнэ. Таныг нэвтрүүлж, нэг хүн нэг акаунттай байлгана. Дугаарыг манай нэвтрэлтийн үйлчилгээ CIA (<code>api.cia.mn</code>) хүлээн авч баталгаажуулна.</td></tr>
+          <tr><th scope="row">Акаунтын дугаар (sub)</th><td>Акаунт үүсэх үед. Таны тоглоомын өгөгдлийг холбох тогтвортой танигч. RevenueCat-д <code>app_user_id</code> болж очдог тул дэлгүүрээс хийсэн худалдан авалт утсыг биш акаунтыг дагана.</td></tr>
+          <tr><th scope="row">Нэр, нүүдэлчин</th><td>Та профайлдаа оруулах үед. Нэр заавал биш. Ажилтнууд таны захиалгыг лангуун дээр олохын тулд нэрийг тань захиалгатай хамт хардаг, мөн таны түүхэн дээр харагдана.</td></tr>
+          <tr><th scope="row">Байршил</th><td>Газрын зураг нээгдэх үед, зөвхөн зөвшөөрсөн бол. Юунд ашигладгийг <a href="#location">§4</a>-т бичив.</td></tr>
+          <tr><th scope="row">Камер</th><td>Өртөөний QR кодыг уншихад: дүрсийг утсан дээр уншаад, сервер лүү илгээхгүй, хадгалахгүй. Түүхэд зураг, бичлэг авах, эсвэл ажилтан бүтээгдэхүүний зураг авахад: зөвхөн нийтлэх, хадгалах үед л илгээгдэнэ.</td></tr>
+          <tr><th scope="row">Зургийн сан, микрофон</th><td>Түүх эсвэл бүтээгдэхүүнд галерейгаасаа сонгосон зураг, бичлэг, мөн таны бичсэн түүхийн бичлэгийн дуу. Галерейн бусад зүйлийг уншихгүй.</td></tr>
+          <tr><th scope="row">Тоглоомын өгөгдөл</th><td>Эд анги цуглуулах, Гэр барих үед: эд анги, Гэр, аль Өртөөд аль өдөр очсон тань. Өдрийн хязгаар, Гэр бүр хэр удаан зогсохыг үүгээр тооцно.</td></tr>
+          <tr><th scope="row">Захиалга, төлбөр</th><td>Өртөөд захиалга өгөх, дроп авах үед: бараа, дүн, төлөв, Өртөө, цаг, ширээний картаар захиалсан бол аль ширээ, ажилтан лангуун дээр бүртгэсэн төлбөр (бэлэн, карт, шилжүүлэг). Nutag <b>картын дугаар хэзээ ч авдаггүй</b>: төлбөрийг Bonum/QPay, Stripe, Apple эсвэл Google гүйцэтгэнэ.</td></tr>
+          <tr><th scope="row">Түүх</th><td>Та нийтлэх үед: үнэлгээ, таны бичсэн үг, таван хүртэлх зураг эсвэл нэг бичлэг. <a href="#stories">§5</a>-ыг үзнэ үү.</td></tr>
+          <tr><th scope="row">Зар үзсэн, дарсан тоо</th><td>Өртөөний хуудсан дээр сурталчлагчийн зар харагдах, дарагдах үед: тоглогч бүрээс Өртөө бүрт өдөрт нэг үзэлт, нэг дарсныг акаунттай тань холбож тоолно. Тухайн Өртөөд хувийг нь төлөхөд ашиглана. Сурталчлагч зөвхөн нийт тоог авна, таныг хэн болохыг хэзээ ч мэдэхгүй.</td></tr>
+          <tr><th scope="row">Мэдэгдлийн токен</th><td>Утсан дээрээ нэвтэрсэн байх үед. Google-ийн Firebase Cloud Messaging аппад олгодог танигч (iPhone дээр Apple-ийн мэдэгдлийн үйлчилгээгээр дамжина). Захиалга батлагдсан, төлбөр орсон, Гэр нурах гэж буй зэрэг <em>таны өөрийн</em> захиалга, Гэрийн тухай мэдэгдэхийн тулд акаунттай тань холбож хадгалах ба гарахад устгана. Мэдэгдэл харагдах эсэх нь таны утасны зөвшөөрлөөс хамаарна; апп үүнийг хүлээх зүйл гарсан үед л асууна.</td></tr>
+          <tr><th scope="row">Бизнесийн хүсэлт</th><td>Хэн нэгэн <a href="../vendor/">nutag.fun/vendor</a> дээрх маягтыг бөглөх үед: бизнесийн нэр, төрөл, хаяг, холбогдох хүн, утасны дугаар, тэмдэглэл. Эргэж залгахад ашиглана.</td></tr>
+          <tr><th scope="row">Техникийн бүртгэл</th><td>Манай сервер лүү хандах бүрд: IP хаяг, цаг, хүсэлтийн төрөл. Аюулгүй байдал, хууль бус хэрэглээ, алдаа шалгахад богино хугацаанд хадгална.</td></tr>
+          <tr><th scope="row">Таны хөтөч дээр</th><td>nutag.fun таны сонгосон гэгээлэг, бараан горимыг хөтчийн өөрийн санд санаж үлдэнэ. Ширээний захиалгын хуудас захиалга бүрд код бичүүлэхгүйн тулд нэвтрэлтийг тань тэнд хадгална; үүнийг зөвхөн манай API, CIA-тай харилцахад ашиглана.</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-  <h2>4. Бидний хийдэггүй зүйл</h2>
-  <ul>
-    <li>Гуравдагч талын зар сурталчилгааны SDK суулгаагүй (AdMob, Facebook, AppsFlyer — байхгүй).</li>
-    <li>Аналитик, crash reporting SDK суулгаагүй (Firebase Analytics, Crashlytics, Sentry, Mixpanel, Amplitude —
-      байхгүй). Firebase-ээс зөвхөн мэдэгдэл хүргэдэг Cloud Messaging-ийг л ашигладаг (§5).</li>
-    <li>Сурталчилгааны мэдэгдэл илгээдэггүй. Мэдэгдэл бүр таны өөрийн зүйлийн тухай байна.</li>
-    <li>Өөр компанийн апп, вэбсайт дээрх таны үйлдлийг мөрддөггүй.</li>
-    <li>Хувийн мэдээллийг зардаггүй, түрээслүүлдэггүй, зар сурталчилгааны зорилгоор дамжуулдаггүй.</li>
-    <li>Таны утасны дугаарыг Наймаа нарт өгдөггүй.</li>
-  </ul>
+    <section id="location" aria-labelledby="location-title">
+      <p class="kicker">04</p>
+      <h2 id="location-title">Байршил, <span class="tone">хэрэглээ бүрээр.</span></h2>
+      <p>Хэрэглээ бүр зөвхөн таны зөвшөөрлөөр ажиллана:</p>
+      <ul class="bullets">
+        <li><b>Ойр орчим.</b> Таны байршлаар Өртөөний жагсаалтыг эрэмбэлээд, <em>хадгалдаггүй</em>.</li>
+        <li><b>Дроп.</b> Сервер таны байршлаас <b>санамсаргүй чиглэлд 150–500 метр</b> зайтай цэгүүдийг сонгож, тэрхүү <em>зөрүүлсэн</em> цэгийг тухайн өдрийн дроп болгон акаунтад тань хадгална. Хадгалагдах цэг нь таны байсан газар биш, зориуд зөрүүлсэн цэг.</li>
+        <li><b>Чиглэл.</b> Таны байршил, очих газрыг манай серверээс Google Routes руу илгээж замыг зурна. Хадгалахгүй.</li>
+        <li><b>Газар хайх.</b> Таны бичсэн үгийг ойролцоох нэг цэгийн хамт манай серверээс Google Places руу илгээнэ. Нэг хайлтыг дахин төлөхгүйн тулд хариуг нэг өдөр хадгалах ба тантай холбогдохгүй.</li>
+        <li><b>Цаг агаар.</b> Таны байршлыг 0.1° (ойролцоогоор 10 км) хүртэл бөөрөнхийлөөд манай серверээс Hamuga-гаар дамжуулан SkyData руу илгээнэ.</li>
+      </ul>
+      <p>Чиглэл, газар хайх, цаг агаарын хүсэлтийг манай сервер илгээдэг тул Google, SkyData таны утасны IP хаягийг хэзээ ч харахгүй. Апп ард нь байршил хянах горимгүй. Зөвшөөрлийг утасныхаа тохиргооноос хэдийд ч болиулж болно: газрын зураг ажилласаар байх ч зайгаар эрэмбэлэх, дроп, байгаа газраасаа чиглэл авах нь зогсоно.</p>
+    </section>
 
-  <h2>5. Хэнд дамждаг вэ</h2>
-  <table>
-    <tr><th>Хүлээн авагч</th><th>Юу очдог</th><th>Юуны төлөө</th></tr>
-    <tr><td><strong>CIA</strong> (<code>api.cia.mn</code>)</td><td data-label="Юу очдог">Утасны дугаар, нэвтрэлтийн үйл явдал</td><td data-label="Юуны төлөө">OTP илгээх, таних, токен олгох. CIA нь Nutag-ийн бүртгэл-баталгаажуулалтын үйлчилгээ.</td></tr>
-    <tr><td><strong>RevenueCat</strong></td><td data-label="Юу очдог">Акаунтын дугаар (sub), захиалгын төлөв</td><td data-label="Юуны төлөө">Апп доторх худалдан авалт, Nutag Pro эрхийг удирдах.</td></tr>
-    <tr><td><strong>Apple / Google</strong></td><td data-label="Юу очдог">Худалдан авалтын мэдээлэл</td><td data-label="Юуны төлөө">App Store / Google Play-ийн төлбөр. Тэдний өөрсдийн нууцлалын бодлого хамаарна.</td></tr>
-    <tr><td><strong>Google</strong> (Firebase Cloud Messaging)</td><td data-label="Юу очдог">Таны төхөөрөмжийн мэдэгдлийн токен, мэдэгдэл бүрийн бичвэр: Өртөөгийн нэр, юу болсон</td><td data-label="Юуны төлөө">Мэдэгдлийг таны утсанд хүргэх.</td></tr>
-    <tr><td><strong>Төлбөрийн гарц</strong> — Bonum/QPay, Stripe</td><td data-label="Юу очдог">Захиалгын дүн, дугаар, төлөв</td><td data-label="Юуны төлөө">Өртөөгийн захиалгын төлбөр. Гарц бүрийг тухайн <strong>Наймаа өөрийн данс дээрээ</strong> ажиллуулдаг.</td></tr>
-    <tr><td><strong>Наймаа</strong> (дэлгүүр, кафе)</td><td data-label="Юу очдог">Тухайн газарт хийсэн захиалгын агуулга, дүн, цаг</td><td data-label="Юуны төлөө">Таны захиалгыг биелүүлэх. Утасны дугаар дамждаггүй.</td></tr>
-    <tr><td><strong>Esri</strong> (<code>server.arcgisonline.com</code>)</td><td data-label="Юу очдог">Таны төхөөрөмжийн IP, ямар хэсгийг үзэж буй</td><td data-label="Юуны төлөө">Хиймэл дагуулын зураг сонгосон үед л. Гудамжны зураг дээр энэ рүү хандахгүй.</td></tr>
-    <tr><td><strong>OpenStreetMap</strong> (<code>tile.openstreetmap.org</code>)</td><td data-label="Юу очдог">Таны төхөөрөмжийн IP, ямар хэсгийн газрын зураг үзэж буй</td><td data-label="Юуны төлөө">Газрын зургийн зурагнууд шууд татагддаг. Энэ нь OSM-ийн бодлогод захирагдана.</td></tr>
-    <tr><td><strong>Хостинг</strong></td><td data-label="Юу очдог">Дээрх өгөгдөл сервер дээр</td><td data-label="Юуны төлөө">Nutag-ийн сервер, мэдээллийн сан, зураг хадгалах сан.</td></tr>
-  </table>
-  <p>Түүнчлэн хууль ёсны шаардлагаар (шүүх, эрх бүхий байгууллагын албан хүсэлт) шаардлагатай
-    хэмжээгээр мэдээлэл өгөх үүрэгтэй байж болно.</p>
+    <section id="stories" aria-labelledby="stories-title">
+      <p class="kicker">05</p>
+      <h2 id="stories-title">Түүх <span class="tone">нийтэд харагдана.</span></h2>
+      <p>Тухайн Өртөөд захиалга тань батлагдсаны дараа тэнд түүх нийтэлж болно: үнэлгээ, 1000 хүртэлх тэмдэгт, таван хүртэлх зураг эсвэл нэг бичлэг. Үүнийг апп болон манай API-аар хэн ч таны нэр, нүүдэлчинтэй хамт харж болно. Таны утасны дугаар хэзээ ч харагдахгүй.</p>
+      <p>Тоглогч бүр Өртөө бүрт нэг түүхтэй: тэнд дахин нийтэлбэл өмнөхийг нь солино. Түүхээ хэдийд ч устгаж болох ба зураг, бичлэг нь хамт устана. Өртөө таны түүхийг засах, нуух, устгах боломжгүй.</p>
+      <p>Түүхээ хуваалцвал апп түүнийг зураг болгоод утасны тань хуваалцах цэс рүү өгнө. Цааш хаашаа очих нь таны болон таны сонгосон аппын асуудал.</p>
+    </section>
 
-  <h2>6. Хадгалах хугацаа</h2>
-  <ul>
-    <li><strong>Акаунт, тоглогчийн нэр, тоглоомын өгөгдөл</strong> — акаунт устгах хүртэл.</li>
-    <li><strong>Устгах хүсэлт</strong> — хүсэлт хүлээн авснаас хойш <strong>30 хоногийн дотор</strong>
-      устгана (§8).</li>
-    <li><strong>Захиалга, төлбөрийн бүртгэл</strong> — нягтлан бодох бүртгэл, татварын хууль тогтоомжид
-      заасан хугацаанд ([N] жил) хадгална. Энэ хугацаанд эдгээр бичилтийг акаунттай холбоогүй
-      хэлбэрт шилжүүлнэ.</li>
-    <li><strong>Дропын цэг</strong> — тухайн өдрийн тоглолтод л хэрэгтэй; акаунт устахад хамт устана.</li>
-    <li><strong>Серверийн техникийн лог</strong> — [30] хоног.</li>
-  </ul>
-  <div class="todo">
-    <p><strong>Шийдэх шаардлагатай:</strong> дээрх [N] жил, [30] хоногийн тоог эцэслэнэ үү
-      (нягтлан бодох бүртгэлийн тухай хуулиар ихэвчлэн 5–10 жил).</p>
+    <section id="not" aria-labelledby="not-title">
+      <p class="kicker">06</p>
+      <h2 id="not-title">Бидний хийдэггүй зүйл</h2>
+      <ul class="bullets">
+        <li>Гуравдагч талын зар сурталчилгааны SDK байхгүй (AdMob, Facebook, AppsFlyer). Өртөөний хуудсан дээрх зарыг бид өөрсдөө байршуулдаг бөгөөд зар бүр дээр сурталчлагчийн нэр бичигдэнэ.</li>
+        <li>Аналитик, алдаа мэдээлэх SDK байхгүй (Firebase Analytics, Crashlytics, Sentry, Mixpanel, Amplitude). Апп Firebase-ээс зөвхөн мэдэгдэл хүргэдэг Cloud Messaging-ийг ашигладаг.</li>
+        <li>Сурталчилгааны мэдэгдэл илгээдэггүй. Мэдэгдэл бүр таны өөрийн зүйлийн тухай.</li>
+        <li>Өөр компанийн апп, вэбсайт дээрх үйлдлийг тань мөрддөггүй.</li>
+        <li>Хувийн мэдээллийг зардаггүй, түрээслүүлдэггүй, зар сурталчилгаанд дамжуулдаггүй.</li>
+        <li>Таны утасны дугаарыг Өртөө, сурталчлагчид хэзээ ч өгдөггүй.</li>
+        <li>Газрын зураг дээрх замын ердийн ачааллыг тоглогчдын утаснаас биш, хэдэн замаар цаг тогтоон хийдэг өөрсдийн хэмжилтээс гаргадаг.</li>
+      </ul>
+    </section>
+
+    <section id="recipients" aria-labelledby="recipients-title">
+      <p class="kicker">07</p>
+      <h2 id="recipients-title">Хэнд дамждаг вэ</h2>
+      <table class="rules">
+        <thead><tr><th scope="col">Хүлээн авагч</th><th scope="col">Юу, юуны төлөө</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">CIA (<code>api.cia.mn</code>)</th><td>Утасны дугаар, нэвтрэлт. Код илгээж, таныг баталгаажуулж, нэвтрэлтийн токен олгоно. Акаунт устгах хүсэлтийг ч хүлээн авна.</td></tr>
+          <tr><th scope="row">Таны захиалга өгсөн Өртөө</th><td>Таны захиалга (бараа, дүн, цаг, ширээ) ба нэр. Захиалгыг тань бэлдэж, батлахын тулд. Утасны дугаар дамжихгүй.</td></tr>
+          <tr><th scope="row">Захиалгын төлбөрийн гарц: Bonum/QPay, Stripe</th><td>Дүн, дугаар, төлөв. Гарцын данс бүр <b>тухайн Өртөөнийх</b> тул мөнгө Nutag руу биш, тэр Өртөө рүү орно.</td></tr>
+          <tr><th scope="row">Дропын Bonum/QPay</th><td>Дүн, дугаар, төлөв. Монгол (+976) дугаартай тоглогч дропын төлбөрийг <b>Nutag-ийн өөрийн</b> Bonum данс руу төлнө.</td></tr>
+          <tr><th scope="row">Apple / Google, RevenueCat</th><td>Бусад тоглогч дропыг App Store эсвэл Google Play-ээс авна; дэлгүүрийн өөрийн нууцлалын бодлого үйлчилнэ. RevenueCat таны акаунтын дугаар, худалдан авалтыг хүлээн авч манай серверт мэдэгдэнэ.</td></tr>
+          <tr><th scope="row">Google (Firebase Cloud Messaging), iPhone дээр Apple</th><td>Утасны тань мэдэгдлийн токен, мэдэгдэл бүрийн бичвэр: Өртөөний нэр, юу болсон. Мэдэгдлийг хүргэхийн тулд.</td></tr>
+          <tr><th scope="row">Google (Routes, Places)</th><td>Манай серверээс: замын хоёр үзүүр, эсвэл ойролцоох цэгийн хамт таны хайсан үг (<a href="#location">§4</a>).</td></tr>
+          <tr><th scope="row">SkyData, Hamuga-гаар</th><td>Манай серверээс: цаг агаарт зориулж ойролцоогоор 10 км хүртэл бөөрөнхийлсөн цэг.</td></tr>
+          <tr><th scope="row">ubtraffic.mn</th><td>Хотын уулзварын камер нээх үед таны утасны IP хаяг, аль камер. Бичлэг шууд тэдний серверээс тоглогдоно.</td></tr>
+          <tr><th scope="row">CARTO (<code>basemaps.cartocdn.com</code>)</th><td>Таны утасны IP хаяг, газрын зургийн аль хэсгийг харж буй. Гудамжны зургийг шууд эндээс татна.</td></tr>
+          <tr><th scope="row">Esri (<code>server.arcgisonline.com</code>)</th><td>Таны утасны IP хаяг, газрын зургийн аль хэсгийг харж буй; зөвхөн хиймэл дагуулын зураг асаалттай үед.</td></tr>
+          <tr><th scope="row">Сурталчлагч</th><td>Зарынх нь нийт үзсэн, дарсан тоо. Зар дээр дарвал сурталчлагчийн өөрийн холбоос нээгдэх ба тэндээс цааш тэдний сайтын бодлого үйлчилнэ.</td></tr>
+          <tr><th scope="row">Cloudflare</th><td>nutag.fun болон манай API-ийн өмнө байрладаг тул таны IP хаяг түүгээр дамжина. Зураг, бичлэгийг (R2) хадгалж, таны аль улсаас нэвтэрч буйг бидэнд хэлдэг; үүнийг бид хадгалдаггүй.</td></tr>
+          <tr><th scope="row">Хостинг</th><td>Дээрх өгөгдөл манай сервер дээр: Nutag API ба мэдээллийн сан.</td></tr>
+        </tbody>
+      </table>
+      <p>Түүнчлэн хуулиар шаардсан тохиолдолд шүүх, эрх бүхий байгууллагын хууль ёсны хүсэлтийн хэмжээнд мэдээлэл өгч болно.</p>
+    </section>
+
+    <section id="keep" aria-labelledby="keep-title">
+      <p class="kicker">08</p>
+      <h2 id="keep-title">Хадгалах хугацаа</h2>
+      <ul class="bullets">
+        <li><b>Акаунт, нэр, тоглоомын өгөгдөл</b>: акаунт устах хүртэл.</li>
+        <li><b>Түүх</b>: та устгах, тэр Өртөөд шинээр нийтлэх, эсвэл акаунтаа устгах хүртэл. Зураг, бичлэг нь хамт устана.</li>
+        <li><b>Захиалга, төлбөрийн бүртгэл</b>: Монгол Улсын нягтлан бодох бүртгэл, татварын хуульд заасан хугацаанд ([N] жил); акаунт устсаны дараа акаунттай холбоогүй болгоно.</li>
+        <li><b>Дропын цэг</b>: зөвхөн тухайн өдрийн тоглолтод хэрэгтэй; акаунттай хамт устана.</li>
+        <li><b>Мэдэгдлийн токен</b>: тэр утсан дээрээ гарах хүртэл.</li>
+        <li><b>Бизнесийн хүсэлт</b>: тухайн бизнестэй хамтран ажиллах хугацаанд. <a href="mailto:info@cia.mn">info@cia.mn</a> хаягаар хүсвэл устгана.</li>
+        <li><b>Серверийн лог</b>: [30] хоног.</li>
+        <li><b>Устгах хүсэлт</b>: <b>30 хоногийн дотор</b> биелнэ (<a href="#rights">§10</a>).</li>
+      </ul>
+      <div class="card note">
+        <p class="kicker">Шийдэх зүйл</p>
+        <p>Дээрх [N] жил, [30] хоногийг эцэслэнэ үү (нягтлан бодох бүртгэлийн хуулиар ихэвчлэн 5–10 жил).</p>
+      </div>
+    </section>
+
+    <section id="where" aria-labelledby="where-title">
+      <p class="kicker">09</p>
+      <h2 id="where-title">Хаана хадгалагддаг вэ</h2>
+      <p>Nutag-ийн сервер, мэдээллийн сан [байршил, жишээ нь Монгол Улс]-д байрлана. Зураг, бичлэгийг Cloudflare R2-т хадгална. CIA, RevenueCat, Stripe, Apple, Google, Cloudflare зэрэг түншүүд таны мэдээллийн зарим хэсгийг Монгол Улсаас гадна өөрсдийн дэд бүтцэд боловсруулж болно.</p>
+    </section>
+
+    <section id="rights" aria-labelledby="rights-title">
+      <p class="kicker">10</p>
+      <h2 id="rights-title">Таны эрх</h2>
+      <ul class="bullets">
+        <li><b>Харах, засах.</b> Нэрээ профайлаасаа хэдийд ч солино. Бусад мэдээллийн хуулбарыг <a href="mailto:info@cia.mn">info@cia.mn</a> хаягаар хүсч болно.</li>
+        <li><b>Түүх устгах.</b> Өртөөний хуудаснаас түүхээ устгана. Зураг, бичлэг нь хамт устана.</li>
+        <li><b>Акаунт устгах.</b> Апп → Профайл → Акаунт устгах. Хүсэлт манай нэвтрэлтийн үйлчилгээ CIA-д очих ба бид Nutag дахь өгөгдлийг тань <b>30 хоногийн дотор</b> хамт устгана. Буцаах боломжгүй: эд анги, Гэр, түүх, бүртгэл сэргэхгүй.</li>
+        <li><b>Зөвшөөрөл цуцлах.</b> Байршил, камер, зургийн сан, микрофон, мэдэгдлийн зөвшөөрөл бүрийг утасныхаа тохиргооноос хэдийд ч хааж болно.</li>
+        <li><b>Гомдол.</b> Эхлээд бидэнд бичнэ үү. Шийдэгдээгүй бол Монгол Улсын хувь хүний мэдээлэл хамгаалах эрх бүхий байгууллагад гомдол гаргаж болно.</li>
+      </ul>
+    </section>
+
+    <section id="children" aria-labelledby="children-title">
+      <p class="kicker">11</p>
+      <h2 id="children-title">Хүүхэд</h2>
+      <p>Nutag нь [13] нас хүрээгүй хүнд зориулагдаагүй бөгөөд бид тэдний мэдээллийг санаатайгаар цуглуулдаггүй; цуглуулсныг мэдвэл устгана. 18 нас хүрээгүй бол худалдан авалтыг эцэг эх, асран хамгаалагчийн зөвшөөрөлтэй хийнэ үү.</p>
+      <div class="card note">
+        <p class="kicker">Шийдэх зүйл</p>
+        <p>Насны доод хязгаар, түүнд тохирох App Store, Google Play-ийн насны ангилал.</p>
+      </div>
+    </section>
+
+    <section id="security" aria-labelledby="security-title">
+      <p class="kicker">12</p>
+      <h2 id="security-title">Аюулгүй байдал</h2>
+      <ul class="bullets">
+        <li>Бүх холболт HTTPS/TLS-ээр явна.</li>
+        <li>Апп нэвтрэлтийн токеныг утасны хамгаалагдсан санд (iOS Keychain, Android Keystore) хадгална.</li>
+        <li>Өртөөний төлбөрийн нууц мэдээллийг мэдээллийн санд AES-GCM-ээр шифрлэж хадгална.</li>
+        <li>Бид нууц үг хадгалдаггүй: нэг удаагийн кодоор нэвтэрнэ.</li>
+      </ul>
+    </section>
+
+    <section id="changes" aria-labelledby="changes-title">
+      <p class="kicker">13</p>
+      <h2 id="changes-title">Өөрчлөлт</h2>
+      <p>Энэ бодлого өөрчлөгдвөл шинэ хувилбарыг шинэ огнооны хамт энд нийтэлж, томоохон өөрчлөлтийг апп дотор мэдэгдэнэ.</p>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <p class="kicker">14</p>
+      <h2 id="contact-title">Холбоо барих</h2>
+      <p>Си Ай Эй Солюшн ХХК · Улаанбаатар хот, Сүхбаатар дүүрэг, 2-р хороо, Твин Тауэр-2, 4 давхар, 402 тоот · <a href="mailto:info@cia.mn">info@cia.mn</a></p>
+    </section>
   </div>
-
-  <h2>7. Хаана хадгалагддаг вэ</h2>
-  <p>Nutag-ийн сервер болон мэдээллийн сан [байршил — жишээ нь Монгол Улс]-д байрлана. Зураг, файлыг
-    Cloudflare R2-т хадгална. RevenueCat, Stripe, Apple, Google зэрэг түншүүд нь өөрсдийн
-    дэд бүтцээр дамжуулан таны мэдээллийн зарим хэсгийг Монгол Улсаас гадна боловсруулж болно.</p>
-
-  <h2>8. Таны эрх</h2>
-  <ul>
-    <li><strong>Үзэх, залруулах.</strong> Тоглогчийн нэрээ профайлаас хэдийд ч солино. Бусад
-      мэдээллийн хуулбарыг <a href="mailto:info@cia.mn">info@cia.mn</a> хаягаар хүсэж болно.</li>
-    <li><strong>Устгах.</strong> Апп → <em>Профайл</em> → <em>Акаунт устгах</em>. Хүсэлт CIA-д очиж,
-      CIA нь тухайн акаунттай холбоотой бүх үйлчилгээ (Nutag багтана)-нд мэдэгдэн устгах ажлыг
-      зохион байгуулна. Ажиллагаа <strong>30 хоногийн дотор</strong> дуусах бөгөөд буцаах
-      боломжгүй. Устгасны дараа тоглоомын хэсэг, Гэр, түүх сэргэхгүй.</li>
-    <li><strong>Зөвшөөрөл цуцлах.</strong> Байршил, камерын зөвшөөрлийг төхөөрөмжийн тохиргооноос
-      хэдийд ч хаана.</li>
-    <li><strong>Гомдол.</strong> Эхлээд бидэнд бичнэ үү. Шийдэгдээгүй бол Монгол Улсын хувь хүний
-      мэдээлэл хамгаалах эрх бүхий байгууллагад гомдол гаргах эрхтэй.</li>
-  </ul>
-
-  <h2>9. Хүүхэд</h2>
-  <p>Nutag нь [13] нас хүрээгүй хүнд зориулагдаагүй бөгөөд бид тэднээс мэдээлэл цуглуулахыг
-    зорьдоггүй. Хэрэв [13] нас хүрээгүй хүүхдийн мэдээлэл орсныг мэдвэл устгана.
-    18 нас хүрээгүй бол мөнгөн худалдан авалтыг эцэг эх, асран хамгаалагчийн зөвшөөрөлтэйгөөр хийнэ.</p>
-  <div class="todo"><p><strong>Шийдэх шаардлагатай:</strong> насны доод хязгаар ба App Store / Google Play дээрх насны ангилал.</p></div>
-
-  <h2>10. Аюулгүй байдал</h2>
-  <ul>
-    <li>Бүх холболт HTTPS/TLS-ээр явна.</li>
-    <li>Нэвтрэлтийн токеныг төхөөрөмжийн хамгаалагдсан сан (iOS Keychain, Android Keystore)-д хадгална.</li>
-    <li>Наймаа нарын төлбөрийн нууц түлхүүрийг мэдээллийн санд AES-GCM-ээр шифрлэж хадгална.</li>
-    <li>Nutag нууц үг хадгалдаггүй — нэвтрэлт нэг удаагийн код дээр суурилдаг.</li>
-  </ul>
-
-  <h2>11. Бодлогын өөрчлөлт</h2>
-  <p>Энэ бодлого өөрчлөгдвөл шинэ хувилбарыг энэ хуудсанд, шинэчилсэн огнооны хамт нийтэлнэ.
-    Мэдэгдэхүйц өөрчлөлтийг апп дотор мэдэгдэнэ.</p>
-
-  <h2>12. Холбоо барих</h2>
-  <p>Си Ай Эй Солюшн ХХК · Улаанбаатар хот, Сүхбаатар дүүрэг 2 дугаар хороо Твин Тауэр-2 4 давхар 402 тоот · <a href="mailto:info@cia.mn">info@cia.mn</a></p>
 </main>
 <!-- footer -->
 <footer class="site-footer">
-  <div class="shell footer-main">
-    <div>
-      <a class="footer-brand" href="../">nutag<span>.</span>fun</a>
-      <p>Өртөөд оч. Хэсэг цуглуул.<br />Гэрээ бос.</p>
+  <div class="shell">
+    <p class="footer-line">Хотын дундах <span class="tone">өөрийн гэсэн Гэр.</span></p>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="kicker">Тоглогчид</p>
+        <a href="../guide/">Заавар</a>
+        <a data-store href="https://apps.apple.com/app/id6805935855" target="_blank" rel="noopener">App Store</a>
+        <a data-store href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener">Google Play</a>
+      </div>
+      <div class="footer-col">
+        <p class="kicker">Бизнест</p>
+        <a href="../vendor/">Бүртгүүлэх</a>
+        <a href="https://console.nutag.fun">Консол</a>
+      </div>
+      <div class="footer-col">
+        <p class="kicker">Компани</p>
+        <a href="../privacy/">Нууцлалын бодлого</a>
+        <a href="../terms/">Үйлчилгээний нөхцөл</a>
+        <a href="mailto:info@cia.mn">info@cia.mn</a>
+      </div>
+      <div class="pixel-card">
+        <a class="btn btn-light" href="https://play.google.com/store/apps/details?id=com.nutag.fun" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19v2h14v-2"/></svg>Апп татах</a>
+      </div>
     </div>
-    <div class="footer-links">
-      <span class="footer-label">Холбоос</span>
-      <a href="../guide/">Заавар <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
-      <a href="../vendor/">Бизнест <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
-      <a href="../privacy/">Нууцлалын бодлого <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
-      <a href="../terms/">Үйлчилгээний нөхцөл <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
-      <a href="mailto:info@cia.mn">info@cia.mn <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    <div class="footer-bottom">
+      <span>© 2026 Си Ай Эй Солюшн ХХК</span>
+      <a href="en/" lang="en" hreflang="en">English</a>
+      <a href="#top">Дээш буцах ↑</a>
     </div>
   </div>
-  <div class="shell footer-bottom">
-    <span>© 2026 Си Ай Эй Солюшн ХХК</span>
-    <a href="https://github.com/Dharani-Eswaramurthi/latentfolio" target="_blank" rel="noreferrer">Загвар: LatentFolio · Dharani Eswaramurthi</a>
-    <a href="#top">Дээш буцах ↑</a>
-  </div>
+  <div class="grass grass-green" aria-hidden="true"></div>
 </footer>
 <!-- /footer -->
 </body>

@@ -1,6 +1,5 @@
-/* The map fills whatever the header leaves: a flex column, so the header's height (82px, 72px on
-   phones) never has to be repeated here. */
-.map-page { display: flex; flex-direction: column; height: 100dvh; }
+/* The map fills whatever ds.css's fixed 64px header leaves. */
+.map-page { display: flex; flex-direction: column; height: 100dvh; padding-top: 64px; }
 .map-page main { flex: 1; min-height: 0; position: relative; }
 #map { height: 100%; background: #fbf8f3; } /* Voyager's ground, so the tiles' padding is invisible */
 
@@ -9,7 +8,7 @@
   width: max-content !important;
   transform: translate(-50%, -50%);
   color: #781e5a;
-  font: 750 15px/1.2 "Inter", system-ui, sans-serif;
+  font: 700 15px/1.2 var(--sans);
   letter-spacing: .01em;
   text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 6px #fff, 0 0 6px #fff;
   pointer-events: none;
@@ -18,6 +17,6 @@
   position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 500;
   margin: 0; padding: 7px 14px; border-radius: 999px;
   background: color-mix(in srgb, var(--paper) 88%, transparent); color: var(--ink);
-  font-size: .8rem; font-weight: 650; white-space: nowrap; pointer-events: none;
+  font-size: 13px; font-weight: 500; white-space: nowrap; pointer-events: none;
 }
-.leaflet-container { font-family: "Inter", system-ui, sans-serif; }
+.leaflet-container { font-family: var(--sans); }

@@ -1,6 +1,6 @@
 /* nutag.fun design system (ds.css v1). Quiet and paper-first: one sans at light weights, 1px lines,
-   one blue accent, one pixel-art hero. Used by the landing (/, /en/) and shown at /ds/; every other
-   page still uses style.css. Plain CSS, no build step. Fonts are the self-hosted Inter + Lora in fonts/
+   one blue accent, one pixel-art hero. Used by the landing (/, /en/), the guide, vendor, privacy, terms and map,
+   and shown at /ds/; only o/ still uses style.css. Plain CSS, no build step. Fonts are the self-hosted Inter + Lora in fonts/
    (latin + cyrillic + cyrillic-ext, because Mongolian Ө and Ү live in cyrillic-ext). */
 @font-face { font-family: 'Inter Variable'; font-style: normal; font-display: swap; font-weight: 100 900; src: url(fonts/inter-cyrillic-ext-wght-normal.woff2) format('woff2-variations'); unicode-range: U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F; }
 @font-face { font-family: 'Inter Variable'; font-style: normal; font-display: swap; font-weight: 100 900; src: url(fonts/inter-cyrillic-wght-normal.woff2) format('woff2-variations'); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
@@ -17,7 +17,8 @@
    Text       --ink    text 16:1       --muted secondary text, .tone halves 6.4:1   --faint kickers, meta 4.95:1
               (every grey passes AA on paper, sunk and card, in both themes)
    Lines      --line   hairlines       --line-strong  ghost buttons, dashed cells   --dot  canvas grid
-   Accent     --blue   the only accent: links and the focus ring. --band  the full-bleed blue band;
+   Accent     --blue   the only accent: links and the focus ring. --danger  invalid fields and the form
+              error, 6.0:1 on paper (light) and 7.2:1 on card (dark). --band  the full-bleed blue band;
               white on it is 5.4:1, and it stays the same blue in dark theme.
    Fills      --gold   small fills with ink on top (the +1 tag, today's ring), never text colour.
               --grass  the footer's grass strip.
@@ -32,7 +33,7 @@
   --paper: #f7f4f0;  --sunk: #f0ece6;  --card: #ffffff;
   --ink: #1b1917;    --muted: #5e5852; --faint: #6f6962;
   --line: rgba(27,25,23,.10); --line-strong: rgba(27,25,23,.18); --dot: rgba(27,25,23,.14);
-  --blue: #2b6bb4;   --band: #2b6bb4;  --gold: #f5b855;  --grass: #6aa84f;  --focus: #2b6bb4;
+  --blue: #2b6bb4;   --band: #2b6bb4;  --gold: #f5b855;  --grass: #6aa84f;  --focus: #2b6bb4; --danger: #b42318;
   --shadow-1: 0 1px 2px rgba(27,25,23,.04), 0 4px 12px rgba(27,25,23,.04);
   --shadow-btn: 0 2px 3px rgba(0,0,0,.06), inset 0 2px 0 #fff;
   --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
@@ -52,7 +53,7 @@
   --paper: #14120f;  --sunk: #191714;  --card: #1d1b18;
   --ink: #f3f0eb;    --muted: #b5aea6; --faint: #8f8880;
   --line: rgba(243,240,235,.10); --line-strong: rgba(243,240,235,.20); --dot: rgba(243,240,235,.12);
-  --blue: #7fb0ea;   --focus: #7fb0ea; --grass: #4f8a3c;
+  --blue: #7fb0ea;   --focus: #7fb0ea; --grass: #4f8a3c; --danger: #f28b82;
   --shadow-1: none;
   color-scheme: dark;
 }
@@ -128,7 +129,7 @@ main:focus { outline: none; }
 .theme-icon { display: grid; }
 .theme-icon-sun, :root[data-theme='dark'] .theme-icon-moon, .nav-toggle, .nav-close, .mobile-nav { display: none; }
 :root[data-theme='dark'] .theme-icon-sun { display: grid; }
-.is-over-hero:not(.menu-open) { background: rgba(42,95,158,.9); border-color: transparent; color: #fff; }  /* the hero's top sky */
+.is-over-hero:not(.menu-open) { background: #2a5f9e; border-color: transparent; color: #fff; }  /* the hero's top sky, solid: a tint lets the art ghost through */
 .is-over-hero:not(.menu-open) :is(.desktop-nav, .lang-link, .theme-toggle, .nav-toggle) { background: rgba(10,26,48,.18); border-color: rgba(255,255,255,.32); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .is-over-hero:not(.menu-open) .desktop-nav a:hover { background: rgba(255,255,255,.14); }
 .is-over-hero:not(.menu-open) .header-cta { color: #1b1917; background: #f7f4f0; box-shadow: var(--shadow-btn); }
@@ -158,12 +159,17 @@ main:focus { outline: none; }
 .hero .kicker, .band .kicker { color: #fff; }
 :is(.hero, .band) .tone { color: rgba(255,255,255,.75); }
 .hero .btn { text-shadow: none; }
+/* Both stores by name, for a visitor on a computer; the buttons already go to the phone's own store (site.js). */
+.stores { margin-top: 16px; font-size: 14px; }
+.stores a { display: inline-block; padding-block: 4px; text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 50%, transparent); text-underline-offset: 3px; }
+.stores a:hover { text-decoration-color: currentColor; }
 .hero .grass { position: absolute; inset: auto 0 0; }
 @media (max-width: 820px) {
   .hero { --art: 560px; padding-top: 96px; }
   .hero-art { object-position: 74% 100%; }
 }
-@media (min-width: 641px) and (max-width: 820px) { .hero-art { object-position: 100% 100%; } }
+/* Up to 880 the 440px floor makes the art wider than the screen: keep its right edge (the big cloud). */
+@media (min-width: 641px) and (max-width: 879.98px) { .hero-art { object-position: 100% 100%; } }
 
 /* ── Intro statement ── */
 .statement { max-width: 22em; margin-inline: auto; text-align: center; }
@@ -171,7 +177,7 @@ main:focus { outline: none; }
 /* ── Card, canvas and the "Today here" card ── */
 .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); box-shadow: var(--shadow-1); }
 .canvas { position: relative; container-type: inline-size; display: grid; place-items: center; min-height: 440px; padding: 48px; border: 1px solid var(--line); border-radius: var(--r-lg); background: radial-gradient(circle, var(--dot) 1px, transparent 1.5px) 0 0 / 16px 16px, var(--sunk); }
-.today-card { width: min(100%, 380px); padding: 16px; display: grid; gap: 14px; }
+.today-card, .till-card { width: min(100%, 380px); padding: 16px; display: grid; gap: 14px; }
 .today-place { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); font-size: 15px; }
 .today-head { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
 .today-head p { color: var(--muted); font-size: 14px; line-height: 1.4; }
@@ -204,7 +210,7 @@ main:focus { outline: none; }
 .how { display: grid; gap: 32px; grid-template-areas: "head" "canvas" "steps"; }
 .how .head { grid-area: head; margin: 0; }
 .how .canvas { grid-area: canvas; }
-.steps { grid-area: steps; }
+.how .steps { grid-area: steps; }
 .steps li { padding-block: 24px; border-top: 1px solid var(--line); }
 .steps h3 { margin-top: 12px; }
 .steps p:last-child { margin-top: 8px; max-width: 46ch; color: var(--muted); }
@@ -218,6 +224,7 @@ main:focus { outline: none; }
 .part { padding-top: 20px; border-top: 1px solid var(--line); }  /* hairlines, like the steps */
 .part img { width: 40px; height: 40px; }
 .part h3 { margin-top: 16px; }
+.part h3:first-child { margin-top: 0; }  /* a tile without an icon (the vendor page) */
 .part p { margin-top: 4px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 @media (min-width: 821px) { .parts { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px 32px; } }
 
@@ -230,7 +237,8 @@ main:focus { outline: none; }
 .faq[open] summary::after { transform: rotate(45deg); }
 .faq summary:focus-visible { outline-offset: -2px; border-radius: var(--r-md); }
 .faq p { max-width: 68ch; padding: 0 20px 20px; color: var(--muted); font-size: 15px; }
-@media (min-width: 1024px) { .faq-section { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 64px; align-items: start; } .faq-section .head { margin: 0; } }
+/* .split: the same head-left, content-right layout for any section. */
+@media (min-width: 1024px) { :is(.faq-section, .split) { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 64px; align-items: start; } :is(.faq-section, .split) .head { margin: 0; } }
 
 /* ── Blue band ── */
 .band { margin-top: var(--section); padding-block: clamp(80px, 10vw, 128px); background: var(--band); color: #fff; text-align: center; }
@@ -259,6 +267,93 @@ main:focus { outline: none; }
   .pixel-card { grid-column: auto; order: 0; }
 }
 
+/* ── Inner pages (guide, vendor, privacy, terms): a page head on paper, no hero, so the header stays solid ── */
+.page-head { padding-top: calc(64px + clamp(48px, 7vw, 104px)); }
+.page-head > * { max-width: 44rem; }
+.page-head .lead { max-width: 56ch; color: var(--muted); }
+.page-head .stores { color: var(--muted); }
+.fine { margin-top: 16px; color: var(--faint); font-size: 14px; }
+.band .fine { color: #fff; }  /* small text on the band stays full white: 5.4:1 */
+.band .lead + p { margin-top: 16px; }
+.btn:disabled { opacity: .55; cursor: progress; }
+.today-card.is-solo { justify-self: center; margin-left: 0; }  /* a Today card without the character beside it */
+
+/* The till card: a waiting order as the staff till shows it (vendor page) */
+.till-card .today-place { padding-bottom: 12px; }
+.till-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; }
+.till-row b { font-variant-numeric: tabular-nums; }
+.till-items { color: var(--muted); font-size: 14px; }
+.chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.chips span { display: grid; place-items: center; height: 34px; border: 1px solid var(--line-strong); border-radius: var(--r-sm); font-size: 13px; font-weight: 500; }
+.chips .is-on { border-color: var(--ink); background: color-mix(in srgb, var(--gold) 22%, var(--card)); }
+.till-actions { display: grid; grid-template-columns: auto 1fr; gap: 8px; }
+
+/* Reading column: the guide. ~68ch of body text, sections far apart. Body text is --muted, bold leads and
+   h3 are --ink, so a long page stays calm and still scans. */
+.prose { width: min(68ch, 100% - 2 * var(--gutter)); margin-inline: auto; }
+.prose > section { margin-top: clamp(72px, 10vw, 128px); scroll-margin-top: 16px; }
+.prose > .statement { margin-top: clamp(72px, 10vw, 128px); max-width: none; text-align: left; }
+.prose section > p, .prose li { color: var(--muted); }
+.prose section > p + p { margin-top: 16px; }
+.prose section > h3 { margin-top: 40px; }
+.prose section > h3 + * { margin-top: 12px; }
+.prose b, .prose strong { color: var(--ink); }
+.prose section :is(p, li, td) a { color: var(--blue); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose .parts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; margin-top: 32px; }
+.prose .faq-list { margin-top: 32px; }
+
+/* Contents list: a card of in-page links, two columns when they fit */
+.toc { margin-top: 48px; padding: 20px 24px 14px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--card); }
+.toc ol { margin-top: 10px; columns: 2 220px; column-gap: 32px; }
+.toc a { display: block; padding-block: 5px; color: var(--muted); font-size: 15px; break-inside: avoid; }
+.toc a:hover { color: var(--ink); }
+
+/* Lists in prose: a short dash for bullets, hairline rows with a mono number for steps */
+.bullets { display: grid; gap: 12px; margin-top: 16px; }
+.bullets li { position: relative; padding-left: 22px; }
+.bullets li::before { content: ''; position: absolute; left: 2px; top: .8em; width: 10px; height: 1px; background: var(--faint); }
+.numbered { margin-top: 32px; counter-reset: n; }
+.numbered li { position: relative; padding: 20px 0 20px 44px; border-top: 1px solid var(--line); counter-increment: n; }
+.numbered li::before { content: counter(n, decimal-leading-zero); position: absolute; left: 0; top: 24px; font: 500 12px/1 var(--mono); letter-spacing: .08em; color: var(--faint); }
+.note { margin-top: 24px; padding: 20px 24px; background: color-mix(in srgb, var(--gold) 12%, var(--card)); }
+.note .kicker + p { margin-top: 10px; }
+.prose .toast { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding: 6px 16px 6px 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); box-shadow: var(--shadow-1); color: var(--ink); font-weight: 500; }  /* what the app says */
+
+/* Rules table: hairline rows, the row name in ink, the rule in muted */
+.rules { width: 100%; margin-top: 32px; border-collapse: collapse; font-size: 15px; line-height: 1.45; }
+.rules th, .rules td { padding: 12px 16px 12px 0; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+.rules thead th { padding-top: 0; border-top: 0; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+.rules tbody th { width: 44%; font-weight: 500; }
+.rules td { padding-right: 0; color: var(--muted); }
+
+/* ── Form fields and the vendor stepper (vendor/form.js shows one fieldset at a time) ── */
+fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.step { width: min(560px, 100% - 2 * var(--gutter)); margin-inline: auto; padding-top: calc(64px + clamp(40px, 6vw, 80px)); }
+.progress { display: block; height: 4px; margin-block: 14px 32px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.progress i { display: block; height: 100%; border-radius: inherit; background: var(--blue); }
+.field { display: grid; gap: 8px; margin-top: 24px; }
+.step h2 + .field { margin-top: 32px; }
+.field label { font-size: 15px; font-weight: 500; }
+.field :is(input, select, textarea) { width: 100%; min-height: 44px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: var(--r-sm); background: var(--card); color: var(--ink); font-size: 16px; }  /* 16px: iOS does not zoom */
+.field textarea { padding-block: 10px; line-height: 1.5; resize: vertical; }
+.field ::placeholder { color: var(--faint); opacity: 1; }
+.field :is(input, select, textarea):focus { border-color: var(--focus); outline: 2px solid var(--focus); outline-offset: 0; }
+/* Red only for something typed that is wrong: every step is a form submit, which marks the whole form's
+   fields user-invalid, so an empty field on the next step would start red. Empty required fields get the
+   browser's bubble instead (form.js reportValidity). */
+.field :is(input, textarea):user-invalid:not(:placeholder-shown) { border-color: var(--danger); }
+.field :is(input, textarea):user-invalid:not(:placeholder-shown):focus { outline-color: var(--danger); }
+/* The chevron is two gradient triangles, so it takes the theme's colour without an image. */
+.field select { appearance: none; padding-right: 40px; cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+.hint { color: var(--faint); font-size: 14px; }
+.error { margin-top: 24px; color: var(--danger); font-size: 15px; }
+.error a { text-decoration: underline; text-underline-offset: 3px; }
+.done-mark { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 24px; border-radius: 50%; background: var(--gold); color: #1b1917; }
+.toast .done-mark { width: 28px; height: 28px; margin: 0; }
+.step > p:not(.kicker, .error) { margin-top: 16px; color: var(--muted); }
+.step .done-links { color: var(--faint); }
+.done-links a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+
 /* ── Phones ── */
 @media (max-width: 640px) {
   .btn { height: 44px; }
@@ -274,6 +369,7 @@ main:focus { outline: none; }
   .today-char { display: none; }
   .today-head { grid-template-columns: auto 1fr; }
   .today-head .tag { grid-column: 2; justify-self: start; }
+  .benefits { grid-template-columns: minmax(0, 1fr); gap: 24px; }  /* text-only tiles read better one to a row */
   .statement { text-align: left; }
   .band { text-align: left; }
   .band .actions { justify-content: flex-start; }
