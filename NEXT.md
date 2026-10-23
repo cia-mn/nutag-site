@@ -21,9 +21,6 @@ every `site.js` hook), rebuild the body from ds.css components, and rewrite its 
 
 ## 2. Same wording fixes, outside the site
 
-- [ ] App, `nutag/lib/l10n/app_{mn,en}.arb`: `onboardBuildBody` «7 хоног тутам» / "every 7 days" and
-      `gerBuiltBody` «Долоо хоног тутам» still give a fixed week. `buildGer` "Raise a ger" should be "Raise a Ger".
-      Nothing in the app says a fall keeps 7 of 8 parts. Full list: DOMAIN §13 "App".
 - [ ] Console: DOMAIN §13 "Console" (the loop is never explained to a venue; «Онцлох» means two things).
 
 ## 3. Decisions that change the landing copy
