@@ -21,7 +21,7 @@ every `site.js` hook), rebuild the body from ds.css components, and rewrite its 
 
 ## 2. Same wording fixes, outside the site
 
-- [ ] Console: DOMAIN §13 "Console" (the loop is never explained to a venue; «Онцлох» means two things).
+Done 2026-10-23 in the app and the console. What is left in DOMAIN §13 waits on §12.
 
 ## 3. Decisions that change the landing copy
 
