@@ -325,6 +325,7 @@ main:focus { outline: none; }
 .rules thead th { padding-top: 0; border-top: 0; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
 .rules tbody th { width: 44%; font-weight: 500; }
 .rules td { padding-right: 0; color: var(--muted); }
+.rules td b { color: var(--ink); }
 
 /* ── Form fields and the vendor stepper (vendor/form.js shows one fieldset at a time) ── */
 fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }

@@ -8,7 +8,7 @@ Landing page, how-to-play guide, vendor sign-up, privacy policy and terms, MN + 
   state over the hero shows only on the landing). Not in the nav, not indexed
 - `/guide/` `/guide/en/` — how to play: a long-form reading column with a contents list (parts, collecting,
   raising and keeping a Ger, stories, the rules table, FAQ). Built on `ds.css`
-- `/vendor/` `/vendor/en/` — become an Ortoo: the pitch, then a two-step form (`vendor/form.js`). Built on `ds.css`. POSTs to `api.nutag.fun/vendor-applications` (the backend must allow the `https://nutag.fun` origin in `CORS_ALLOWED_ORIGINS`); leads are read in psql, we call them back
+- `/vendor/` `/vendor/en/` — become an Ortoo: the pitch, then a two-step form (`vendor/form.js`). Built on `ds.css`. POSTs to `api.nutag.fun/vendor-applications` (the backend must allow the `https://nutag.fun` origin in `CORS_ALLOWED_ORIGINS`); Nutag staff work the leads in the console's `/applications` and call them back
 - `/privacy/` `/privacy/en/` — privacy policy (App Store / Play Console link)
 - `/map/` `/map/en/` — the city, every district and every building: a Leaflet viewer over tiles cut by
   `general/carto_poster.py --tiles` and hosted on the backend's R2 bucket (`https://cdn.cia.mn/ub/`);
