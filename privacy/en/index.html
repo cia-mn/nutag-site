@@ -61,7 +61,7 @@
       <p class="kicker">Privacy Policy</p>
       <h1>What we keep about you, <span class="tone">and why.</span></h1>
       <p class="lead">This policy covers the Nutag app for iPhone and Android and the services under <code>nutag.fun</code>. It says what we collect, why, who receives it, how long we keep it, and what you can ask of us.</p>
-      <p class="fine">Effective <time datetime="2026-10-21">2026-10-21</time> · Version 1.2</p>
+      <p class="fine">Effective <time datetime="2026-10-24">2026-10-24</time> · Version 1.3</p>
     </div>
 
     <nav class="toc" aria-label="On this page">
@@ -111,13 +111,13 @@
         <thead><tr><th scope="col">Data</th><th scope="col">When, and why</th></tr></thead>
         <tbody>
           <tr><th scope="row">Phone number</th><td>At sign-in, in the app or on a table's ordering page. A one-time code is sent by SMS. It signs you in and keeps one account per person. Our sign-in provider CIA (<code>api.cia.mn</code>) receives and verifies it.</td></tr>
-          <tr><th scope="row">Account id (sub)</th><td>When the account is made. The stable id your game data hangs off. It is also sent to RevenueCat as <code>app_user_id</code>, so a store purchase follows the account rather than the phone.</td></tr>
+          <tr><th scope="row">Account id (sub)</th><td>When the account is made. The stable id your game data hangs off.</td></tr>
           <tr><th scope="row">Name and Nuudelchin</th><td>When you set them in your profile. The name is optional. Staff see it with your orders, so they can find yours at the counter, and it is shown on your stories.</td></tr>
           <tr><th scope="row">Location</th><td>When the map opens, and only if you allow it. What it's used for is in <a href="#location">§4</a>.</td></tr>
           <tr><th scope="row">Camera</th><td>To read an Ortoo's QR code: frames are read on the phone, never uploaded or stored. To take a photo or video for a story, or, for staff, a photo of a product: it is uploaded only when you post or save it.</td></tr>
           <tr><th scope="row">Photos and microphone</th><td>The photos and videos you pick from your gallery for a story or a product, and the sound of a story video you record. Nothing else in your gallery is read.</td></tr>
           <tr><th scope="row">Game data</th><td>When you collect a part or raise a Ger: parts, Gers, and which Ortoo you visited on which day. The daily limits and how long each Ger stands are worked out from it.</td></tr>
-          <tr><th scope="row">Orders and payments</th><td>When you order at an Ortoo or buy a drop: items, amount, status, the Ortoo, the time, the table if you ordered from a table's card, and what staff recorded at the counter (cash, card or transfer). Nutag <b>never receives card numbers</b>: payment is handled by Bonum/QPay, Stripe, Apple or Google.</td></tr>
+          <tr><th scope="row">Orders and payments</th><td>When you order at an Ortoo or buy a drop: items, amount, status, the Ortoo, the time, the table if you ordered from a table's card, and what staff recorded at the counter (cash, card or transfer). Nutag <b>never receives card numbers</b>: payment is handled by Bonum/QPay or Stripe.</td></tr>
           <tr><th scope="row">Stories</th><td>When you post one: the rating, your words and up to five photos or one video. See <a href="#stories">§5</a>.</td></tr>
           <tr><th scope="row">Ad views and taps</th><td>When an advertiser's ad is shown or tapped on an Ortoo's page: one view and one tap per player per Ortoo per day, against your account. We use the count to pay that Ortoo its share. Advertisers get totals, never who you are.</td></tr>
           <tr><th scope="row">Notification token</th><td>While you are signed in on a phone. An id Google's Firebase Cloud Messaging gives the app (on iPhone, through Apple's push service). We keep it against your account to tell you about <em>your own</em> orders and Gers, such as an order approved, a payment received or a Ger about to fall, and delete it when you sign out. Whether anything shows is your phone's notification permission, which the app asks for only once there is something to wait for.</td></tr>
@@ -173,8 +173,7 @@
           <tr><th scope="row">CIA (<code>api.cia.mn</code>)</th><td>Your phone number and sign-ins. It sends the code, verifies you and issues the sign-in tokens. It also takes account deletion requests.</td></tr>
           <tr><th scope="row">The Ortoo you order at</th><td>Your order (items, amount, time, table) and your name. To make your order and approve it. Not your phone number.</td></tr>
           <tr><th scope="row">Payment gateways for orders: Bonum/QPay, Stripe</th><td>Amount, reference and status. Each gateway account belongs to <b>the Ortoo</b>, so the money goes to it and not to Nutag.</td></tr>
-          <tr><th scope="row">Bonum/QPay, for drops</th><td>Amount, reference and status. A player with a Mongolian (+976) number pays for a drop to <b>Nutag's own</b> Bonum account.</td></tr>
-          <tr><th scope="row">Apple / Google, and RevenueCat</th><td>Everyone else buys a drop in the App Store or Google Play, under the store's own privacy policy. RevenueCat receives your account id and the purchase, and tells our server.</td></tr>
+          <tr><th scope="row">Bonum/QPay, for drops</th><td>Amount, reference and status. Only a player with a Mongolian (+976) number can buy a drop, and pays <b>Nutag's own</b> Bonum account for it.</td></tr>
           <tr><th scope="row">Google (Firebase Cloud Messaging), and Apple on iPhone</th><td>Your phone's notification token and the text of each notification: the Ortoo's name and what happened. To deliver it.</td></tr>
           <tr><th scope="row">Google (Routes, Places)</th><td>From our server: the two ends of a route, or your search words with a point near you (<a href="#location">§4</a>).</td></tr>
           <tr><th scope="row">SkyData, through Hamuga</th><td>From our server: a point rounded to about 10 km, for the weather.</td></tr>
@@ -207,7 +206,7 @@
     <section id="where" aria-labelledby="where-title">
       <p class="kicker">09</p>
       <h2 id="where-title">Where it is stored</h2>
-      <p>Nutag's servers and database are in Singapore, Mongolia and Hong Kong. Images, photos and videos are stored in Cloudflare R2. Partners such as CIA, RevenueCat, Stripe, Apple, Google and Cloudflare may process parts of your data on their own infrastructure outside Mongolia.</p>
+      <p>Nutag's servers and database are in Singapore, Mongolia and Hong Kong. Images, photos and videos are stored in Cloudflare R2. Partners such as CIA, Stripe, Apple, Google and Cloudflare may process parts of your data on their own infrastructure outside Mongolia.</p>
     </section>
 
     <section id="rights" aria-labelledby="rights-title">
@@ -243,6 +242,7 @@
       <p class="kicker">13</p>
       <h2 id="changes-title">Changes</h2>
       <p>If this policy changes, we publish the new version here with a new date, and tell you about significant changes in the app.</p>
+      <p><b>1.3</b> (2026-10-24): drops are sold only to a player with a Mongolian (+976) number, through Bonum/QPay to Nutag's own account. They are no longer sold in the App Store or Google Play. From the first app version after 1.1.3, nothing is sent to RevenueCat; version 1.1.3 and earlier can still send it your account id when you open a drop, so please update the app. Until policy version 1.3, RevenueCat received your account id and each store purchase.</p>
     </section>
 
     <section id="contact" aria-labelledby="contact-title">
