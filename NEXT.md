@@ -25,11 +25,8 @@ Done 2026-10-23 in the app and the console. What is left in DOMAIN §13 waits on
 
 ## 3. Decisions that change the landing copy
 
-- [ ] **DOMAIN §12.1, build without a visit.** The hero («Эхний найман эд анги тань биднээс бэлэг тул анхны Гэрээ шууд
-      барьж болно») and FAQ 1 promise a first Ger right away, and so do the guide (#start, #raise, FAQ 1 and 8, the
-      rules table) and the vendor FAQ. If building comes to need an approved order at that Өртөө, rewrite them all.
-- [ ] **GER §7, cycle order.** If the cycle is reordered to the real assembly order, the parts copy may then claim
-      it. Today it rightly doesn't.
+- [ ] **GER §7, cycle order.** From 2026-10-27 every Өртөө cycles the parts in the order a ger goes up, the door
+      first (DOMAIN §12.2). From then the parts copy may claim it; until then it rightly doesn't.
 - [ ] **«Ногоон цай» / "Nogoon Tsai"**, the example café on the Today card, is made up. Check that no real UB place
       uses the name.
 
