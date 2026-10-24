@@ -6,6 +6,8 @@
 <title>Захиалга · Nutag</title>
 <!-- One page for every Ortoo and every table: nothing here is worth a search result. -->
 <meta name="robots" content="noindex" />
+<!-- Safari's banner opens the app when it is there; order.js hands it this page's address (app-argument). -->
+<meta name="apple-itunes-app" content="app-id=6805935855" />
 <script>try{var t=localStorage.getItem('nutag-theme')}catch(e){}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'</script>
 <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
@@ -18,14 +20,28 @@
 </head>
 <body>
 <header class="order-top shell narrow">
-  <a class="brand" href="/">
+  <!-- Not a link: leaving for the home page would drop the basket. -->
+  <span class="brand">
     <span class="brand-mark" aria-hidden="true"></span>
     <span class="brand-copy"><strong>nutag</strong></span>
-  </a>
+  </span>
+  <!-- The page's language, over the phone's: order.js keeps the choice and draws the page again. -->
+  <button class="order-lang" id="lang" type="button"><span lang="mn">MN</span> <span aria-hidden="true">|</span> <span lang="en">EN</span></button>
   <a class="button button-primary" id="app" href="https://play.google.com/store/apps/details?id=com.nutag.fun"></a>
 </header>
-<main id="main-content" class="shell narrow order"></main>
-<dialog id="sheet" class="order-sheet"></dialog>
+<main id="main-content" class="shell narrow order" aria-busy="true">
+  <!-- The first paint, before two round trips bring the menu: load() replaces all of it. -->
+  <div class="order-skeleton" aria-hidden="true">
+    <section class="order-venue"><span></span><div><i></i><i></i></div></section>
+    <ul>
+      <li class="order-item"><div class="order-pic"></div><div><i></i><i></i></div></li>
+      <li class="order-item"><div class="order-pic"></div><div><i></i><i></i></div></li>
+      <li class="order-item"><div class="order-pic"></div><div><i></i><i></i></div></li>
+    </ul>
+  </div>
+  <p class="order-wait">Цэс ачаалж байна…</p>
+</main>
+<dialog id="sheet" class="order-sheet" aria-labelledby="sheet-title"></dialog>
 <noscript><p class="shell narrow">Захиалга хийхэд JavaScript хэрэгтэй. · Ordering here needs JavaScript.</p></noscript>
 </body>
 </html>

@@ -1,17 +1,54 @@
 /* /o/{id} — a table's ordering page. A phone page first: one column, thumbs at the bottom. Colours,
    type and buttons are style.css's; this is only what a menu and a basket need on top of it. */
 @layer pages {
+  /* The page's background is drawn on the root's box: a short page would repeat it, seams and all. */
+  html { min-height: 100%; }
   .order-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 14px; }
-  .order-top .button { min-height: 42px; padding: 9px 18px; font-size: .86rem; }
-  .order { padding-bottom: 150px; container-type: inline-size; }
+  .order-top .button { min-height: 44px; padding: 9px 18px; font-size: .86rem; }
+  /* MN | EN: the page's language in ink, the other one muted. */
+  .order-lang { margin-left: auto; min-height: 44px; padding: 0 4px; color: var(--muted); border: 0; background: none; font-size: .78rem; font-weight: 750; letter-spacing: .04em; cursor: pointer; }
+  :root[lang='mn'] .order-lang [lang='mn'], :root[lang='en'] .order-lang [lang='en'] { color: var(--ink); }
+  /* Room under the menu for the bar: the pill, a payment being checked above it, and the phone's home bar.
+     The page's gutter in container units (.order is the container): a percentage would mean a different
+     box in margin, padding and scroll-padding, and --shell is one on a phone. */
+  .order { --gutter: calc((100vw - 100cqw) / 2); padding-bottom: calc(150px + env(safe-area-inset-bottom)); container-type: inline-size; }
   .order h2 { margin: 34px 0 6px; font-size: 1.25rem; }
+  /* What sits on the accent: white on the light page's blue or the shop's own (4.5:1 on the page, order.js),
+     ink on the dark page's light blue. */
+  :root { --on-blue: #fff; }
+  :root[data-theme='dark'] { --on-blue: #14120f; }
 
+  .order-banner { display: block; width: 100%; margin-top: 12px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); background: var(--paper-deep); }
   .order-venue { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
-  .order-venue img { width: 64px; height: 64px; border-radius: 18px; object-fit: cover; }
+  /* The app's OrtooLogo: a circle, with the name's first letter in the accent when there is no logo. */
+  .order-venue > :is(img, .order-mono) { flex: none; width: 64px; height: 64px; border: 1px solid var(--line); border-radius: 50%; object-fit: cover; }
+  .order-mono { display: grid; place-items: center; color: var(--blue); background: var(--paper-light); font-size: 1.6rem; font-weight: 800; }
   .order-venue h1 { font-size: clamp(1.7rem, 6vw, 2.4rem); line-height: 1.05; }
-  .order-venue p { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; color: var(--muted); font-size: .9rem; }
-  .order-chip { display: inline-block; padding: 4px 12px; color: var(--inverse-ink); border-radius: 999px; background: var(--blue); font-size: .82rem; font-weight: 700; }
-  .order-chip.is-closed { color: #8f2d12; background: rgba(251, 146, 60, .22); }
+  .order-venue p { margin-top: 6px; color: var(--muted); font-size: .9rem; }
+  .order-venue p:first-of-type { margin-top: 8px; }
+  /* Open and closed in the app's colours (openColour; the error colour). */
+  .order-venue .is-open { color: #137333; font-weight: 650; }
+  .order-venue .is-closed { color: #8f2d12; font-weight: 650; }
+  :root[data-theme='dark'] .order-venue .is-open { color: #b7f0c0; }
+  .order-chip { display: inline-block; padding: 4px 12px; color: var(--on-blue); border-radius: 999px; background: var(--blue); font-size: .82rem; font-weight: 700; }
+  .order-chip.is-plain { color: var(--ink); background: var(--paper-deep); }
+
+  /* The app's table strip and section chips, pinned while the menu scrolls under them, edge to edge. */
+  .order-context { position: sticky; top: 0; z-index: 4; margin: 18px calc(var(--gutter) * -1) 0; padding: 10px var(--gutter) 0; border-bottom: 1px solid var(--line); background: var(--paper); }
+  .order-context > p { padding-block: 4px; color: var(--muted); font-size: .9rem; }
+  .order-context > .is-table { color: var(--ink); }
+  .order-context > .order-error { margin: 0; padding-block: 8px; }
+  .order-context > :last-child { margin-bottom: 10px; }
+  .order-nav { display: flex; gap: 8px; margin-inline: calc(var(--gutter) * -1); padding: 8px var(--gutter) 0; overflow-x: auto; scrollbar-width: none; }
+  .order-nav::-webkit-scrollbar { display: none; }
+  .order-nav a { display: inline-flex; flex: none; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper-light); font-size: .86rem; font-weight: 650; white-space: nowrap; }
+
+  /* index.html's first paint, until load() has the menu: the venue row and three menu lines, in grey. */
+  .order-skeleton :is(.order-venue > span, i) { display: block; height: 14px; border-radius: 999px; background: var(--paper-deep); }
+  .order-skeleton .order-venue > span { flex: none; width: 64px; height: 64px; }
+  .order-skeleton .order-venue > div { flex: 1; }
+  .order-skeleton i + i { width: 40%; margin-top: 10px; }
+  .order-skeleton ul { margin-top: 24px; }
 
   .order-item { display: flex; gap: 14px; padding-block: 18px; border-bottom: 1px solid var(--line); }
   .order-item > div:last-child { display: flex; flex: 1; flex-direction: column; min-width: 0; }
@@ -25,7 +62,8 @@
   /* The shop's word and the sale: the same two pills, in the same two colours, as in the app. */
   .order-item .order-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 0 0 7px; }
   .order-tag { padding: 3px 9px; color: #1e1b18; border-radius: 999px; background: var(--gold); font-size: .7rem; font-weight: 750; line-height: 1.3; }
-  .order-tag.is-sale { color: #fff; background: #2b6bb4; }
+  .order-tag.is-sale { color: var(--on-blue); background: var(--blue); }
+  .order-tag.is-table { color: var(--ink); background: color-mix(in srgb, var(--blue) 18%, var(--paper-light)); }
 
   .order-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 12px; }
   .order-line + .order-line { padding-top: 8px; }
@@ -37,9 +75,7 @@
   .order-price b.is-sale { color: var(--blue); }
 
   /* The specials: landscape cards above the menu, swiped sideways, running off the screen's edge. */
-  /* The page's gutter in container units (.order is the container): a percentage would mean a
-     different box in margin, padding and scroll-padding, and --shell is one on a phone. */
-  .order-specials ul { --gutter: calc((100vw - 100cqw) / 2); display: flex; gap: 12px; margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter) 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); overscroll-behavior-x: contain; scrollbar-width: none; }
+  .order-specials ul { display: flex; gap: 12px; margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter) 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); overscroll-behavior-x: contain; scrollbar-width: none; }
   .order-specials ul::-webkit-scrollbar { display: none; }
   .order-specials .order-item { flex: 0 0 min(80%, 340px); flex-direction: column; gap: 12px; padding: 8px 8px 14px; border: 1px solid var(--line); border-radius: 23px; background: var(--paper-light); scroll-snap-align: start; }
   .order-specials .order-item > div:last-child { padding-inline: 8px; }
@@ -47,32 +83,67 @@
   .order-specials .order-pic .order-tags { position: absolute; inset: 10px 10px auto; display: flex; flex-wrap: wrap; gap: 5px; }
   .order-specials .order-name { font-size: 1.12rem; }
 
-  /* Empty: one round "+" in the primary colour. With a count: the whole stepper. */
+  /* A line with some of it in the basket wears the accent, faintly: from edge to edge, as the strip does, so the
+     tint does not stop at the picture's edge; over the card's own white in the specials. */
+  .order-item:has(.order-stepper:not(.is-empty)) { background-color: color-mix(in srgb, var(--blue) 6%, transparent); }
+  section:not(.order-specials) .order-item:has(.order-stepper:not(.is-empty)) { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
+  .order-specials .order-item:has(.order-stepper:not(.is-empty)) { background-color: color-mix(in srgb, var(--blue) 6%, var(--paper-light)); }
+
+  /* Empty: one round "+" in the accent. With a count: the whole stepper. */
   .order-stepper { display: inline-flex; flex: none; align-items: center; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper-light); }
-  .order-stepper button { width: 40px; height: 40px; color: var(--ink); border: 0; border-radius: 50%; background: none; font-size: 1.2rem; cursor: pointer; }
+  /* A 44px target in a pill no bigger than before: the negative margins hand back what the bigger target takes. */
+  .order-stepper button { width: 44px; height: 44px; margin: -2px; color: var(--ink); border: 0; border-radius: 50%; background: none; font-size: 1.2rem; cursor: pointer; }
   .order-stepper output { min-width: 1.4em; font-weight: 720; text-align: center; font-variant-numeric: tabular-nums; }
-  .order-stepper.is-empty { border-color: transparent; background: var(--inverse-surface); }
+  .order-stepper.is-empty { border-color: transparent; background: var(--blue); }
   .order-stepper.is-empty :is(button:first-child, output) { display: none; }
-  .order-stepper.is-empty button { color: var(--inverse-ink); }
+  .order-stepper.is-empty button { color: var(--on-blue); }
 
   .order-bar { position: fixed; inset: auto 0 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; padding: 12px max(16px, calc((100vw - 760px) / 2)) calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--paper-light); box-shadow: 0 -10px 30px rgba(38, 26, 23, .1); }
-  .order-bar span { margin-right: auto; font-weight: 700; }
-  .order-bar .button { min-height: 48px; }
-  /* Two ways to pay do not fit beside the total on a phone: the total takes a line of its own. */
-  .order-bar:has(.button + .button) span { flex-basis: 100%; }
-  .order-bar:has(.button + .button) .button { flex: 1; }
+  /* The app's basket pill: the count in a disc, the way to the review, the total. */
+  .order-pill { flex: 1 1 100%; justify-content: space-between; min-height: 52px; padding: 0 18px 0 12px; }
+  .order-pill .badge { display: grid; min-width: 28px; height: 28px; padding: 0 6px; place-items: center; color: var(--inverse-surface); border-radius: 999px; background: var(--inverse-ink); font-size: .82rem; font-variant-numeric: tabular-nums; }
+  .order-pill b { font-variant-numeric: tabular-nums; }
+  .order-bar .order-error { flex-basis: 100%; margin: 0; }
+  /* A payment started here and not yet seen settle: said above the basket, with a way to ask now. */
+  .order-check { display: flex; flex-basis: 100%; align-items: center; justify-content: space-between; gap: 12px; color: var(--ink-soft); font-size: .9rem; }
+  .order-check button { flex: none; min-height: 44px; padding: 0 16px; color: var(--blue); border: 1px solid var(--line-strong); border-radius: 999px; background: none; font-weight: 700; cursor: pointer; }
 
   .order-error { margin-top: 16px; padding: 12px 16px; color: #8f2d12; border: 1px solid rgba(194, 65, 12, .35); border-radius: 12px; background: rgba(251, 146, 60, .14); font-size: .9rem; }
-  :root[data-theme='dark'] :is(.order-error, .order-chip.is-closed) { color: #ffc9a8; }
+  :root[data-theme='dark'] :is(.order-error, .order-venue .is-closed) { color: #ffc9a8; }
   .order-wait { margin-top: 18px; color: var(--muted); }
-  .order-note { margin-top: 20px; padding: 14px 18px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper-light); font-size: .9rem; line-height: 1.5; }
   .order-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
   .order-actions .button { flex: 1; text-align: center; }
+  /* Two labels side by side wrap onto two lines each at a phone's width: one above the other instead, the
+     filled one on top, as in the review. In a row it stays last, on the right. */
+  @media (max-width: 420px) { .order-actions { flex-direction: column-reverse; } }
 
   .order-done { display: grid; gap: 14px; justify-items: start; margin-top: 28px; }
   .order-done h1 { font-size: clamp(1.7rem, 6vw, 2.4rem); }
+  .order-done .done-mark { font-size: 1.75rem; font-weight: 800; } /* the check at the size of the site's own (28px) */
   .order-done p { color: var(--ink-soft); line-height: 1.55; }
   .order-done .order-actions { width: 100%; }
+
+  /* The receipt: what was sent, its reference for staff, and the till's verdict on a claim. */
+  .order-receipt { justify-self: stretch; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .order-receipt li { display: flex; justify-content: space-between; gap: 12px; padding-block: 9px; border-bottom: 1px solid var(--line); }
+  .order-receipt li > :last-child { flex: none; }
+  .order-receipt li:last-child { font-weight: 720; }
+  :is(.order-done, .order-mine) .order-ref { color: var(--ink); font-weight: 700; text-wrap: pretty; }
+  .order-status { justify-self: stretch; }
+  .order-status p { margin-top: 10px; }
+  /* The error's own colour, over the grey of the text around it (.order-sheet p, .order-done p, the strip). */
+  :is(.order-sheet, .order-status, .order-context) .order-error { color: #8f2d12; }
+  .order-steps { display: flex; gap: 10px; font-size: .9rem; font-weight: 650; }
+  .order-steps li { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+  .order-steps li::before { content: ''; flex: none; width: 12px; height: 12px; border: 2px solid var(--blue); border-radius: 50%; }
+  .order-steps li:first-child { flex: 1; }
+  .order-steps li:first-child::after { content: ''; flex: 1; height: 2px; border-radius: 1px; background: var(--line-strong); }
+  .order-steps .is-done { color: var(--ink); }
+  .order-steps .is-done::before { background: var(--blue); }
+  /* The same, small, above the menu: the last claim from this tab, while the till has not decided. */
+  .order-mine { margin-top: 20px; }
+  .order-mine h2 { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: 1.1rem; }
+  .order-mine .order-ref { margin: 4px 0 14px; font-size: .9rem; }
 
   .order-sheet { width: min(100vw - 24px, 460px); max-height: calc(100dvh - 24px); padding: 26px; overflow-y: auto; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-light); box-shadow: var(--shadow); }
   .order-sheet::backdrop { background: rgba(20, 18, 15, .55); }
@@ -81,6 +152,18 @@
   .order-sheet label { display: block; margin-top: 18px; font-size: .82rem; font-weight: 700; }
   .order-sheet input { display: block; width: 100%; min-height: 52px; margin-top: 8px; padding: 13px 16px; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 14px; background: var(--paper); font-size: 1.05rem; }
   .order-sheet input:focus-visible { outline: 0; border-color: var(--blue); box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 22%, transparent); }
+  /* The +976 is printed inside the phone field; a number typed with its own + takes its place (order.js). */
+  .order-phone { position: relative; display: block; margin-top: 8px; }
+  .order-phone > span { position: absolute; top: 50%; left: 16px; color: var(--muted); font-size: 1.05rem; translate: 0 -50%; pointer-events: none; }
+  .order-sheet .order-phone input { margin-top: 0; }
+  .order-phone > span:not([hidden]) + input { padding-left: 64px; }
+  .order-sheet .order-hint { margin-top: 6px; font-size: .8rem; }
+  /* The code step's way back and way round: text buttons, as in the app's sign-in. */
+  .order-otp { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 12px; margin-top: 2px; }
+  .order-otp button { min-height: 44px; padding: 0; white-space: nowrap; color: var(--blue); border: 0; background: none; font-size: .88rem; font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer; }
+  .order-otp button:disabled { color: var(--muted); cursor: default; }
+  .order-sheet .order-terms { margin-top: 16px; font-size: .78rem; }
+  .order-terms a { color: var(--ink-soft); text-decoration: underline; }
   .order-sheet > .button { width: 100%; margin-top: 14px; }
   .order-sheet details { margin-top: 16px; }
   .order-sheet summary { color: var(--blue); font-weight: 650; cursor: pointer; }
@@ -88,9 +171,27 @@
   .order-banks { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; margin-top: 14px; }
   .order-banks a { display: grid; gap: 6px; justify-items: center; padding: 12px 6px; border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: .78rem; font-weight: 600; text-align: center; }
   .order-banks img { width: 44px; height: 44px; border-radius: 12px; }
+  /* The payment being waited on turns, as the app's does. */
+  .order-sheet .order-wait::before { content: ''; display: inline-block; width: 1em; height: 1em; margin-right: 10px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; vertical-align: -.15em; animation: order-spin .8s linear infinite; }
+  @keyframes order-spin { to { rotate: 1turn; } }
+
+  /* The review: the basket line by line, where it goes, and the buttons that send it, one above the other. */
+  .order-x { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; color: var(--muted); border: 0; border-radius: 50%; background: none; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+  .order-sheet .order-dest { color: var(--ink-soft); }
+  .order-review { margin-top: 14px; border-top: 1px solid var(--line); }
+  .order-review li { padding-block: 12px; border-bottom: 1px solid var(--line); }
+  .order-review .order-line { padding-top: 6px; }
+  .order-review b { font-variant-numeric: tabular-nums; }
+  .order-sheet > .order-clear { min-height: 44px; margin-top: 10px; padding: 0 16px; font-size: .84rem; }
+  .order-review-foot { display: grid; gap: 10px; margin-top: 20px; }
+  .order-review-foot .order-hint { margin-top: 0; font-size: .8rem; text-align: center; }
 }
 
-/* style.css makes every button full width on a phone, from its last layer. These sit in a row. */
+/* style.css makes every button full width on a phone, from its last layer. These sit in a row, or keep their own width. */
 @layer utilities {
-  :is(.order-top, .order-bar, .order-actions) .button { width: auto; }
+  /* The strip is what is pinned here, not style.css's header: a chip's heading, and whatever a keyboard
+     moves to, lands under it rather than behind it. */
+  html { scroll-padding-top: 112px; }
+  :root:has(.order-context > .order-error) { scroll-padding-top: 170px; } /* the rescan line takes two or three lines */
+  :is(.order-top, .order-bar, .order-actions) .button, .order-clear { width: auto; }
 }

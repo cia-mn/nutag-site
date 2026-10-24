@@ -18,7 +18,8 @@ Landing page, how-to-play guide, vendor sign-up, privacy policy and terms, MN + 
   never loads it: `.well-known/assetlinks.json` and `.well-known/apple-app-site-association` hand `/o/*` to
   the app. A phone without it gets `o/index.html`, whatever the id (`nginx.conf`): the menu, a basket,
   sign-in by the same CIA phone code the app uses, and an order that lands on the shop's till with its
-  table. One page for both languages, picked from the browser's; not in the nav, and not indexed.
+  table. One page for both languages, picked from the browser's as the app picks it, with an MN | EN
+  switch in its header; not in the nav, and not indexed.
   Needs `https://nutag.fun` in `CORS_ALLOWED_ORIGINS` on the backend **and on CIA**
   (nutag-general/TABLE_ORDER_PLAN.md).
 
