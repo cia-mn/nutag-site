@@ -41,7 +41,9 @@
   .order-context > :last-child { margin-bottom: 10px; }
   .order-nav { display: flex; gap: 8px; margin-inline: calc(var(--gutter) * -1); padding: 8px var(--gutter) 0; overflow-x: auto; scrollbar-width: none; }
   .order-nav::-webkit-scrollbar { display: none; }
-  .order-nav a { display: inline-flex; flex: none; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper-light); font-size: .86rem; font-weight: 650; white-space: nowrap; }
+  .order-nav button { display: inline-flex; flex: none; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--paper-light); font-size: .86rem; font-weight: 650; white-space: nowrap; cursor: pointer; }
+  .order-nav button[aria-pressed='true'] { border-color: var(--ink); background: var(--ink); color: var(--paper-light); }
+  .is-picked .order-shelf > h2 { display: none; } /* the pressed chip names it */
 
   /* index.html's first paint, until load() has the menu: the venue row and three menu lines, in grey. */
   .order-skeleton :is(.order-venue > span, i) { display: block; height: 14px; border-radius: 999px; background: var(--paper-deep); }

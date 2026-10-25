@@ -729,6 +729,19 @@ function done(paid, r, part) {
   loads++;
 }
 
+/** One section alone, or the whole menu when its chip is pressed again, as the app's chips do
+ *  (ortoo.dart). Hidden, not redrawn, so the steppers keep their counts. Deep in a long menu, the
+ *  shorter one would leave the guest past its end, so the page goes up to where it starts. */
+function pick(i, chip) {
+  const on = chip.ariaPressed !== 'true';
+  for (const b of chip.parentElement.children) b.ariaPressed = String(on && b === chip);
+  const shelves = [...main.querySelectorAll('.order-shelf')];
+  shelves.forEach((s, j) => (s.hidden = on && j !== i));
+  main.classList.toggle('is-picked', on);
+  const first = shelves.find((s) => !s.hidden);
+  if (first.getBoundingClientRect().top < chip.closest('.order-context').getBoundingClientRect().bottom) first.scrollIntoView();
+}
+
 let loads = 0; // the switch can start a load before the last one is in: only the newest draws, and none over a receipt
 
 async function load() {
@@ -764,6 +777,7 @@ async function load() {
     const last = unsettled();
     saved = new Map(store.get('nutag.basket.' + id) ?? basket); // where the tab keeps nothing, a redraw still has it
     basket.clear();
+    main.classList.remove('is-picked'); // a redraw starts with every chip up
     main.replaceChildren(...kept([
       o.banner_url && h('img', { className: 'order-banner', src: o.banner_url, alt: '' }),
       h('section', { className: 'order-venue' },
@@ -774,20 +788,17 @@ async function load() {
           o.open != null && h('p', { className: o.open ? 'is-open' : 'is-closed' }, openingLine(o)),
           // What a visit gives, today and tomorrow, before anything is ordered (DOMAIN §3).
           part && h('p', {}, T.today, h('b', {}, part), next && [' · ', T.tomorrow, h('b', {}, next)]))),
-      // Pinned while the menu scrolls under it: where an order goes, and the way to each section.
+      // Pinned while the menu scrolls under it: where an order goes, and a chip per section.
       h('div', { className: 'order-context' }, where(),
-        headed && h('nav', { className: 'order-nav' }, shelves.map((s, i) => h('a', {
-          href: '#sec-' + i,
-          // Not followed: the address keeps the session and nothing else.
-          // ponytail: jump only, no chip follows the scroll; add a scroll-spy if people lose their place.
-          onclick: (e) => { e.preventDefault(); document.getElementById('sec-' + i).scrollIntoView(); },
+        headed && h('nav', { className: 'order-nav' }, shelves.map((s, i) => h('button', {
+          type: 'button', ariaPressed: 'false', onclick: (e) => pick(i, e.currentTarget),
         }, s.title)))),
       // Back after a reload, or for another round: the order still waiting on the till, and how it stands.
       last && h('section', { className: 'order-mine card' },
         h('h2', {}, T.yourOrder, h('span', {}, money(last.total))), reference(last), progress(last)),
       menu.length ? null : h('p', { className: 'order-wait' }, T.empty),
-      shelves.map((s, i) => h('section', { className: s.wide ? 'order-specials' : '' },
-        (s.wide || s.named || headed) && h('h2', { id: 'sec-' + i }, s.title),
+      shelves.map((s) => h('section', { className: s.wide ? 'order-shelf order-specials' : 'order-shelf' },
+        (s.wide || s.named || headed) && h('h2', {}, s.title),
         h('ul', {}, s.products.map((p) => row(p, s.wide)))))]));
     document.body.append(bar);
     changed(); // kept as this menu took it back: a line it dropped does not return with a later menu
