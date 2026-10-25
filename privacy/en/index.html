@@ -61,7 +61,7 @@
       <p class="kicker">Privacy Policy</p>
       <h1>What we keep about you, <span class="tone">and why.</span></h1>
       <p class="lead">This policy covers the Nutag app for iPhone and Android and the services under <code>nutag.fun</code>. It says what we collect, why, who receives it, how long we keep it, and what you can ask of us.</p>
-      <p class="fine">Effective <time datetime="2026-10-24">2026-10-24</time> · Version 1.3</p>
+      <p class="fine">Effective <time datetime="2026-10-25">2026-10-25</time> · Version 1.4</p>
     </div>
 
     <nav class="toc" aria-label="On this page">
@@ -117,7 +117,7 @@
           <tr><th scope="row">Camera</th><td>To read an Ortoo's QR code: frames are read on the phone, never uploaded or stored. To take a photo or video for a story, or, for staff, a photo of a product: it is uploaded only when you post or save it.</td></tr>
           <tr><th scope="row">Photos and microphone</th><td>The photos and videos you pick from your gallery for a story or a product, and the sound of a story video you record. Nothing else in your gallery is read.</td></tr>
           <tr><th scope="row">Game data</th><td>When you collect a part or raise a Ger: parts, Gers, and which Ortoo you visited on which day. The daily limits and how long each Ger stands are worked out from it.</td></tr>
-          <tr><th scope="row">Orders and payments</th><td>When you order at an Ortoo or buy a drop: items, amount, status, the Ortoo, the time, the table if you ordered from a table's card, and what staff recorded at the counter (cash, card or transfer). Nutag <b>never receives card numbers</b>: payment is handled by Bonum/QPay or Stripe.</td></tr>
+          <tr><th scope="row">Orders and payments</th><td>When you order at an Ortoo or buy a drop: items, amount, status, the Ortoo, the time, the table if you ordered from a table's card, and what staff recorded at the counter (cash, card or transfer). For an order you have delivered: the point you marked on the map, the note on where exactly, the phone number you gave the courier, and the cash note you will pay with. Nutag <b>never receives card numbers</b>: payment is handled by Bonum/QPay or Stripe.</td></tr>
           <tr><th scope="row">Stories</th><td>When you post one: the rating, your words and up to five photos or one video. See <a href="#stories">§5</a>.</td></tr>
           <tr><th scope="row">Ad views and taps</th><td>When an advertiser's ad is shown or tapped on an Ortoo's page: one view and one tap per player per Ortoo per day, against your account. We use the count to pay that Ortoo its share. Advertisers get totals, never who you are.</td></tr>
           <tr><th scope="row">Notification token</th><td>While you are signed in on a phone. An id Google's Firebase Cloud Messaging gives the app (on iPhone, through Apple's push service). We keep it against your account to tell you about <em>your own</em> orders and Gers, such as an order approved, a payment received or a Ger about to fall, and delete it when you sign out. Whether anything shows is your phone's notification permission, which the app asks for only once there is something to wait for.</td></tr>
@@ -138,6 +138,7 @@
         <li><b>Directions.</b> Your position and where you are going are sent from our server to Google Routes, to draw the way. Not stored.</li>
         <li><b>Place search.</b> What you type, with a point near you, is sent from our server to Google Places. The answer is kept for a day so the same search isn't paid for twice, and it is not tied to you.</li>
         <li><b>Weather.</b> Your position rounded to 0.1° (about 10 km) is sent from our server to SkyData, through Hamuga.</li>
+        <li><b>Delivery.</b> If you are inside a shop's delivery area, the delivery page opens its map where you are; that happens on your phone. Only the door point you confirm goes to our server, with the order, and it is kept with the order record.</li>
       </ul>
       <p>For directions, place search and weather, our server makes the request, so Google and SkyData never see your phone's IP address. The app has no background-location mode at all. You can withdraw the permission in your phone's settings at any time: the map still works, but sorting by distance, drops and directions from where you stand stop.</p>
     </section>
@@ -159,7 +160,7 @@
         <li>No marketing notifications. A notification is always about something of yours.</li>
         <li>No tracking of what you do in other companies' apps or websites.</li>
         <li>We never sell or rent personal data, or share it for advertising.</li>
-        <li>We never give your phone number to an Ortoo or an advertiser.</li>
+        <li>We never give the phone number you sign in with to an Ortoo or an advertiser. For a delivery, the Ortoo sees only the number you typed for that order.</li>
         <li>The typical-traffic times on the map come from our own timed drives along a few roads, not from players' phones.</li>
       </ul>
     </section>
@@ -171,7 +172,7 @@
         <thead><tr><th scope="col">Recipient</th><th scope="col">What, and why</th></tr></thead>
         <tbody>
           <tr><th scope="row">CIA (<code>api.cia.mn</code>)</th><td>Your phone number and sign-ins. It sends the code, verifies you and issues the sign-in tokens. It also takes account deletion requests.</td></tr>
-          <tr><th scope="row">The Ortoo you order at</th><td>Your order (items, amount, time, table) and your name. To make your order and approve it. Not your phone number.</td></tr>
+          <tr><th scope="row">The Ortoo you order at</th><td>Your order (items, amount, time, table) and your name. For a delivery, the address you marked (a point on the map and a note) and the phone number you gave the courier. To make your order, bring it and approve it. Not the number you sign in with.</td></tr>
           <tr><th scope="row">Payment gateways for orders: Bonum/QPay, Stripe</th><td>Amount, reference and status. Each gateway account belongs to <b>the Ortoo</b>, so the money goes to it and not to Nutag.</td></tr>
           <tr><th scope="row">Bonum/QPay, for drops</th><td>Amount, reference and status. Only a player with a Mongolian (+976) number can buy a drop, and pays <b>Nutag's own</b> Bonum account for it.</td></tr>
           <tr><th scope="row">Google (Firebase Cloud Messaging), and Apple on iPhone</th><td>Your phone's notification token and the text of each notification: the Ortoo's name and what happened. To deliver it.</td></tr>
@@ -242,6 +243,7 @@
       <p class="kicker">13</p>
       <h2 id="changes-title">Changes</h2>
       <p>If this policy changes, we publish the new version here with a new date, and tell you about significant changes in the app.</p>
+      <p><b>1.4</b> (2026-10-25): an Ortoo may deliver. For a delivered order we keep the point you marked, the note on where exactly, the phone number you gave the courier and the cash note you will pay with, and show them to that Ortoo. The number you sign in with is still never given to an Ortoo.</p>
       <p><b>1.3</b> (2026-10-24): drops are sold only to a player with a Mongolian (+976) number, through Bonum/QPay to Nutag's own account. They are no longer sold in the App Store or Google Play. From the first app version after 1.1.3, nothing is sent to RevenueCat; version 1.1.3 and earlier can still send it your account id when you open a drop, so please update the app. Until policy version 1.3, RevenueCat received your account id and each store purchase.</p>
     </section>
 
