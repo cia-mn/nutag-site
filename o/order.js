@@ -45,7 +45,7 @@ const EN = {
   appNeutral: 'Nutag app', getApp: 'Get the app', specials: 'Specials', table: 'Table', today: 'Today here: ', tomorrow: 'Tomorrow: ',
   open: 'Open', closed: 'Closed', openUntil: (t) => `Open · until ${t}`, opensAt: (t) => `Closed · opens at ${t}`,
   opensTomorrow: (t) => `Closed · opens tomorrow at ${t}`, orderComesHere: 'your order comes here',
-  noTable: 'No table · collect at the counter', tableOnly: 'Table only', review: 'View basket', basket: 'Your basket',
+  noTable: 'No table · collect at the counter', tableOnly: 'Table only', promoUntil: (name, t) => `${name} on until ${t}`, review: 'View basket', basket: 'Your basket',
   clear: 'Empty the basket', payAtCounterNote: 'You pay at the counter',
   empty: 'The menu is empty', other: 'Other', order: 'Order', orderFree: 'Order (free)', pay: 'Pay', counter: 'Pay at the counter',
   phoneTitle: 'Enter your phone number', phoneBody: 'We text a code. The same number signs you in to the Nutag app.',
@@ -73,7 +73,7 @@ const MN = {
   appNeutral: 'Nutag апп', getApp: 'Апп татах', specials: 'Онцлох', table: 'Ширээ', today: 'Өнөөдөр энд: ', tomorrow: 'Маргааш: ',
   open: 'Нээлттэй', closed: 'Хаалттай', openUntil: (t) => `Нээлттэй · ${t} хүртэл`, opensAt: (t) => `Хаалттай · ${t} цагт нээгдэнэ`,
   opensTomorrow: (t) => `Хаалттай · маргааш ${t} цагт`, orderComesHere: 'захиалга энд ирнэ',
-  noTable: 'Ширээгүй · касс дээр авна', tableOnly: 'Ширээнээс', review: 'Сагс харах', basket: 'Таны сагс',
+  noTable: 'Ширээгүй · касс дээр авна', tableOnly: 'Ширээнээс', promoUntil: (name, t) => `${name} урамшуулал ${t} хүртэл`, review: 'Сагс харах', basket: 'Таны сагс',
   clear: 'Сагс хоослох', payAtCounterNote: 'Төлбөрөө касс дээр төлнө',
   empty: 'Цэс хоосон байна', other: 'Бусад', order: 'Захиалах', orderFree: 'Захиалах (үнэгүй)', pay: 'Төлөх', counter: 'Касс дээр төлөх',
   phoneTitle: 'Утасны дугаараа оруулна уу', phoneBody: 'Бид код илгээнэ. Nutag апп\u2011д мөн энэ дугаараар нэвтэрнэ.',
@@ -409,11 +409,16 @@ function row(product, wide) {
   const picture = wide ? horizontal || square || vertical : square || horizontal || vertical;
   const variants = product.items ?? [];
   const off = product.sale_price != null && Math.round(100 - (product.sale_price / product.price) * 100);
+  // A promotion ending within the day shows when, as a clock and the time, as the app's pill does;
+  // the sentence is for a screen reader.
+  const ends = product.promo?.until && new Date(product.promo.until);
+  const until = ends && ends - Date.now() < 864e5 && ends.toTimeString().slice(0, 5);
   // A QR-only item is the table's: it is said, since it goes from the menu when the seat does.
   const tags = (product.badge || off || product.qr_only) && h('p', { className: 'order-tags' },
     product.qr_only && h('span', { className: 'order-tag is-table' }, T.tableOnly),
     product.badge && h('span', { className: 'order-tag' }, product.badge),
-    off && h('span', { className: 'order-tag is-sale' }, `−${off}%`));
+    off && h('span', { className: 'order-tag is-sale' }, `−${off}%`),
+    until && h('span', { className: 'order-tag is-until', role: 'img', ariaLabel: T.promoUntil(product.promo.name, until) }, until));
   return h('li', { className: 'order-item' },
     // Every line has a picture, a blank with the name's first letter if need be, so the names line up.
     h('div', { className: 'order-pic' },
@@ -727,6 +732,8 @@ function done(paid, r, part) {
   // the switch is hidden, and a menu it already asked for is not drawn.
   document.getElementById('lang').hidden = true;
   loads++;
+  clearTimeout(promoEnds); // nor by a promotion ending
+  stale = false;
 }
 
 /** One section alone, or the whole menu when its chip is pressed again, as the app's chips do
@@ -743,6 +750,8 @@ function pick(i, chip) {
 }
 
 let loads = 0; // the switch can start a load before the last one is in: only the newest draws, and none over a receipt
+let promoEnds; // the timer for the soonest promotion on the menu to end
+let stale = false; // one has: the menu is read again at the next look
 
 async function load() {
   const run = ++loads;
@@ -751,6 +760,15 @@ async function load() {
     const [o, menu] = await Promise.all([api('GET', '/ortoos/' + id), seat().then(() =>
       api('GET', `/vendors/${id}/products?limit=200` + (session ? '&session=' + encodeURIComponent(session) : '')))]);
     if (run !== loads) return;
+    // A running promotion comes beside the sale price and is always below it (backend promotions.go):
+    // it is the sale while it runs, so every price, the −% and the basket line read it from there.
+    for (const p of menu) if (p.promo) p.sale_price = p.promo.sale_price;
+    // Its price holds until it ends; then the menu is read again, so no line and no basket keeps a
+    // price the till has stopped charging. Never sooner than 30s (a clock running ahead would loop),
+    // never later than a day (a longer timeout overflows).
+    clearTimeout(promoEnds);
+    const ends = menu.map((p) => Date.parse(p.promo?.until)).filter((t) => t > 0);
+    if (ends.length) promoEnds = setTimeout(() => (stale = true), Math.min(864e5, Math.max(30e3, Math.min(...ends) - Date.now())));
     ortoo = o;
     document.title = `${o.name} · Nutag`;
     // The shop's own colour on the accents, as in the app, where it reads (4.5:1) on the page's paper
@@ -842,6 +860,12 @@ switcher.onclick = () => {
 // Nobody has to press "I have paid" or reload to see a verdict: a payment and a claim still open are
 // asked after every 15 seconds while the page is in front, and the moment it is back from a bank app.
 // Never under a sheet or a send, which ask for themselves, nor before there is a menu.
-const look = () => ortoo && !busy && !sheet.open && document.visibilityState === 'visible' && (checkPending(), follow());
+// A promotion that has ended draws the menu again here, for the same reasons: never under a sheet or a send.
+const look = () => {
+  if (!ortoo || busy || sheet.open || document.visibilityState !== 'visible') return;
+  if (stale) return (stale = false), load();
+  checkPending();
+  follow();
+};
 setInterval(look, 15e3);
 document.addEventListener('visibilitychange', look);
